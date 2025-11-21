@@ -2,118 +2,637 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CVT Việt Nam – Snack khoai môn nhập khẩu</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Be Vietnam Pro"', 'sans-serif'],
-          },
-          colors: {
-            green: {
-              DEFAULT: '#00a862',
-              dark: '#007a3b',
-              light: '#00c16a',
-              superlight: '#e6f7ef',
-            },
-            bg: {
-              main: '#f8fafc',
-              card: '#ffffff',
-            },
-            text: {
-              main: '#0f172a',
-              muted: '#64748b',
-            },
-            accent: '#0ea5e9',
-            danger: '#ef4444',
-            purple: {
-                light: '#d8b4fe',
-                DEFAULT: '#a855f7',
-                dark: '#7e22ce',
-            },
-            orange: {
-                light: '#fdba74',
-                DEFAULT: '#f97316',
-                dark: '#c2410c',
-            }
-          },
-          boxShadow: {
-            soft: '0 20px 40px -10px rgba(15, 23, 42, 0.08)',
-            card: '0 4px 20px -2px rgba(15, 23, 42, 0.06)',
-            glow: '0 0 20px rgba(0, 168, 98, 0.4)',
-            'glow-orange': '0 0 20px rgba(249, 115, 22, 0.4)',
-            'glow-purple': '0 0 20px rgba(168, 85, 247, 0.4)',
-          },
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'float-delayed': 'float 6s ease-in-out 3s infinite',
-            'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'shimmer': 'shimmer 2.5s linear infinite',
-            'shake': 'shake 3s cubic-bezier(.36,.07,.19,.97) infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' },
-            },
-            'pulse-glow': {
-              '0%, 100%': { opacity: 1, boxShadow: '0 0 20px rgba(0, 168, 98, 0.4)' },
-              '50%': { opacity: .9, boxShadow: '0 0 30px rgba(0, 168, 98, 0.6)' },
-            },
-            shimmer: {
-                '0%': { backgroundPosition: '200% 0' },
-                '100%': { backgroundPosition: '-200% 0' }
-            },
-            shake: {
-              '0%, 100%': { transform: 'translate3d(0, 0, 0)' },
-              '10%, 90%': { transform: 'translate3d(-1px, 0, 0)' },
-              '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
-              '30%, 50%, 70%': { transform: 'translate3d(-2px, 0, 0)' },
-              '40%, 60%': { transform: 'translate3d(2px, 0, 0)' }
-            }
-          },
-          backgroundImage: {
-            'hero-card': 'linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%)',
-            'gradient-primary': 'linear-gradient(135deg, #00a862 0%, #00c16a 100%)',
-            'gradient-purple': 'linear-gradient(135deg, #a855f7 0%, #d8b4fe 100%)',
-            'gradient-orange': 'linear-gradient(135deg, #f97316 0%, #fdba74 100%)',
-            'shimmer-gradient': 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%)',
-            'gradient-alert': 'linear-gradient(90deg, #991b1b 0%, #dc2626 50%, #991b1b 100%)',
-          }
-        }
+  <title>CVT Việt Nam - Snack Khoai Môn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #7f5af0 0, #0f172a 45%, #020617 100%);
+      color: #f9fafb;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #facc15, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #0f172a;
+      font-size: 18px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-text span:first-child {
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    .logo-text span:last-child {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: #9ca3af;
+      text-align: right;
+    }
+
+    /* hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .tagline {
+        text-align: left;
+        margin-top: 8px;
       }
     }
-  </script>
-  <style>
-    body {
-      background-color: #f8fafc;
+
+    .hero-left h1 {
+      font-size: clamp(28px, 4vw, 36px);
+      line-height: 1.1;
+      margin-bottom: 16px;
     }
-    html {
-      scroll-behavior: smooth;
+
+    .hero-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(250, 204, 21, 0.14);
+      border: 1px solid rgba(250, 204, 21, 0.5);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+      color: #facc15;
     }
-    .safe-area-pb {
-      padding-bottom: env(safe-area-inset-bottom);
+
+    .hero-sub {
+      font-size: 14px;
+      color: #e5e7eb;
+      margin-bottom: 18px;
+      max-width: 460px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #cbd5f5;
+      background: rgba(15, 23, 42, 0.5);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      padding: 9px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #f97316, #facc15);
+      color: #111827;
+      font-weight: 700;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-outline {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid #6b7280;
+      background: transparent;
+      color: #e5e7eb;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .hero-right {
+      position: relative;
+      padding: 18px;
+      border-radius: 24px;
+      background: radial-gradient(circle at top, rgba(248, 250, 252, 0.08), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      overflow: hidden;
+      min-height: 240px;
+    }
+
+    .chip {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 999px;
+      padding: 4px 9px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #e5e7eb;
+    }
+
+    .pack-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+
+    .pack {
+      flex: 1;
+      padding: 10px;
+      border-radius: 16px;
+      background: linear-gradient(150deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.75));
+      border: 1px solid rgba(55, 65, 81, 0.8);
+    }
+
+    .pack-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .pack-sub {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-bottom: 2px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.2);
+      color: #bbf7d0;
+      margin-top: 6px;
+    }
+
+    .metrics {
+      display: flex;
+      gap: 14px;
+      margin-top: 10px;
+      margin-bottom: 4px;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .metrics span strong {
+      color: #e5e7eb;
+    }
+
+    .stamp {
+      position: absolute;
+      bottom: 14px;
+      right: 18px;
+      font-size: 10px;
+      color: #9ca3af;
+      text-align: right;
+    }
+
+    /* section tiêu đề */
+    .section-title {
+      font-size: 16px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .section-sub {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 16px;
+      max-width: 620px;
+    }
+
+    /* cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      border-radius: 16px;
+      padding: 14px 13px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    .card-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .card-text {
+      font-size: 12px;
+      color: #d1d5db;
+      margin-bottom: 6px;
+    }
+
+    .pill-small {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(30, 64, 175, 0.5);
+      font-size: 10px;
+      color: #bfdbfe;
+      margin-top: 2px;
+    }
+
+    .card-list {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 6px;
+    }
+
+    .card-list li {
+      margin-left: 16px;
+      margin-bottom: 3px;
+    }
+
+    /* bảng thông tin sỉ */
+    .dealer {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+      gap: 18px;
+      padding: 16px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), rgba(15, 23, 42, 0.96));
+      margin-bottom: 22px;
+    }
+
+    @media (max-width: 768px) {
+      .dealer {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .dealer-left-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .dealer-left-text {
+      font-size: 12px;
+      color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .dealer-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .dealer-chip {
+      font-size: 11px;
+      padding: 4px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+    }
+
+    .dealer-right {
+      font-size: 11px;
+      color: #d1d5db;
+    }
+
+    .dealer-right table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .dealer-right th,
+    .dealer-right td {
+      text-align: left;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    .dealer-right th {
+      font-weight: 600;
+      color: #9ca3af;
+    }
+
+    .dealer-right tr:last-child td {
+      border-bottom: none;
+    }
+
+    footer {
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #9ca3af;
     }
   </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
-    "recharts": "https://aistudiocdn.com/recharts@^3.4.1"
-  }
-}
-</script>
 </head>
+
 <body>
-  <div id="root"></div>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-circle">CVT</div>
+        <div class="logo-text">
+          <span>CVT VIỆT NAM</span>
+          <span>Snack khoai môn vị chuẩn Trung Quốc</span>
+        </div>
+      </div>
+      <div class="tagline">
+        CVT chuyên snack khoai môn nhập khẩu<br />
+        Từ nhà máy đến kệ siêu thị & tạp hoá
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-highlight">
+          <span>SNACK KHOAI MÔN NHẬP KHẨU</span>
+        </div>
+        <h1>Đừng để khách của bạn<br />bỏ lỡ “cơn sốt” snack khoai môn CVT</h1>
+        <p class="hero-sub">
+          Dòng snack khoai môn CVT với nhiều hương vị trending (trứng muối, bò nướng, cua sốt, rong biển…) đang được khách trẻ và gia đình săn tìm.
+          Hàng nhập khẩu chính ngạch, hồ sơ đầy đủ – phù hợp cho siêu thị mini, tạp hoá, NPP và chuỗi cửa hàng.
+        </p>
+
+        <div class="hero-badges">
+          <span class="badge">3 quy cách: 35g · 75g · 180g</span>
+          <span class="badge">Giá vốn tốt · Dễ xoay vòng</span>
+          <span class="badge">Vị lạ – Bao bì bắt mắt</span>
+        </div>
+
+        <div class="hero-cta">
+          <button class="btn-primary">
+            Đăng ký giá sỉ &nbsp;→
+          </button>
+          <button class="btn-outline">
+            Nhận catalog sản phẩm (PDF)
+          </button>
+        </div>
+        <div class="hero-note">
+          Áp dụng cho NPP, đại lý, chủ cửa hàng & chuỗi từ 2 điểm bán trở lên.
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="chip">
+          <span>Demo kệ hàng</span>
+          <span>• CVT Snack Taro</span>
+        </div>
+
+        <div class="pack-row">
+          <div class="pack">
+            <div class="pack-title">CVT 35g – Gói snack “thử là nghiện”</div>
+            <div class="pack-sub">Bao bì nhỏ gọn, phù hợp quầy thanh toán và học sinh – sinh viên.</div>
+            <div class="pill">Bán chạy ở tạp hoá & xe đẩy vỉa hè</div>
+          </div>
+          <div class="pack">
+            <div class="pack-title">CVT 75g – Size gia đình</div>
+            <div class="pack-sub">Đủ cho 2–3 người ăn, dễ upsell cùng đồ uống đóng chai.</div>
+            <div class="pill">Hợp siêu thị mini & cửa hàng tiện lợi</div>
+          </div>
+        </div>
+
+        <div class="pack">
+          <div class="pack-title">CVT 180g – Combo cho cả nhà</div>
+          <div class="pack-sub">
+            Gói lớn cho các dịp tụ tập, xem phim, đá bóng. Biên lợi nhuận tốt, phù hợp trưng bày đầu kệ hoặc khu khuyến mãi.
+          </div>
+          <div class="metrics">
+            <span><strong>6+</strong> hương vị khác nhau</span>
+            <span><strong>20.000đ</strong> giá vốn tham khảo/gói</span>
+            <span><strong>Lên set</strong> combo theo từng tệp khách</span>
+          </div>
+        </div>
+
+        <div class="stamp">
+          Hình ảnh chỉ mang tính minh hoạ.<br />Thông tin chi tiết sẽ được gửi trong catalog CVT.
+        </div>
+      </div>
+    </section>
+
+    <!-- HƯƠNG VỊ -->
+    <section>
+      <h2 class="section-title">Các dòng hương vị chủ lực của CVT</h2>
+      <p class="section-sub">
+        CVT không chỉ có một loại khoai môn duy nhất. Chúng tôi phát triển nhiều hương vị khác nhau để phù hợp từng kiểu cửa hàng và tệp khách hàng:
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-tag">Dòng vị mặn – béo</div>
+          <div class="card-title">Khoai môn trứng muối & bò nướng</div>
+          <p class="card-text">
+            Vị béo bùi – mặn mà, phù hợp khách trẻ, dân văn phòng và gia đình. Độ mặn vừa phải, ăn không ngán.
+          </p>
+          <div class="pill-small">Hợp bán kèm đồ uống</div>
+          <ul class="card-list">
+            <li>Đề xuất trưng bày gần bia, nước ngọt, trà đóng chai.</li>
+            <li>Dễ upsell theo combo “ăn vặt xem phim, đá bóng”.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Dòng vị hải sản</div>
+          <div class="card-title">Khoai môn cua sốt & rong biển</div>
+          <p class="card-text">
+            Hương vị lạ miệng, tạo khác biệt so với snack khoai tây thông thường. Phù hợp khách hàng thích trải nghiệm mới.
+          </p>
+          <div class="pill-small">Tạo điểm nhấn cho quầy snack</div>
+          <ul class="card-list">
+            <li>Lý tưởng cho chuỗi siêu thị mini & cửa hàng tiện lợi.</li>
+            <li>Có thể làm sampling thử tại các điểm bán mới.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Dòng “ăn nhẹ, không ngán”</div>
+          <div class="card-title">Vị nguyên bản & phô mai nhẹ</div>
+          <p class="card-text">
+            Ít nêm nếm, phù hợp khách hàng lớn tuổi hoặc nhóm “ăn healthy” nhưng vẫn muốn có món snack vui miệng.
+          </p>
+          <div class="pill-small">Phù hợp gia đình & tặng biếu nhẹ nhàng</div>
+          <ul class="card-list">
+            <li>Dễ đưa vào giỏ quà, combo tết, combo quà biếu.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ĐỐI TƯỢNG SỈ -->
+    <section>
+      <h2 class="section-title">Dành cho NPP, đại lý & chủ cửa hàng</h2>
+
+      <div class="dealer">
+        <div>
+          <div class="dealer-left-title">Lợi thế khi nhập snack khoai môn CVT</div>
+          <p class="dealer-left-text">
+            CVT định hướng làm việc lâu dài với hệ thống phân phối, không chạy theo “đánh nhanh thắng nhanh”.
+            Chúng tôi tập trung vào: biên lợi nhuận ổn, hồ sơ nhập khẩu đầy đủ và hỗ trợ trưng bày.
+          </p>
+
+          <div class="dealer-chips">
+            <div class="dealer-chip">Hàng nhập chính ngạch</div>
+            <div class="dealer-chip">Hồ sơ kiểm nghiệm & công bố đầy đủ</div>
+            <div class="dealer-chip">Hỗ trợ tư vấn trưng bày & combo</div>
+            <div class="dealer-chip">Chính sách cho NPP / đại lý</div>
+          </div>
+        </div>
+
+        <div class="dealer-right">
+          <table>
+            <tr>
+              <th>Đối tượng</th>
+              <th>Số lượng đề xuất</th>
+              <th>Ghi chú</th>
+            </tr>
+            <tr>
+              <td>NPP khu vực</td>
+              <td>Từ 30 thùng trở lên</td>
+              <td>Đủ vị, hỗ trợ truyền thông khu vực</td>
+            </tr>
+            <tr>
+              <td>Đại lý / cửa hàng sỉ</td>
+              <td>Từ 5–10 thùng</td>
+              <td>Có thể start với mix nhiều vị – nhiều quy cách</td>
+            </tr>
+            <tr>
+              <td>Siêu thị mini / tạp hoá</td>
+              <td>2–3 thùng</td>
+              <td>Test thị trường, chọn vị phù hợp tệp khách</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <p class="section-sub">
+        Bạn có thể để lại thông tin liên hệ (Zalo, số điện thoại, khu vực) để đội ngũ CVT gửi báo giá chi tiết và catalog sản phẩm.
+        Chúng tôi sẽ tư vấn cấu trúc nhập hàng phù hợp với quy mô và tệp khách của bạn.
+      </p>
+
+      <button class="btn-primary">
+        Để lại thông tin nhận báo giá sỉ
+      </button>
+    </section>
+
+    <footer>
+      <div>
+        © CVT Việt Nam – Snack khoai môn nhập khẩu. Một thương hiệu do LYHU phân phối.
+      </div>
+      <div>
+        Liên hệ hợp tác: lyhu.vn@gmail.com · Hà Nội, Việt Nam
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
