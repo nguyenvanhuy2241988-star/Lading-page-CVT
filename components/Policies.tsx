@@ -1,7 +1,8 @@
+
 import React from 'react';
 import SectionHeading from './ui/SectionHeading';
 import Button from './ui/Button';
-import { Check, Crown, Shield, Zap } from 'lucide-react';
+import { Check, Crown, Shield, Zap, Flame, Gift } from 'lucide-react';
 
 const Policies: React.FC = () => {
   const scrollToForm = () => {
@@ -44,18 +45,32 @@ const Policies: React.FC = () => {
         </div>
 
         {/* Gold Tier (Highlighted) */}
-        <div className="bg-gradient-to-b from-[#0b1b2b] to-[#1e293b] rounded-[32px] p-8 shadow-2xl relative transform md:-translate-y-4 text-white border border-gray-700">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg animate-pulse">
-                ĐƯỢC ĐĂNG KÝ NHIỀU NHẤT
+        <div className="bg-gradient-to-b from-[#0b1b2b] to-[#1e293b] rounded-[32px] p-8 shadow-2xl relative transform md:-translate-y-4 text-white border border-gray-700 overflow-hidden">
+            {/* Ribbon */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[10px] font-bold px-6 py-1 rounded-b-lg shadow-lg z-20 uppercase tracking-wider">
+                Best Seller
             </div>
-            <div className="text-center mb-8">
+            
+            <div className="text-center mb-6 pt-4">
                 <div className="inline-flex items-center gap-1.5 bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3 border border-yellow-500/30">
                     <Crown size={12} /> Chuyên nghiệp
                 </div>
                 <h3 className="text-3xl font-extrabold text-white">NPP Vàng</h3>
                 <div className="mt-2 text-sm text-gray-400">Vốn từ <span className="font-bold text-white text-lg">50 triệu</span></div>
             </div>
-            <ul className="space-y-5 mb-10 text-sm text-gray-300">
+
+            {/* Scarcity Bar */}
+            <div className="bg-white/10 rounded-lg p-3 mb-6 border border-white/10">
+                <div className="flex justify-between text-[11px] font-bold uppercase tracking-wide mb-1.5 text-gray-300">
+                    <span className="flex items-center gap-1 text-red-400"><Flame size={12} fill="currentColor" /> Sắp hết suất tháng này</span>
+                    <span>14/15</span>
+                </div>
+                <div className="w-full h-2 bg-black/40 rounded-full overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-yellow-600 to-yellow-400 w-[93%] shadow-[0_0_10px_rgba(250,204,21,0.5)] animate-pulse"></div>
+                </div>
+            </div>
+
+            <ul className="space-y-4 mb-6 text-sm text-gray-300">
                 <li className="flex items-start gap-3">
                     <div className="bg-yellow-500 rounded-full p-0.5 mt-0.5 shrink-0"><Check size={12} className="text-black" /></div>
                     <span>Chiết khấu khủng <strong>up to 45%</strong></span>
@@ -68,12 +83,23 @@ const Policies: React.FC = () => {
                     <div className="bg-yellow-500 rounded-full p-0.5 mt-0.5 shrink-0"><Check size={12} className="text-black" /></div>
                     <span><strong>Bảo hộ vùng bán</strong> độc quyền</span>
                 </li>
-                <li className="flex items-start gap-3">
-                    <div className="bg-yellow-500 rounded-full p-0.5 mt-0.5 shrink-0"><Check size={12} className="text-black" /></div>
-                    <span>Tặng gói POSM 3 Triệu đồng</span>
-                </li>
             </ul>
-            <Button variant="shimmer" size="lg" onClick={scrollToForm} className="w-full shadow-yellow-500/20">Nhận báo giá NPP</Button>
+
+            {/* Highlighted Gift Box - Visual Emphasis */}
+            <div className="bg-gradient-to-r from-red-900/60 to-red-800/40 border border-red-500/40 rounded-xl p-3 mb-8 flex items-center gap-3 backdrop-blur-sm relative overflow-hidden group">
+                <div className="absolute inset-0 bg-red-600/10 animate-pulse"></div>
+                <div className="bg-red-600 p-2 rounded-lg text-white shadow-lg shrink-0 relative z-10 group-hover:scale-110 transition-transform">
+                     <Gift size={20} className="animate-shake" />
+                </div>
+                <div className="relative z-10">
+                     <div className="text-[10px] text-red-300 uppercase font-bold tracking-wider mb-0.5">Quà tặng giới hạn</div>
+                     <div className="text-sm font-bold text-white leading-tight">Gói POSM trị giá <span className="text-yellow-400 text-base block sm:inline">3.000.000đ</span></div>
+                </div>
+            </div>
+
+            <Button variant="shimmer" size="lg" onClick={scrollToForm} className="w-full shadow-yellow-500/20 border border-yellow-500/50 text-yellow-50 font-extrabold tracking-wide">
+                Đăng Ký Giữ Suất
+            </Button>
         </div>
 
         {/* Diamond Tier */}

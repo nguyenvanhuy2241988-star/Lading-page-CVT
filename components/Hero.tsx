@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Button from './ui/Button';
 import { TrendingUp, CheckCircle, ArrowRight, Star, Users } from 'lucide-react';
@@ -71,7 +72,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Right Visual - CSS Composition of Snack Packs */}
-      <div className="relative h-[400px] md:h-[500px] w-full flex items-center justify-center perspective-1000">
+      <div className="relative h-[500px] md:h-[600px] w-full flex items-center justify-center perspective-1000">
         
         {/* Decorative Background Blob */}
         <div className="absolute inset-0 bg-gradient-to-tr from-green-100 to-blue-50 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] animate-float opacity-70 blur-3xl -z-10"></div>
@@ -80,35 +81,37 @@ const Hero: React.FC = () => {
         <div className="absolute top-10 left-10 w-10 h-10 bg-yellow-200 rounded-[50%] rotate-45 opacity-80 border border-yellow-300 animate-float-delayed z-0 shadow-sm"></div>
         <div className="absolute bottom-20 right-10 w-12 h-12 bg-purple-200 rounded-[40%] -rotate-12 opacity-60 border border-purple-300 animate-float z-0 shadow-sm"></div>
 
-        {/* Pack 1: Salted Egg (Back) */}
-        <div className="absolute right-6 md:right-16 top-8 md:top-12 w-[200px] md:w-[240px] h-[280px] md:h-[340px] bg-gradient-orange rounded-xl rotate-12 shadow-glow-orange transform transition-transform hover:scale-105 hover:rotate-6 z-10 border-t-[1px] border-white/30 flex flex-col items-center justify-center p-6 animate-float-delayed group cursor-pointer">
+        {/* Pack 1: Salted Egg (Back) - TALLER & SLIMMER (Standing Pouch) */}
+        <div className="absolute right-8 md:right-20 top-4 md:top-0 w-[160px] md:w-[200px] h-[380px] md:h-[480px] bg-gradient-orange rounded-xl rotate-12 shadow-glow-orange transform transition-transform hover:scale-105 hover:rotate-6 z-10 border-t-[1px] border-white/30 flex flex-col items-center justify-center p-5 animate-float-delayed group cursor-pointer">
              <div className="w-full h-full absolute inset-0 bg-white/5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 pointer-events-none"></div>
-             <div className="w-full h-4 bg-black/10 absolute top-4 rounded-full blur-sm"></div>
-             <div className="text-white font-extrabold text-4xl uppercase tracking-tighter mb-1 drop-shadow-md">CVT</div>
-             <div className="text-white/90 text-[10px] tracking-[0.3em] uppercase mb-2 font-bold">Premium Snack</div>
-             <div className="bg-white text-orange-dark font-bold px-3 py-1 rounded-full text-xs mb-4 shadow-sm z-10">Vị Trứng Muối</div>
-             <div className="w-24 h-24 bg-white/20 rounded-full mb-4 backdrop-blur-sm flex items-center justify-center shadow-inner relative overflow-hidden group-hover:scale-110 transition-transform">
+             <div className="w-full h-4 bg-black/10 absolute top-5 rounded-full blur-sm"></div>
+             <div className="text-white font-extrabold text-4xl uppercase tracking-tighter mb-1 drop-shadow-md mt-8">CVT</div>
+             <div className="text-white/90 text-[8px] tracking-[0.3em] uppercase mb-2 font-bold">Premium Snack</div>
+             <div className="bg-white text-orange-dark font-bold px-3 py-1 rounded-full text-[10px] mb-6 shadow-sm z-10 uppercase tracking-wide">Vị Trứng Muối</div>
+             <div className="w-20 h-20 bg-white/20 rounded-full mb-4 backdrop-blur-sm flex items-center justify-center shadow-inner relative overflow-hidden group-hover:scale-110 transition-transform">
                  <div className="absolute w-16 h-16 bg-orange-400 rounded-full blur-md opacity-50"></div>
-                <span className="text-4xl relative z-10">🥚</span>
+                <span className="text-3xl relative z-10">🥚</span>
              </div>
+             <div className="mt-auto mb-6 text-white font-bold text-xl">35g</div>
              {/* Crimped Top/Bottom Effect */}
              <div className="absolute -top-1 left-0 right-0 h-3 bg-gradient-orange" style={{clipPath: 'polygon(0% 0%, 5% 100%, 10% 0%, 15% 100%, 20% 0%, 25% 100%, 30% 0%, 35% 100%, 40% 0%, 45% 100%, 50% 0%, 55% 100%, 60% 0%, 65% 100%, 70% 0%, 75% 100%, 80% 0%, 85% 100%, 90% 0%, 95% 100%, 100% 0%)'}}></div>
              <div className="absolute -bottom-1 left-0 right-0 h-3 bg-gradient-orange" style={{clipPath: 'polygon(0% 100%, 5% 0%, 10% 100%, 15% 0%, 20% 100%, 25% 0%, 30% 100%, 35% 0%, 40% 100%, 45% 0%, 50% 100%, 55% 0%, 60% 100%, 65% 0%, 70% 100%, 75% 0%, 80% 100%, 85% 0%, 90% 100%, 95% 0%, 100% 100%)'}}></div>
         </div>
 
-        {/* Pack 2: Taro (Front) */}
-        <div className="absolute left-4 md:left-10 bottom-10 md:bottom-16 w-[220px] md:w-[260px] h-[310px] md:h-[370px] bg-gradient-purple rounded-xl -rotate-6 shadow-glow-purple transform transition-transform hover:scale-105 hover:rotate-0 z-20 border-t-[1px] border-white/30 flex flex-col items-center justify-center p-6 animate-float group cursor-pointer">
+        {/* Pack 2: Taro (Front) - TALLER & SLIMMER (Standing Pouch) */}
+        <div className="absolute left-6 md:left-12 bottom-4 md:bottom-0 w-[180px] md:w-[220px] h-[420px] md:h-[520px] bg-gradient-purple rounded-xl -rotate-6 shadow-glow-purple transform transition-transform hover:scale-105 hover:rotate-0 z-20 border-t-[1px] border-white/30 flex flex-col items-center justify-center p-6 animate-float group cursor-pointer">
              <div className="w-full h-full absolute inset-0 bg-white/5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 pointer-events-none"></div>
-             <div className="absolute top-6 right-4 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-2 py-1 rounded shadow-lg animate-pulse z-20">
+             <div className="absolute top-6 right-4 bg-yellow-400 text-yellow-900 text-[9px] font-bold px-2 py-1 rounded shadow-lg animate-pulse z-20">
                BEST SELLER
              </div>
-             <div className="text-white font-extrabold text-5xl uppercase tracking-tighter mb-1 drop-shadow-md mt-2">CVT</div>
-             <div className="text-white/90 text-[10px] tracking-[0.3em] uppercase mb-3 font-bold">Premium Snack</div>
-             <div className="bg-white text-purple-dark font-bold px-4 py-1.5 rounded-full text-sm mb-6 shadow-lg z-10">Khoai Môn Tươi</div>
-             <div className="w-28 h-28 bg-white/20 rounded-full mb-6 backdrop-blur-sm flex items-center justify-center border border-white/10 shadow-inner relative overflow-hidden group-hover:scale-110 transition-transform">
+             <div className="text-white font-extrabold text-5xl uppercase tracking-tighter mb-1 drop-shadow-md mt-10">CVT</div>
+             <div className="text-white/90 text-[9px] tracking-[0.3em] uppercase mb-4 font-bold">Premium Snack</div>
+             <div className="bg-white text-purple-dark font-bold px-4 py-1.5 rounded-full text-xs mb-8 shadow-lg z-10 uppercase tracking-wide">Khoai Môn Tươi</div>
+             <div className="w-24 h-24 bg-white/20 rounded-full mb-8 backdrop-blur-sm flex items-center justify-center border border-white/10 shadow-inner relative overflow-hidden group-hover:scale-110 transition-transform">
                 <div className="absolute w-20 h-20 bg-purple-400 rounded-full blur-md opacity-50"></div>
                 <span className="text-5xl drop-shadow-lg relative z-10">🍠</span>
              </div>
+             <div className="mt-auto mb-6 text-white font-bold text-2xl">35g</div>
              {/* Crimped Top/Bottom Effect */}
              <div className="absolute -top-1 left-0 right-0 h-3 bg-gradient-purple" style={{clipPath: 'polygon(0% 0%, 5% 100%, 10% 0%, 15% 100%, 20% 0%, 25% 100%, 30% 0%, 35% 100%, 40% 0%, 45% 100%, 50% 0%, 55% 100%, 60% 0%, 65% 100%, 70% 0%, 75% 100%, 80% 0%, 85% 100%, 90% 0%, 95% 100%, 100% 0%)'}}></div>
              <div className="absolute -bottom-1 left-0 right-0 h-3 bg-gradient-purple" style={{clipPath: 'polygon(0% 100%, 5% 0%, 10% 100%, 15% 0%, 20% 100%, 25% 0%, 30% 100%, 35% 0%, 40% 100%, 45% 0%, 50% 100%, 55% 0%, 60% 100%, 65% 0%, 70% 100%, 75% 0%, 80% 100%, 85% 0%, 90% 100%, 95% 0%, 100% 100%)'}}></div>
