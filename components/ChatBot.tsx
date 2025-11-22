@@ -60,13 +60,19 @@ const ChatBot: React.FC = () => {
     scrollToBottom();
   }, [messages, isOpen]);
 
-  // Init Chat Function
+  // Init Chat Function with Safe Checks
   const initializeChat = () => {
     try {
-      if (!process.env.API_KEY) {
+      // Safe check for API Key existence to prevent crash
+      // NOTE: In Vite (via vite.config.ts), process.env.API_KEY is replaced by string literal during build
+      const apiKey = process.env.API_KEY;
+      
+      if (!apiKey || apiKey === 'undefined') {
+          console.warn("API Key is missing or invalid.");
           return null;
       }
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      
+      const ai = new GoogleGenAI({ apiKey: apiKey });
       
       return ai.chats.create({
         model: 'gemini-2.5-flash',
@@ -126,7 +132,8 @@ const ChatBot: React.FC = () => {
       }
 
       if (!chatInstance.current) {
-        throw new Error("Connection failed");
+        // Fallback simulation if API is down
+        throw new Error("Connection failed or No API Key");
       }
 
       const result: GenerateContentResponse = await chatInstance.current.sendMessage({ 
@@ -147,6 +154,11 @@ const ChatBot: React.FC = () => {
       
       let errorMsg = `Dạ hiện tại hệ thống tin nhắn đang quá tải. Anh/chị gọi trực tiếp Hotline ${HOTLINE} giúp em nhé!`;
       
+      // If no API key is configured, give a more helpful dev message (optional, or just stick to user persona)
+      if (error.message?.includes("No API Key")) {
+         errorMsg = "Hệ thống đang bảo trì nâng cấp (Missing Key). Anh/chị vui lòng gọi Hotline nhé!";
+      }
+
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'model',
@@ -316,8 +328,6 @@ const ChatBot: React.FC = () => {
                  <Send size={16} className={input.trim() ? 'ml-0.5' : ''} />
                </button>
             </form>
-            
-            {/* Removed "Powered by Gemini" to maintain illusion */}
           </div>
 
         </div>
