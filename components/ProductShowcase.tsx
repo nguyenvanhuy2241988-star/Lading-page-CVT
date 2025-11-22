@@ -1,104 +1,165 @@
 
 import React from 'react';
 import SectionHeading from './ui/SectionHeading';
-import { Plus } from 'lucide-react';
+import { ShoppingBag, Star, Zap, Flame, Leaf, Beef, Diamond, Package } from 'lucide-react';
+
+interface ProductLine {
+  id: string;
+  name: string;
+  weights: string[];
+  image: string;
+  color: string;
+  bgGradient: string;
+  tags?: string[];
+  icon: React.ReactNode;
+  description: string;
+}
 
 const ProductShowcase: React.FC = () => {
   const scrollToForm = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // CẤU HÌNH DANH SÁCH SẢN PHẨM VÀ ẢNH
-  const flavors = [
+  // Cấu hình danh sách sản phẩm
+  // Đã cập nhật: 
+  // - Ảnh vị Cay mới
+  // - Bỏ tên tiếng Anh
+  // - Tag Best Seller cho: Trứng Muối, Trứng Cua, Cay
+  const products: ProductLine[] = [
     {
+      id: "TM",
       name: "Vị Trứng Muối",
-      color: "from-orange-400 to-red-500",
-      bgChip: "bg-orange-200",
-      // Thay link ảnh bên dưới bằng link ảnh thật của bạn
-      image: "https://placehold.co/300x400/f97316/white?text=Trung+Muoi", 
-      desc: "Vị mặn ngọt hài hòa, lớp phủ trứng muối thật 100%, béo ngậy mà không ngấy.",
-      tags: ["Best Seller", "35g/75g"]
+      weights: ["35g", "75g", "180g"],
+      image: "https://lh3.googleusercontent.com/d/1WyGIymEnZU9VnnZFXAJ2QWtmo0cA9jyc",
+      color: "text-orange-600",
+      bgGradient: "from-orange-50 to-orange-100/30",
+      tags: ["Best Seller", "Bán chạy nhất"],
+      icon: <Star className="text-orange-500" size={16} fill="currentColor" />,
+      description: "Vị mặn ngọt béo ngậy đặc trưng của trứng muối hoàng kim, kết hợp khoai môn giòn tan."
     },
     {
-      name: "Vị Truffle & Jambon",
-      color: "from-gray-700 to-gray-900",
-      bgChip: "bg-gray-300",
-      // Thay link ảnh bên dưới bằng link ảnh thật của bạn
-      image: "https://placehold.co/300x400/334155/white?text=Truffle",
-      desc: "Hương thơm nấm Truffle sang trọng kết hợp vị mặn của Jambon.",
-      tags: ["Premium", "35g"]
+      id: "TC",
+      name: "Vị Trứng Cua",
+      weights: ["35g", "75g", "180g"],
+      image: "https://lh3.googleusercontent.com/d/1yPH38a74fTWDZ208EqR24aU4X5UemMts",
+      color: "text-amber-700",
+      bgGradient: "from-amber-50 to-amber-100/30",
+      tags: ["Best Seller", "Hot Trend"],
+      icon: <Zap className="text-amber-600" size={16} fill="currentColor" />,
+      description: "Hương thơm đậm đà của gạch cua biển, trải nghiệm ẩm thực cao cấp trong từng miếng snack."
     },
     {
-      name: "Vị Steak Bò",
-      color: "from-red-700 to-red-900",
-      bgChip: "bg-red-200",
-      // Thay link ảnh bên dưới bằng link ảnh thật của bạn
-      image: "https://placehold.co/300x400/991b1b/white?text=Steak+Bo",
-      desc: "Đậm đà hương vị bò nướng tiêu đen, mạnh mẽ và kích thích vị giác.",
-      tags: ["Mới", "75g"]
+      id: "CA",
+      name: "Vị Cay Tứ Xuyên",
+      weights: ["35g", "75g", "180g"],
+      image: "https://lh3.googleusercontent.com/d/1m3vNt2c75Fjs_8FQxBIlkwJDWg1f5UD9",
+      color: "text-red-700",
+      bgGradient: "from-red-50 to-red-100/40",
+      tags: ["Best Seller", "Cay nồng"],
+      icon: <Flame className="text-red-600" size={16} fill="currentColor" />,
+      description: "Vị cay nồng nàn kích thích vị giác, phù hợp cho những tín đồ ăn cay sành điệu. Bao bì đỏ nổi bật."
     },
     {
-      name: "Vị Truyền Thống",
-      color: "from-purple-500 to-indigo-600",
-      bgChip: "bg-purple-200",
-      // Thay link ảnh bên dưới bằng link ảnh thật của bạn
-      image: "https://placehold.co/300x400/a855f7/white?text=Khoai+Mon",
-      desc: "Giữ nguyên vị ngọt bùi tự nhiên của khoai môn tươi nguyên bản với chút muối biển.",
-      tags: ["Classic", "All Sizes"]
-    }
+      id: "HL",
+      name: "Vị Hành Lá",
+      weights: ["35g", "75g"],
+      image: "https://lh3.googleusercontent.com/d/1KTmnzuytC8WcqgGQMMD2Xv_bYgyczYUa",
+      color: "text-green-700",
+      bgGradient: "from-green-50 to-green-100/40",
+      tags: ["Truyền thống", "Dễ ăn"],
+      icon: <Leaf className="text-green-600" size={16} fill="currentColor" />,
+      description: "Hương thơm nhẹ nhàng của hành lá tươi, vị mặn vừa phải. Bao bì màu xanh tươi mát."
+    },
+    {
+      id: "BB",
+      name: "Vị Bò Bít Tết",
+      weights: ["35g"],
+      image: "https://lh3.googleusercontent.com/d/1CgLV_SQen38-WyANRNHCZWNu5dJT-wOn",
+      color: "text-gray-900",
+      bgGradient: "from-gray-100 to-gray-300/40",
+      tags: ["Đậm đà", "Snack mặn"],
+      icon: <Beef className="text-gray-800" size={16} />,
+      description: "Vị thịt nướng BBQ thơm lừng, đậm đà gia vị ướp bò bít tết. Bao bì đen sang trọng."
+    },
+    {
+      id: "TR",
+      name: "Vị Nấm Truffle",
+      weights: ["35g"],
+      image: "https://lh3.googleusercontent.com/d/1ENTOgvQBDwF3huAwnXihesUfePqCzYWu",
+      color: "text-slate-800",
+      bgGradient: "from-slate-50 to-slate-200/40",
+      tags: ["Cao cấp", "Gourmet"],
+      icon: <Diamond className="text-slate-600" size={16} />,
+      description: "Hương nấm Truffle đen quý tộc, mang lại trải nghiệm sang trọng và tinh tế."
+    },
   ];
 
   return (
     <section id="products" className="mb-24 scroll-mt-20">
       <SectionHeading 
-        title="Bộ Sưu Tập Hương Vị Đột Phá" 
-        description="Không chỉ là snack, CVT mang đến trải nghiệm ẩm thực tinh tế trong từng lát khoai."
+        title="Bộ Sưu Tập Hương Vị" 
+        description="6 Hương vị độc đáo - 3 Quy cách đóng gói tiêu chuẩn (35g, 75g, 180g). Đáp ứng mọi nhu cầu từ ăn vặt đến quà biếu."
       />
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {flavors.map((flavor, idx) => (
-          <div key={idx} className="group relative bg-white rounded-[24px] overflow-hidden shadow-card hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 flex flex-col h-full">
-            {/* Product Image Header */}
-            <div className={`h-48 bg-gradient-to-br ${flavor.color} flex items-center justify-center relative overflow-hidden`}>
-                <div className="absolute w-40 h-40 bg-white/10 rounded-full -top-10 -right-10 blur-xl"></div>
-                {/* Abstract Floating Chips CSS */}
-                <div className={`absolute top-4 left-4 w-6 h-6 ${flavor.bgChip} rounded-full opacity-50 animate-float`}></div>
-                <div className={`absolute bottom-4 right-8 w-4 h-4 ${flavor.bgChip} rounded-full opacity-40 animate-float-delayed`}></div>
 
-                {/* Real Image Container */}
-                <div className="relative w-32 h-40 transform group-hover:scale-110 transition-transform duration-500 z-10 mt-4">
-                    <img 
-                        src={flavor.image} 
-                        alt={flavor.name}
-                        className="w-full h-full object-contain drop-shadow-lg"
-                    />
-                </div>
+      {/* Products Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {products.map((product) => (
+          <div key={product.id} className={`group relative bg-gradient-to-br ${product.bgGradient} rounded-[32px] overflow-hidden shadow-card hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-white/50 flex flex-col`}>
+            
+            {/* Tags */}
+            <div className="absolute top-4 left-4 z-20 flex flex-col gap-2 items-start">
+               {product.tags?.map((tag, idx) => (
+                 <span key={idx} className={`text-[10px] font-bold px-2.5 py-1 rounded-full bg-white/90 backdrop-blur shadow-sm ${product.color} border border-white/50 uppercase tracking-wide`}>
+                    {tag}
+                 </span>
+               ))}
+            </div>
+
+            {/* Image Area */}
+            <div className="relative h-[280px] w-full flex items-center justify-center p-6 mt-4">
+                {/* Background Glow */}
+                <div className="absolute inset-0 bg-white/40 rounded-full blur-3xl transform scale-75 group-hover:scale-90 transition-transform duration-500"></div>
+                
+                {/* Product Image */}
+                <img 
+                    src={product.image} 
+                    alt={product.name}
+                    referrerPolicy="no-referrer"
+                    className="relative z-10 w-full h-full object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+                />
             </div>
             
-            <div className="p-6 relative flex-1 flex flex-col">
-                {/* Floating Pill */}
-                <div className="absolute -top-4 left-6 bg-white border border-gray-100 shadow-sm px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide text-gray-600 z-10">
-                    {flavor.tags[0]}
+            {/* Content Card */}
+            <div className="bg-white/80 backdrop-blur-md p-6 pt-6 flex flex-col flex-1 relative z-20 border-t border-white/50 h-full">
+                <div className="mb-1 flex items-center gap-2 opacity-50">
+                    {product.icon}
                 </div>
+                <h3 className={`text-2xl font-extrabold ${product.color} mb-2 leading-tight`}>
+                    {product.name}
+                </h3>
+                <p className="text-sm text-gray-600 mb-5 line-clamp-2 leading-relaxed">
+                    {product.description}
+                </p>
 
-                <h3 className="text-lg font-bold text-text-main mb-2 mt-2">{flavor.name}</h3>
-                <p className="text-sm text-text-muted mb-4 line-clamp-3">{flavor.desc}</p>
-                
                 <div className="mt-auto">
                     <div className="flex items-center gap-2 mb-4">
-                        {flavor.tags.slice(1).map((t, i) => (
-                            <span key={i} className="text-[10px] bg-gray-100 text-gray-600 px-2 py-1 rounded-md font-medium border border-gray-200">
-                                {t}
+                        <Package size={14} className="text-gray-400" />
+                        <span className="text-xs font-bold text-gray-500 uppercase">Quy cách có sẵn:</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2 mb-5">
+                        {product.weights.map((w) => (
+                            <span key={w} className="px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-xs font-bold text-gray-700 shadow-sm group-hover:border-green-300 transition-colors">
+                                {w}
                             </span>
                         ))}
                     </div>
-                    
-                    {/* CVT Button */}
+
                     <button 
                         onClick={scrollToForm}
-                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 border-gray-100 text-sm font-bold text-text-main hover:border-green hover:text-green hover:bg-green-50 transition-all active:scale-95"
+                        className="w-full py-3 rounded-xl bg-gray-900 text-white font-bold text-sm shadow-lg hover:bg-green-600 hover:shadow-green/30 transition-all flex items-center justify-center gap-2 group/btn"
                     >
-                        <Plus size={16} /> Nhập hàng
+                        <ShoppingBag size={16} /> 
+                        <span>Nhập hàng ngay</span>
                     </button>
                 </div>
             </div>
