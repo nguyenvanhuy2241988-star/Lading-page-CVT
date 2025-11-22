@@ -13,6 +13,8 @@ const Journey: React.FC = () => {
     main: "https://lh3.googleusercontent.com/d/1pGY4fVPMa05VKnABvUAhyNP4vELPO6c8", // Production Line / Overview
     worker: "https://lh3.googleusercontent.com/d/16sPT6vYB5MAWeiZb3NUWfCvB_jAjvX5b", // Workers
     raw: "https://lh3.googleusercontent.com/d/1UscUs0gj7chRaOKkZjOoiepUU_3Od45G", // Raw Material
+    slice: "https://lh3.googleusercontent.com/d/17lz_7kc-G64zYl7SUAWd0bA1qQCXa6ou", // Sliced Taro
+    packing: "https://lh3.googleusercontent.com/d/1YMdKDVSBT7my4JOQW0NJdL0KeUweAJF-", // Packing/Product
   };
 
   return (
@@ -23,7 +25,7 @@ const Journey: React.FC = () => {
         <div className="flex flex-col gap-4">
             
             {/* Main Card: Factory Overview */}
-            <div className="relative rounded-[32px] overflow-hidden h-[320px] shadow-soft group bg-gray-900">
+            <div className="relative rounded-[32px] overflow-hidden h-[280px] sm:h-[320px] shadow-soft group bg-gray-900">
                 <img 
                     src={FACTORY_IMAGES.main} 
                     alt="Dây chuyền sản xuất snack khoai môn"
@@ -56,36 +58,48 @@ const Journey: React.FC = () => {
                 </div>
             </div>
 
-            {/* Sub Images Grid */}
-            <div className="grid grid-cols-2 gap-4 h-[180px]">
-                <div className="relative rounded-[24px] overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
+            {/* Sub Images Grid - Updated to 4 items */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="relative aspect-square rounded-2xl overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
                      <img 
                         src={FACTORY_IMAGES.raw} 
                         alt="Nguyên liệu khoai môn tươi"
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-80"></div>
-                    <div className="absolute bottom-3 left-3 right-3">
-                        <div className="text-[10px] text-gray-300 uppercase font-bold mb-0.5">Bước 1</div>
-                        <div className="text-sm font-bold text-white leading-tight">Nguyên liệu tuyển chọn</div>
-                    </div>
+                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
                 </div>
-                <div className="relative rounded-[24px] overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
+                
+                <div className="relative aspect-square rounded-2xl overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
+                     <img 
+                        src={FACTORY_IMAGES.slice} 
+                        alt="Sơ chế khoai môn"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+                </div>
+
+                <div className="relative aspect-square rounded-2xl overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
+                     <img 
+                        src={FACTORY_IMAGES.packing} 
+                        alt="Đóng gói thành phẩm"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+                </div>
+
+                <div className="relative aspect-square rounded-2xl overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
                      <img 
                         src={FACTORY_IMAGES.worker} 
                         alt="Công nhân sản xuất"
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         referrerPolicy="no-referrer"
                     />
-                    {/* Play Icon Overlay suggestion for 'Video' feel */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform">
-                         <Video size={18} className="text-white ml-1" fill="currentColor" />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-80"></div>
-                    <div className="absolute bottom-3 left-3 right-3">
-                        <div className="text-[10px] text-gray-300 uppercase font-bold mb-0.5">Bước 2</div>
-                        <div className="text-sm font-bold text-white leading-tight">Chế biến & Đóng gói</div>
+                    {/* Play Icon Overlay */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform">
+                         <Video size={14} className="text-white ml-0.5" fill="currentColor" />
                     </div>
                 </div>
             </div>

@@ -8,12 +8,12 @@ const MobileStickyBtn: React.FC = () => {
   };
 
   // Hotline mới
-  const HOTLINE = "0969153015";
+  const HOTLINE = "0969.15.30.15";
 
   return (
     <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.15)] z-[40] md:hidden flex gap-3 safe-area-pb items-end">
       <a 
-        href={`tel:${HOTLINE}`}
+        href={`tel:${HOTLINE.replace(/\./g, '')}`}
         className="flex flex-col items-center justify-center w-[64px] h-[50px] bg-white text-green-dark rounded-xl border border-gray-200 active:bg-gray-50 shadow-sm shrink-0"
       >
         <Phone size={20} strokeWidth={2.5} />
