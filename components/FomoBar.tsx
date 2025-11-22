@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Clock, Zap, Gift } from 'lucide-react';
+import { ArrowRight, Zap } from 'lucide-react';
 
 const FomoBar: React.FC = () => {
   // Set timer to 2 hours, 14 mins for urgency
@@ -58,16 +59,16 @@ const FomoBar: React.FC = () => {
           {/* LEFT: The Big Offer */}
           <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-start text-center sm:text-left">
             <div className="hidden sm:flex w-10 h-10 bg-yellow-400 text-red-700 rounded-full items-center justify-center shrink-0 animate-pulse shadow-lg border-2 border-white">
-               <Gift size={24} fill="currentColor" />
+               <Zap size={24} fill="currentColor" />
             </div>
             
             <div className="leading-tight">
                <div className="flex items-center justify-center sm:justify-start gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-yellow-200 mb-0.5">
                   <span className="w-2 h-2 rounded-full bg-yellow-400 animate-ping"></span>
-                  Ưu đãi sắp hết hạn
+                  Ưu đãi vốn nhập hàng
                </div>
                <div className="text-sm sm:text-lg font-bold">
-                  Tặng gói POSM trị giá <span className="text-2xl sm:text-3xl font-extrabold text-yellow-300 drop-shadow-md">3.000.000đ</span>
+                  Mua 10 Tặng 1 <span className="mx-1 text-yellow-300/50">|</span> Tặng <span className="text-yellow-300 font-extrabold drop-shadow-md">BỘ MẪU THỬ</span>
                </div>
             </div>
           </div>
@@ -78,7 +79,7 @@ const FomoBar: React.FC = () => {
              {/* Digital Clock Box */}
              <div className="flex items-center gap-1 sm:gap-2">
                 <div className="text-[10px] sm:text-xs font-bold uppercase text-white/80 w-12 leading-none text-right hidden lg:block">
-                    Đóng đơn<br/>sau:
+                    Kết thúc<br/>sau:
                 </div>
                 <div className="flex gap-1 text-center">
                     <div className="bg-[#1a0505] border border-red-500/50 rounded px-1.5 sm:px-2 py-1 min-w-[36px] sm:min-w-[44px]">
@@ -103,7 +104,7 @@ const FomoBar: React.FC = () => {
                onClick={scrollToForm} 
                className="flex-1 sm:flex-none bg-yellow-400 hover:bg-white text-red-800 text-xs sm:text-sm font-extrabold px-3 sm:px-6 py-2.5 rounded shadow-[0_0_15px_rgba(250,204,21,0.6)] hover:scale-105 active:scale-95 transition-all animate-shake whitespace-nowrap uppercase tracking-wide border-b-4 border-yellow-600 hover:border-gray-300"
              >
-               Nhận Ngay <ArrowRight size={16} className="inline ml-1" />
+               Nhận Ưu Đãi <ArrowRight size={16} className="inline ml-1" />
              </button>
           </div>
 

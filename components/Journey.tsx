@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Button from './ui/Button';
 import { MapPin, ArrowRight, Plane, Factory, ShieldCheck } from 'lucide-react';
@@ -26,7 +27,7 @@ const Journey: React.FC = () => {
                 <div className="flex items-center gap-2 mb-3">
                     <span className="px-3 py-1 bg-green-500 text-xs font-bold rounded-full uppercase tracking-wider">Chính ngạch 100%</span>
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Từ Nông Trại Lipu Đến Kho Hàng Việt Nam</h3>
+                <h3 className="text-2xl font-bold mb-2">Từ Vùng Nguyên Liệu Chọn Lọc Đến Kho Hàng Việt Nam</h3>
                 <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-white/20">
                     <div>
                         <div className="text-2xl font-bold text-green-400">100k</div>
@@ -60,7 +61,7 @@ const Journey: React.FC = () => {
                 { 
                     icon: <Factory size={18} />, 
                     title: 'Tuyển chọn & Chế biến', 
-                    desc: 'Khoai môn Lipu chính gốc, củ to, ít xơ. Công nghệ chiên chân không giữ 98% dưỡng chất.',
+                    desc: 'Khoai môn củ to, thơm bùi, ít xơ. Công nghệ chiên chân không giữ 98% dưỡng chất.',
                     color: 'bg-purple-100 text-purple-600' 
                 },
                 { 

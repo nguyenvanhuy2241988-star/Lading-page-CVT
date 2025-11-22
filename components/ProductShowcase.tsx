@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SectionHeading from './ui/SectionHeading';
 import Button from './ui/Button';
@@ -38,7 +39,7 @@ const ProductShowcase: React.FC = () => {
       color: "from-purple-500 to-indigo-600",
       bgChip: "bg-purple-200",
       icon: "🍠",
-      desc: "Giữ nguyên vị ngọt bùi tự nhiên của khoai môn Lipu với chút muối biển.",
+      desc: "Giữ nguyên vị ngọt bùi tự nhiên của khoai môn tươi nguyên bản với chút muối biển.",
       tags: ["Classic", "All Sizes"]
     }
   ];
