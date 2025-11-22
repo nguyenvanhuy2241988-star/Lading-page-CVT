@@ -12,6 +12,7 @@ import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import FomoToast from './components/FomoToast';
 import MobileStickyBtn from './components/MobileStickyBtn';
+import ChatBot from './components/ChatBot';
 
 const App: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const App: React.FC = () => {
       </main>
       <Footer />
       <FomoToast />
+      <ChatBot />
       <MobileStickyBtn />
     </div>
   );

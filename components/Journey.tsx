@@ -1,49 +1,95 @@
 
 import React from 'react';
 import Button from './ui/Button';
-import { MapPin, ArrowRight, Plane, Factory, ShieldCheck } from 'lucide-react';
+import { MapPin, ArrowRight, Plane, Factory, ShieldCheck, Video } from 'lucide-react';
 
 const Journey: React.FC = () => {
   const scrollToForm = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Real Factory Images provided by user
+  const FACTORY_IMAGES = {
+    main: "https://lh3.googleusercontent.com/d/1pGY4fVPMa05VKnABvUAhyNP4vELPO6c8", // Production Line / Overview
+    worker: "https://lh3.googleusercontent.com/d/16sPT6vYB5MAWeiZb3NUWfCvB_jAjvX5b", // Workers
+    raw: "https://lh3.googleusercontent.com/d/1UscUs0gj7chRaOKkZjOoiepUU_3Od45G", // Raw Material
+  };
+
   return (
     <section id="journey" className="mb-24">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
         
-        {/* Visual Area: Image + Stats */}
-        <div className="relative rounded-[32px] overflow-hidden min-h-[400px] shadow-soft group">
-            {/* Background Image */}
-            <img 
-                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" 
-                alt="Kho vận logistic"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-blue-900/60 mix-blend-multiply"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+        {/* Visual Area: Factory Collage */}
+        <div className="flex flex-col gap-4">
             
-            <div className="absolute bottom-0 left-0 w-full p-8 text-white">
-                <div className="flex items-center gap-2 mb-3">
-                    <span className="px-3 py-1 bg-green-500 text-xs font-bold rounded-full uppercase tracking-wider">Chính ngạch 100%</span>
+            {/* Main Card: Factory Overview */}
+            <div className="relative rounded-[32px] overflow-hidden h-[320px] shadow-soft group bg-gray-900">
+                <img 
+                    src={FACTORY_IMAGES.main} 
+                    alt="Dây chuyền sản xuất snack khoai môn"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
+                    referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                
+                <div className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center animate-float">
+                    <Plane className="text-white" size={20} />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Từ Vùng Nguyên Liệu Chọn Lọc Đến Kho Hàng Việt Nam</h3>
-                <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-white/20">
-                    <div>
-                        <div className="text-2xl font-bold text-green-400">100k</div>
-                        <div className="text-xs text-gray-300">Gói / Ngày</div>
+
+                <div className="absolute bottom-0 left-0 w-full p-6 text-white">
+                    <div className="flex items-center gap-2 mb-3">
+                        <span className="px-3 py-1 bg-green-600 text-xs font-bold rounded-full uppercase tracking-wider shadow-lg border border-white/20 flex items-center gap-1">
+                            <ShieldCheck size={12} /> Chính ngạch 100%
+                        </span>
                     </div>
-                    <div>
-                        <div className="text-2xl font-bold text-orange-400">48h</div>
-                        <div className="text-xs text-gray-300">Xử lý đơn hàng</div>
+                    <h3 className="text-xl font-bold mb-4 leading-tight text-white">Quy mô nhà máy hiện đại, khép kín</h3>
+                    <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/20">
+                        <div>
+                            <div className="text-xl font-bold text-green-400">100k</div>
+                            <div className="text-[10px] text-gray-300 uppercase">Gói / Ngày</div>
+                        </div>
+                        <div>
+                            <div className="text-xl font-bold text-orange-400">48h</div>
+                            <div className="text-[10px] text-gray-300 uppercase">Vận chuyển</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Floating Plane Icon */}
-            <div className="absolute top-8 right-8 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center animate-float">
-                <Plane className="text-white" size={20} />
+            {/* Sub Images Grid */}
+            <div className="grid grid-cols-2 gap-4 h-[180px]">
+                <div className="relative rounded-[24px] overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
+                     <img 
+                        src={FACTORY_IMAGES.raw} 
+                        alt="Nguyên liệu khoai môn tươi"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-80"></div>
+                    <div className="absolute bottom-3 left-3 right-3">
+                        <div className="text-[10px] text-gray-300 uppercase font-bold mb-0.5">Bước 1</div>
+                        <div className="text-sm font-bold text-white leading-tight">Nguyên liệu tuyển chọn</div>
+                    </div>
+                </div>
+                <div className="relative rounded-[24px] overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
+                     <img 
+                        src={FACTORY_IMAGES.worker} 
+                        alt="Công nhân sản xuất"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        referrerPolicy="no-referrer"
+                    />
+                    {/* Play Icon Overlay suggestion for 'Video' feel */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform">
+                         <Video size={18} className="text-white ml-1" fill="currentColor" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-80"></div>
+                    <div className="absolute bottom-3 left-3 right-3">
+                        <div className="text-[10px] text-gray-300 uppercase font-bold mb-0.5">Bước 2</div>
+                        <div className="text-sm font-bold text-white leading-tight">Chế biến & Đóng gói</div>
+                    </div>
+                </div>
             </div>
+
         </div>
 
         {/* Steps List */}

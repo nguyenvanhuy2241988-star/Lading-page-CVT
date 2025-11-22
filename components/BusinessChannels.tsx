@@ -1,18 +1,44 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import SectionHeading from './ui/SectionHeading';
 import Button from './ui/Button';
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, Tooltip, CartesianGrid, Area } from 'recharts';
-import { Store, Coffee, Film, Gift, Calculator, TrendingUp, ArrowUpRight } from 'lucide-react';
+import { Store, Coffee, Film, Gift, Calculator, ArrowUpRight, CheckCircle2, DollarSign, Download } from 'lucide-react';
 
 const BusinessChannels: React.FC = () => {
-  const data = [
-    { name: 'T1', profit: 4 },
-    { name: 'T2', profit: 7 },
-    { name: 'T3', profit: 12 },
-    { name: 'T4', profit: 18 },
-    { name: 'T5', profit: 25 },
-    { name: 'T6', profit: 35 },
-  ];
+  // State cho bộ tính lợi nhuận
+  const [activeScenario, setActiveScenario] = useState<'starter' | 'shop' | 'npp'>('shop');
+
+  const scenarios = {
+    starter: {
+      id: 'starter',
+      name: 'Thử Nghiệm',
+      von: '3.000.000 đ',
+      loinhuan: '750.000 đ',
+      phantram: '25%',
+      desc: 'Phù hợp cá nhân bán online, CTV, mua về mời khách.',
+      color: 'bg-gray-600'
+    },
+    shop: {
+      id: 'shop',
+      name: 'Tạp Hóa / Cafe',
+      von: '10.000.000 đ',
+      loinhuan: '3.500.000 đ',
+      phantram: '35%',
+      desc: 'Phù hợp Minimart, Quán Cafe, Rạp phim, Cửa hàng quà tặng.',
+      color: 'bg-green-600'
+    },
+    npp: {
+      id: 'npp',
+      name: 'Nhà Phân Phối',
+      von: '50.000.000 đ',
+      loinhuan: '20.000.000 đ+',
+      phantram: '40%++',
+      desc: 'Phân phối độc quyền khu vực, đổ buôn cho đại lý con.',
+      color: 'bg-yellow-600'
+    }
+  };
+
+  const current = scenarios[activeScenario];
 
   // Images from Unsplash
   const channels = [
@@ -80,53 +106,93 @@ const BusinessChannels: React.FC = () => {
         ))}
       </div>
 
-      {/* Interactive Element: Profit Projection Chart */}
-      <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center bg-[#0b1b2b] rounded-[32px] p-8 lg:p-10 shadow-2xl text-white relative overflow-hidden group">
+      {/* Interactive Element: Profit Calculator */}
+      <div className="bg-[#0f172a] rounded-[32px] p-6 lg:p-10 shadow-2xl text-white relative overflow-hidden">
           {/* Background Decor */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-green/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
-          <div className="space-y-6 relative z-10">
-              <div className="inline-flex items-center gap-2 bg-green/20 text-green-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-green/20 shadow-[0_0_10px_rgba(74,222,128,0.2)]">
-                  <TrendingUp size={12} /> Case Study
-              </div>
-              <h3 className="font-bold text-2xl md:text-3xl leading-tight">
-                  Tiềm năng lợi nhuận <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300 text-4xl">tăng trưởng x3</span>
-              </h3>
-              <p className="text-slate-300 leading-relaxed text-sm md:text-base">
-                  Dữ liệu thực tế: Tỷ lệ khách quay lại mua lần 2 đạt <strong>65%</strong>. 
-                  Biên độ lợi nhuận ổn định nhờ chính sách bảo hộ giá từ LYHU.
-              </p>
-              <Button onClick={scrollToForm} variant="shimmer" className="mt-2 w-full sm:w-auto">
-                 <Calculator size={18} /> Nhận bảng tính lợi nhuận
-              </Button>
-          </div>
-          
-          <div className="h-[260px] w-full bg-white/5 rounded-2xl p-4 backdrop-blur-sm border border-white/10 shadow-inner relative">
-              <div className="absolute top-4 right-4 flex gap-4 text-[10px] text-gray-400">
-                  <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-green-500"></div> Lợi nhuận</div>
-              </div>
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={data} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
-                    <defs>
-                        <linearGradient id="colorProfit" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#4ade80" stopOpacity={0.3}/>
-                            <stop offset="95%" stopColor="#4ade80" stopOpacity={0}/>
-                        </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                    <XAxis dataKey="name" tickLine={false} axisLine={false} tick={{fill: '#64748b', fontSize: 11}} />
-                    <YAxis hide />
-                    <Tooltip 
-                        cursor={{stroke: 'rgba(255,255,255,0.1)'}} 
-                        contentStyle={{backgroundColor: '#1e293b', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', fontSize: '12px'}}
-                        itemStyle={{color: '#4ade80'}}
-                        formatter={(value) => [`${value} triệu`, 'Lợi nhuận']}
-                    />
-                    <Area type="monotone" dataKey="profit" stroke="#4ade80" strokeWidth={3} fillOpacity={1} fill="url(#colorProfit)" />
-                </AreaChart>
-              </ResponsiveContainer>
+          <div className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
+            
+            {/* Left: Introduction & CTA */}
+            <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-green-500/20">
+                  <Calculator size={14} /> Dự tính lợi nhuận
+                </div>
+                <h3 className="font-bold text-3xl md:text-4xl leading-tight">
+                    Bạn bỏ ra <span className="text-white">1 đồng vốn</span>,<br/>
+                    thu về bao nhiêu <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">đồng lời?</span>
+                </h3>
+                <p className="text-slate-300 leading-relaxed">
+                    Chúng tôi minh bạch về con số. Hãy chọn mức vốn bạn dự định đầu tư bên cạnh để xem lợi nhuận ước tính ngay lập tức.
+                </p>
+                <p className="text-sm text-slate-400 italic border-l-2 border-slate-600 pl-4">
+                    *Lưu ý: Số liệu dưới đây là ước tính dựa trên giá bán lẻ đề xuất. Thực tế có thể cao hơn nhờ các chương trình thưởng tháng/quý.
+                </p>
+                
+                <div className="flex flex-wrap gap-3 pt-2">
+                    <Button onClick={scrollToForm} variant="shimmer" className="w-full sm:w-auto">
+                        <Download size={18} /> Tải bảng giá chi tiết (Excel)
+                    </Button>
+                </div>
+            </div>
+
+            {/* Right: The Interactive Calculator */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-inner flex flex-col h-full">
+                
+                {/* Tabs */}
+                <div className="flex p-1 bg-black/20 rounded-xl mb-6">
+                    {(Object.keys(scenarios) as Array<keyof typeof scenarios>).map((key) => (
+                        <button
+                            key={key}
+                            onClick={() => setActiveScenario(key)}
+                            className={`flex-1 py-2 px-2 text-xs sm:text-sm font-bold rounded-lg transition-all duration-300 ${
+                                activeScenario === key 
+                                ? 'bg-white text-green-900 shadow-lg' 
+                                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                            }`}
+                        >
+                            {scenarios[key].name}
+                        </button>
+                    ))}
+                </div>
+
+                {/* Result Display */}
+                <div className="flex-1 flex flex-col justify-center space-y-6">
+                    {/* Input: Capital */}
+                    <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                        <div className="text-gray-400 text-sm">Vốn nhập hàng</div>
+                        <div className="text-xl font-bold text-white">{current.von}</div>
+                    </div>
+
+                    {/* Output: Profit (Highlighted) */}
+                    <div className="relative bg-gradient-to-r from-green-900/40 to-green-800/40 rounded-2xl p-5 border border-green-500/30 animate-pulse-glow">
+                        <div className="absolute -top-3 left-4 bg-green-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+                            Lợi nhuận ước tính
+                        </div>
+                        <div className="flex items-end justify-between mb-1">
+                            <span className="text-green-100 text-sm opacity-80">Tiền lời:</span>
+                            <span className="text-3xl font-extrabold text-green-400 leading-none">{current.loinhuan}</span>
+                        </div>
+                        <div className="w-full bg-gray-700/50 h-1.5 rounded-full mt-3 mb-1">
+                            <div className="bg-green-500 h-1.5 rounded-full" style={{ width: current.phantram }}></div>
+                        </div>
+                        <div className="text-right text-[10px] text-green-300 font-bold">
+                            Tỷ suất lợi nhuận ~{current.phantram}
+                        </div>
+                    </div>
+
+                    {/* Description */}
+                    <div className="flex gap-3 items-start bg-blue-900/20 p-3 rounded-xl border border-blue-500/20">
+                         <CheckCircle2 className="text-blue-400 shrink-0 mt-0.5" size={16} />
+                         <p className="text-xs text-blue-100 leading-relaxed">
+                            {current.desc}
+                         </p>
+                    </div>
+                </div>
+
+            </div>
+
           </div>
       </div>
     </section>

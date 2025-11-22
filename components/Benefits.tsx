@@ -1,7 +1,8 @@
+
 import React from 'react';
 import SectionHeading from './ui/SectionHeading';
 import Button from './ui/Button';
-import { Star, Cloud, Factory, Gift, ChevronRight, Check } from 'lucide-react';
+import { Star, Cloud, Factory, Gift, ChevronRight, Check, ThumbsUp, Utensils } from 'lucide-react';
 
 const Benefits: React.FC = () => {
   const scrollToForm = () => {
@@ -35,42 +36,67 @@ const Benefits: React.FC = () => {
     },
   ];
 
+  // Link ảnh cận cảnh mới từ khách hàng
+  const CLOSE_UP_IMAGE = "https://lh3.googleusercontent.com/d/14Hv9mWPrn6ERrrJmEp7rtSVY0QVOo9kT";
+
   return (
     <section id="benefits" className="mb-24">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         
-        {/* Left: Visual Image */}
+        {/* Left: Visual Image Gallery (Collage Style) */}
         <div className="relative order-2 lg:order-1">
-           {/* Decorative elements */}
-           <div className="absolute -top-4 -left-4 w-2/3 h-2/3 bg-green/10 rounded-3xl -z-10"></div>
-           <div className="absolute -bottom-4 -right-4 w-2/3 h-2/3 bg-orange/10 rounded-3xl -z-10"></div>
+           {/* Decorative Blobs */}
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-green-100 to-orange-100 rounded-full blur-3xl -z-10 opacity-60"></div>
            
-           {/* Main Image Container */}
-           <div className="relative rounded-3xl overflow-hidden shadow-2xl transform transition-transform hover:scale-[1.01] duration-500 group">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
-              {/* Placeholder for appetizing snack image */}
-              <img 
-                src="https://images.unsplash.com/photo-1621447504864-284c8d3807f6?auto=format&fit=crop&w=800&q=80" 
-                alt="Snack khoai môn giòn rụm" 
-                className="w-full h-[500px] object-cover object-center"
-              />
-              
-              {/* Floating Badge */}
-              <div className="absolute bottom-6 left-6 right-6 z-20 bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-white/20 shadow-lg">
-                  <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-green-700">Điểm mù thử vị</span>
-                      <div className="flex text-yellow-500">
-                          <Star size={14} fill="currentColor" />
-                          <Star size={14} fill="currentColor" />
-                          <Star size={14} fill="currentColor" />
-                          <Star size={14} fill="currentColor" />
-                          <Star size={14} fill="currentColor" />
+           <div className="relative grid grid-cols-2 gap-4">
+              {/* Image 1: Product Close-up (Tall) */}
+              <div className="col-span-1 pt-12">
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl transform transition-transform hover:scale-[1.02] duration-500 group border-4 border-white">
+                    <img 
+                        src={CLOSE_UP_IMAGE}
+                        alt="Cận cảnh độ giòn xốp snack khoai môn" 
+                        className="w-full h-[320px] object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                        referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4">
+                        <p className="text-white text-xs font-bold uppercase tracking-wider">Cấu trúc giòn xốp</p>
+                    </div>
+                  </div>
+              </div>
+
+              {/* Image 2: Lifestyle (Short) */}
+              <div className="col-span-1">
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl transform transition-transform hover:scale-[1.02] duration-500 group border-4 border-white">
+                    <img 
+                        src="https://images.unsplash.com/photo-1566478919030-41cb5275715c?auto=format&fit=crop&w=600&q=80" 
+                        alt="Khách hàng thưởng thức" 
+                        className="w-full h-[240px] object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                    />
+                  </div>
+                  
+                  {/* Floating Stat Card - Updated Content */}
+                  <div className="mt-4 bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-lg relative z-20">
+                      <div className="flex items-center gap-2 mb-2">
+                          <div className="bg-orange-100 p-1.5 rounded-full text-orange-600">
+                             <Utensils size={14} />
+                          </div>
+                          <span className="text-xs font-bold uppercase tracking-wider text-gray-800">Thử thách Vị giác (Blind Test)</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                          <div className="text-2xl font-extrabold text-green-600 leading-none">9/10</div>
+                          <p className="text-xs text-gray-600 font-medium leading-tight">
+                            Khách hàng chọn CVT khi che tên thương hiệu vì độ giòn xốp tự nhiên, không bị cứng.
+                          </p>
                       </div>
                   </div>
-                  <p className="text-sm text-gray-700 font-medium italic">
-                    "9/10 khách hàng thích độ giòn xốp của CVT hơn các loại snack khoai tây thông thường."
-                  </p>
               </div>
+           </div>
+
+           {/* Interactive Tag */}
+           <div className="absolute top-6 right-6 z-30 animate-bounce-slight hidden md:block">
+               <div className="bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1.5 rounded-full shadow-lg border-2 border-white flex items-center gap-1">
+                   <ThumbsUp size={12} fill="currentColor" /> Ngon Khó Cưỡng
+               </div>
            </div>
         </div>
 
@@ -88,8 +114,8 @@ const Benefits: React.FC = () => {
 
             <div className="grid grid-cols-1 gap-6 mb-8">
                 {benefits.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all">
-                    <div className={`w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ${item.color}`}>
+                <div key={idx} className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group hover:border-green-200">
+                    <div className={`w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ${item.color} group-hover:scale-110 transition-transform`}>
                         {item.icon}
                     </div>
                     <div>
