@@ -12,6 +12,11 @@ interface Message {
 
 const HOTLINE = "0969.15.30.15";
 
+// =================================================================================
+// CẤU HÌNH API KEY
+// =================================================================================
+const API_KEY = "AIzaSyC7JxlROas2hHETlwxo0Nrdvnplo0q-r8U";
+
 const SYSTEM_INSTRUCTION = `
 Bạn là NGỌC HUYỀN - Trưởng phòng Kinh Doanh của CVT Việt Nam (Snack Khoai Môn nhập khẩu).
 HÃY QUÊN MÌNH LÀ ROBOT ĐI. Bạn là một người nhân viên kinh doanh thực thụ: nhiệt tình, khéo léo và muốn giúp khách hàng kiếm tiền.
@@ -66,6 +71,11 @@ const ChatBot: React.FC = () => {
     }
   }, [messages]);
 
+  // Init chat on mount to be ready
+  useEffect(() => {
+    initChat();
+  }, []);
+
   // Logic to determine smart suggestions based on user keywords
   const getSmartSuggestions = (lastUserText: string): string[] => {
     const text = lastUserText.toLowerCase();
@@ -110,8 +120,14 @@ const ChatBot: React.FC = () => {
   const initChat = () => {
     if (chatSessionRef.current) return;
 
+    // Check if API KEY is valid
+    if (!API_KEY || API_KEY.length < 10) {
+        console.warn("API Key không hợp lệ");
+        return;
+    }
+
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenAI({ apiKey: API_KEY.trim() });
       chatSessionRef.current = ai.chats.create({
         model: 'gemini-2.5-flash',
         config: {
@@ -119,6 +135,7 @@ const ChatBot: React.FC = () => {
           temperature: 0.9,
         },
       });
+      console.log("CVT Chatbot initialized successfully");
     } catch (error) {
       console.error("Failed to init AI", error);
     }
@@ -128,7 +145,8 @@ const ChatBot: React.FC = () => {
     const newState = !isOpen;
     setIsOpen(newState);
     if (newState) {
-      initChat();
+      // Try init again if not ready
+      if (!chatSessionRef.current) initChat();
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   };
@@ -151,8 +169,10 @@ const ChatBot: React.FC = () => {
     setCurrentSuggestions(nextSuggestions);
 
     try {
-      // Init chat if not ready (retry if failed previously)
-      if (!chatSessionRef.current) initChat();
+      // Double check initialization before sending
+      if (!chatSessionRef.current) {
+        initChat();
+      }
 
       if (chatSessionRef.current) {
         // Add placeholder for bot message
@@ -172,19 +192,13 @@ const ChatBot: React.FC = () => {
             ));
         }
       } else {
-        // Fallback if API Key is missing or init failed
-        setTimeout(() => {
-          setMessages(prev => [...prev, { 
-              id: Date.now().toString(), 
-              role: 'model', 
-              text: `⚠️ Hệ thống chưa thể kết nối với AI. Anh/chị vui lòng nhắn Zalo ${HOTLINE} để em hỗ trợ nhé!` 
-          }]);
-        }, 500);
+        // Fallback if init still failed
+        throw new Error("Chat session not initialized");
       }
 
     } catch (error) {
       console.error("Chat error:", error);
-      // Simulate a natural fallback response
+      // Natural fallback response
       setTimeout(() => {
           setMessages(prev => [...prev, { 
               id: Date.now().toString(), 
