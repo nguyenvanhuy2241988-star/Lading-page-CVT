@@ -5,7 +5,4 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: './',
-  build: {
-    outDir: 'docs', // Xuất file build ra thư mục docs để GitHub Pages nhận diện
-  }
 })
