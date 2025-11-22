@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,7 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: React.FC<ButtonProps> = ({ variant = 'primary', size = 'md', children, className = '', ...props }) => {
-  const baseStyles = "inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-[2px] active:translate-y-0 cursor-pointer relative overflow-hidden";
+  const baseStyles = "inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-[2px] active:translate-y-0 cursor-pointer relative overflow-hidden disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none disabled:hover:shadow-none";
   
   const sizeStyles = {
     sm: "px-4 py-2 text-xs",
@@ -23,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({ variant = 'primary', size = 'md', child
     shimmer: "bg-gradient-primary text-white border-none shadow-glow animate-pulse-glow hover:animate-none hover:scale-105",
   };
 
-  const shimmerOverlay = variant === 'shimmer' ? (
+  const shimmerOverlay = (variant === 'shimmer' && !props.disabled) ? (
     <div className="absolute inset-0 -translate-x-full animate-shimmer bg-shimmer-gradient" />
   ) : null;
 

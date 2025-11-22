@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Button from './ui/Button';
-import { Clock, Gift, AlertTriangle, Check, Package, TrendingUp } from 'lucide-react';
+import { Clock, AlertTriangle, Package, TrendingUp, Loader2, CheckCircle2 } from 'lucide-react';
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +14,8 @@ const ContactForm: React.FC = () => {
   });
 
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes countdown
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -33,10 +35,42 @@ const ContactForm: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Cảm ơn ${formData.fullName} đã đăng ký. Chúng tôi sẽ liên hệ tư vấn CTKM Mua 10 Tặng 1 qua SĐT ${formData.phone} ngay!`);
-    setFormData({ fullName: '', phone: '', province: '', type: '', scale: '', note: '' });
+    setIsSubmitting(true);
+
+    try {
+      // Gửi dữ liệu đến FormSubmit
+      const response = await fetch("https://formsubmit.co/ajax/nguyenvanhuy2241988@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            _subject: "🔥 ĐĂNG KÝ ĐẠI LÝ MỚI - CVT SNACK",
+            "Họ và tên": formData.fullName,
+            "Số điện thoại": formData.phone,
+            "Khu vực": formData.province,
+            "Mức vốn/Loại hình": formData.type,
+            "Ghi chú": formData.scale || "Không có",
+            _template: "table"
+        })
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+        setFormData({ fullName: '', phone: '', province: '', type: '', scale: '', note: '' });
+        // Reset success status after 5 seconds
+        setTimeout(() => setIsSuccess(false), 8000);
+      } else {
+        alert("Có lỗi kết nối, vui lòng thử lại hoặc gọi trực tiếp hotline.");
+      }
+    } catch (error) {
+      alert("Không thể gửi đơn đăng ký. Vui lòng kiểm tra kết nối mạng.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -55,7 +89,7 @@ const ContactForm: React.FC = () => {
             Chúng tôi hiểu khó khăn của bạn. Thay vì tặng kệ (phải chờ sản xuất), CVT tặng thẳng sản phẩm Mua 10 Tặng 1 để bạn bán lấy lời ngay.
         </p>
 
-        {/* CSS Composition of the Product Kit - EASIER TO IMPLEMENT */}
+        {/* CSS Composition of the Product Kit */}
         <div className="relative h-[260px] bg-gradient-to-b from-orange-50 to-white rounded-3xl border border-orange-100 p-6 flex items-center justify-center overflow-hidden group mb-8">
             {/* Background Pattern */}
             <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[radial-gradient(#f97316_1px,transparent_1px)] [background-size:16px_16px]"></div>
@@ -126,87 +160,109 @@ const ContactForm: React.FC = () => {
         </div>
 
         <h3 className="text-xl font-bold mb-6 mt-2">Form Đăng Ký Nhanh</h3>
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-text-main">Họ & tên <span className="text-danger">*</span></label>
-              <input 
-                type="text" 
-                name="fullName" 
-                value={formData.fullName} 
-                onChange={handleChange}
-                required 
-                placeholder="Nhập họ tên" 
-                className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all"
-              />
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-text-main">Số điện thoại <span className="text-danger">*</span></label>
-              <input 
-                type="tel" 
-                name="phone"
-                value={formData.phone} 
-                onChange={handleChange}
-                required 
-                placeholder="0909 xxx xxx" 
-                className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all"
-              />
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-text-main">Tỉnh / Thành phố <span className="text-danger">*</span></label>
-              <input 
-                type="text" 
-                name="province"
-                value={formData.province} 
-                onChange={handleChange}
-                required 
-                placeholder="VD: Hà Nội" 
-                className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all"
-              />
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-text-main">Vốn dự kiến <span className="text-danger">*</span></label>
-              <select 
-                name="type"
-                value={formData.type} 
-                onChange={handleChange}
-                required 
-                className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all appearance-none"
-              >
-                <option value="">Chọn mức vốn...</option>
-                <option value="daily">3 - 5 triệu (Thử nghiệm)</option>
-                <option value="daily_plus">10 - 20 triệu (Cửa hàng)</option>
-                <option value="npp">Trên 50 triệu (Nhà Phân Phối)</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold text-text-main">Ghi chú thêm</label>
-            <textarea 
-              name="scale"
-              value={formData.scale} 
-              onChange={handleChange}
-              placeholder="VD: Tôi muốn nhập thử 1 thùng vị Trứng muối về bán thử..." 
-              className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all min-h-[80px] resize-y"
-            />
-          </div>
-
-          <div className="pt-2">
-            <Button type="submit" variant="shimmer" className="w-full justify-center text-base py-4 shadow-xl shadow-green/20 group">
-                <TrendingUp size={20} className="group-hover:animate-bounce" /> Gửi đăng ký & Nhận ưu đãi 10+1
-            </Button>
-            <div className="flex items-center justify-center gap-2 mt-3 opacity-70">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                <p className="text-[10px] text-text-muted text-center">
-                    Chuyên viên sẽ liên hệ báo giá sỉ ngay lập tức.
+        
+        {isSuccess ? (
+            <div className="flex flex-col items-center justify-center py-10 text-center animate-pulse-glow rounded-2xl bg-green-50 border border-green-200">
+                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                    <CheckCircle2 size={32} />
+                </div>
+                <h4 className="text-xl font-bold text-green-700 mb-2">Đăng ký thành công!</h4>
+                <p className="text-text-muted text-sm max-w-[280px]">
+                    Cảm ơn quý khách. Bộ phận kinh doanh CVT sẽ liên hệ Zalo/SĐT trong vòng 30 phút.
                 </p>
             </div>
-          </div>
-        </form>
+        ) : (
+            <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-text-main">Họ & tên <span className="text-danger">*</span></label>
+                <input 
+                    type="text" 
+                    name="fullName" 
+                    value={formData.fullName} 
+                    onChange={handleChange}
+                    required 
+                    placeholder="Nhập họ tên" 
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all"
+                />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-text-main">Số điện thoại <span className="text-danger">*</span></label>
+                <input 
+                    type="tel" 
+                    name="phone"
+                    value={formData.phone} 
+                    onChange={handleChange}
+                    required 
+                    placeholder="0909 xxx xxx" 
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all"
+                />
+                </div>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-text-main">Tỉnh / Thành phố <span className="text-danger">*</span></label>
+                <input 
+                    type="text" 
+                    name="province"
+                    value={formData.province} 
+                    onChange={handleChange}
+                    required 
+                    placeholder="VD: Hà Nội" 
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all"
+                />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-text-main">Vốn dự kiến <span className="text-danger">*</span></label>
+                <select 
+                    name="type"
+                    value={formData.type} 
+                    onChange={handleChange}
+                    required 
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all appearance-none"
+                >
+                    <option value="">Chọn mức vốn...</option>
+                    <option value="Đại lý (3-5 triệu)">3 - 5 triệu (Thử nghiệm)</option>
+                    <option value="Cửa hàng (10-20 triệu)">10 - 20 triệu (Cửa hàng)</option>
+                    <option value="NPP (Trên 50 triệu)">Trên 50 triệu (Nhà Phân Phối)</option>
+                </select>
+                </div>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-text-main">Ghi chú thêm</label>
+                <textarea 
+                name="scale"
+                value={formData.scale} 
+                onChange={handleChange}
+                placeholder="VD: Tôi muốn nhập thử 1 thùng vị Trứng muối về bán thử..." 
+                className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all min-h-[80px] resize-y"
+                />
+            </div>
+
+            <div className="pt-2">
+                <Button 
+                    type="submit" 
+                    variant="shimmer" 
+                    disabled={isSubmitting}
+                    className="w-full justify-center text-base py-4 shadow-xl shadow-green/20 group disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                    {isSubmitting ? (
+                        <><Loader2 className="animate-spin" size={20} /> Đang gửi...</>
+                    ) : (
+                        <><TrendingUp size={20} className="group-hover:animate-bounce" /> Gửi đăng ký & Nhận ưu đãi 10+1</>
+                    )}
+                </Button>
+                <div className="flex items-center justify-center gap-2 mt-3 opacity-70">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <p className="text-[10px] text-text-muted text-center">
+                        Chuyên viên sẽ liên hệ báo giá sỉ ngay lập tức.
+                    </p>
+                </div>
+            </div>
+            </form>
+        )}
       </div>
     </section>
   );
