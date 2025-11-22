@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Button from './ui/Button';
 import { Menu, X } from 'lucide-react';
@@ -15,20 +16,27 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Trang chủ', id: 'home' },
-    { name: 'Sản phẩm', id: 'home' }, // Maps to Hero/Products area
+    { name: 'Sản phẩm', id: 'products' },
     { name: 'Cơ hội kinh doanh', id: 'business' },
     { name: 'Câu chuyện', id: 'journey' },
     { name: 'Hỗ trợ NPP', id: 'policies' },
   ];
+
+  // Link ảnh logo trực tiếp từ Google Drive (Sử dụng domain lh3 để đảm bảo hiển thị ổn định)
+  const LOGO_URL = "https://lh3.googleusercontent.com/d/15nhC20zE7ulpESkh_WfjWNrr9Hkrff8A";
 
   return (
     <header className="bg-white border-b border-[#ecf0f6] sticky top-[52px] sm:top-[44px] z-40 shadow-sm">
       <div className="max-w-[1120px] mx-auto px-5 py-3.5 flex items-center justify-between gap-7">
         {/* Brand */}
         <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => scrollToSection('home')}>
-          <div className="w-[42px] h-[42px] rounded-full bg-[radial-gradient(circle_at_30%_20%,#ffffff,#00b46a)] flex items-center justify-center font-extrabold text-white shadow-md text-base">
-            CVT
-          </div>
+          {/* Logo Image */}
+          <img 
+            src={LOGO_URL} 
+            alt="Logo CVT Việt Nam" 
+            className="w-[48px] h-[48px] object-contain"
+            referrerPolicy="no-referrer"
+          />
           <div>
             <div className="font-extrabold text-lg tracking-wide leading-none">CVT VIỆT NAM</div>
             <div className="text-[13px] text-text-muted leading-tight mt-0.5">Snack khoai môn nhập khẩu</div>
