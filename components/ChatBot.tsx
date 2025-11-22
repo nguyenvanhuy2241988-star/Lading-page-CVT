@@ -15,7 +15,8 @@ const HOTLINE = "0969.15.30.15";
 // =================================================================================
 // CẤU HÌNH API KEY
 // =================================================================================
-const API_KEY = "AIzaSyC7JxlROas2hHETlwxo0Nrdvnplo0q-r8U";
+// Sử dụng Key từ biến môi trường hoặc Key dán cứng (ưu tiên biến môi trường để bảo mật tốt hơn nếu deploy)
+const getApiKey = () => process.env.API_KEY || "AIzaSyD2KNlHfADtH4em6-_QLh2BmNVGM1DKmcY";
 
 const SYSTEM_INSTRUCTION = `
 Bạn là NGỌC HUYỀN - Trưởng phòng Kinh Doanh của CVT Việt Nam (Snack Khoai Môn nhập khẩu).
@@ -118,16 +119,16 @@ const ChatBot: React.FC = () => {
 
   // Initialize Chat Session
   const initChat = () => {
-    if (chatSessionRef.current) return;
-
+    const apiKey = getApiKey();
+    
     // Check if API KEY is valid
-    if (!API_KEY || API_KEY.length < 10) {
+    if (!apiKey || apiKey.length < 10) {
         console.warn("API Key không hợp lệ");
         return;
     }
 
     try {
-      const ai = new GoogleGenAI({ apiKey: API_KEY.trim() });
+      const ai = new GoogleGenAI({ apiKey: apiKey.trim() });
       chatSessionRef.current = ai.chats.create({
         model: 'gemini-2.5-flash',
         config: {
@@ -138,6 +139,7 @@ const ChatBot: React.FC = () => {
       console.log("CVT Chatbot initialized successfully");
     } catch (error) {
       console.error("Failed to init AI", error);
+      chatSessionRef.current = null;
     }
   };
 
@@ -198,6 +200,9 @@ const ChatBot: React.FC = () => {
 
     } catch (error) {
       console.error("Chat error:", error);
+      // Reset session on error to force re-init next time
+      chatSessionRef.current = null;
+      
       // Natural fallback response
       setTimeout(() => {
           setMessages(prev => [...prev, { 
