@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Sparkles, Loader2, ShoppingBag, Phone, UserCircle2 } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, ShoppingBag, Phone } from 'lucide-react';
 import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
 
 // Define interface for chat messages
@@ -108,19 +108,26 @@ const ChatBot: React.FC = () => {
 
   // Initialize Chat Session
   const initChat = () => {
-    if (!chatSessionRef.current && process.env.API_KEY) {
-      try {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-        chatSessionRef.current = ai.chats.create({
-          model: 'gemini-2.5-flash',
-          config: {
-            systemInstruction: SYSTEM_INSTRUCTION,
-            temperature: 0.9, // Higher creativity for more human-like responses
-          },
-        });
-      } catch (error) {
-        console.error("Failed to init AI", error);
-      }
+    if (chatSessionRef.current) return;
+
+    const apiKey = process.env.API_KEY;
+    
+    if (!apiKey) {
+      console.error("⚠️ CHATBOT ERROR: Không tìm thấy API Key. Vui lòng thêm biến môi trường 'API_KEY' trong cài đặt Vercel hoặc file .env");
+      return;
+    }
+
+    try {
+      const ai = new GoogleGenAI({ apiKey });
+      chatSessionRef.current = ai.chats.create({
+        model: 'gemini-2.5-flash',
+        config: {
+          systemInstruction: SYSTEM_INSTRUCTION,
+          temperature: 0.9,
+        },
+      });
+    } catch (error) {
+      console.error("Failed to init AI", error);
     }
   };
 
@@ -151,7 +158,7 @@ const ChatBot: React.FC = () => {
     setCurrentSuggestions(nextSuggestions);
 
     try {
-      // Init chat if not ready
+      // Init chat if not ready (retry if failed previously)
       if (!chatSessionRef.current) initChat();
 
       if (chatSessionRef.current) {
@@ -172,14 +179,20 @@ const ChatBot: React.FC = () => {
             ));
         }
       } else {
-        setTimeout(() => {
-             setMessages(prev => [...prev, { id: Date.now().toString(), role: 'model', text: `Dạ hiện tại mạng bên em hơi chậm xíu. Anh/chị nhắn qua Zalo ${HOTLINE} để em Huyền tư vấn liền nha! ❤️` }]);
-        }, 1000);
+        // Fallback if API Key is missing or init failed
+        throw new Error("Chat session not initialized");
       }
 
     } catch (error) {
       console.error("Chat error:", error);
-      setMessages(prev => [...prev, { id: Date.now().toString(), role: 'model', text: 'Dạ mạng hơi chập chờn, anh/chị chờ em xíu hoặc gọi em số 0969.15.30.15 nha!' }]);
+      // Simulate a natural fallback response
+      setTimeout(() => {
+          setMessages(prev => [...prev, { 
+              id: Date.now().toString(), 
+              role: 'model', 
+              text: `Dạ hiện tại hệ thống chat của em đang quá tải xíu. Anh/chị nhắn trực tiếp qua Zalo ${HOTLINE} để em Huyền tư vấn và gửi báo giá liền cho mình nha! ❤️` 
+          }]);
+      }, 800);
     } finally {
       setIsLoading(false);
     }
@@ -195,7 +208,7 @@ const ChatBot: React.FC = () => {
       {!isOpen && (
         <button
           onClick={toggleChat}
-          className="fixed bottom-20 right-4 md:right-8 z-40 flex items-center gap-3 bg-white text-gray-800 pl-3 pr-5 py-2.5 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:scale-105 transition-transform group border border-green-100"
+          className="fixed bottom-20 right-4 md:right-8 z-50 flex items-center gap-3 bg-white text-gray-800 pl-3 pr-5 py-2.5 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:scale-105 transition-transform group border border-green-100"
         >
           <div className="relative">
             {/* Human Avatar */}
