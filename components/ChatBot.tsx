@@ -110,15 +110,8 @@ const ChatBot: React.FC = () => {
   const initChat = () => {
     if (chatSessionRef.current) return;
 
-    const apiKey = process.env.API_KEY;
-    
-    if (!apiKey) {
-      console.error("⚠️ CHATBOT ERROR: Không tìm thấy API Key. Vui lòng thêm biến môi trường 'API_KEY' trong cài đặt Vercel hoặc file .env");
-      return;
-    }
-
     try {
-      const ai = new GoogleGenAI({ apiKey });
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       chatSessionRef.current = ai.chats.create({
         model: 'gemini-2.5-flash',
         config: {
@@ -180,7 +173,13 @@ const ChatBot: React.FC = () => {
         }
       } else {
         // Fallback if API Key is missing or init failed
-        throw new Error("Chat session not initialized");
+        setTimeout(() => {
+          setMessages(prev => [...prev, { 
+              id: Date.now().toString(), 
+              role: 'model', 
+              text: `⚠️ Hệ thống chưa thể kết nối với AI. Anh/chị vui lòng nhắn Zalo ${HOTLINE} để em hỗ trợ nhé!` 
+          }]);
+        }, 500);
       }
 
     } catch (error) {
@@ -190,7 +189,7 @@ const ChatBot: React.FC = () => {
           setMessages(prev => [...prev, { 
               id: Date.now().toString(), 
               role: 'model', 
-              text: `Dạ hiện tại hệ thống chat của em đang quá tải xíu. Anh/chị nhắn trực tiếp qua Zalo ${HOTLINE} để em Huyền tư vấn và gửi báo giá liền cho mình nha! ❤️` 
+              text: `Dạ hiện tại mạng bên em hơi chập chờn xíu. Anh/chị nhắn trực tiếp qua Zalo ${HOTLINE} để em Huyền tư vấn và gửi báo giá liền cho mình nha! ❤️` 
           }]);
       }, 800);
     } finally {
