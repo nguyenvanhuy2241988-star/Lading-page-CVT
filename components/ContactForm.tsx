@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Button from './ui/Button';
-import { Clock, AlertTriangle, Package, TrendingUp, Loader2, CheckCircle2 } from 'lucide-react';
+import { Clock, AlertTriangle, TrendingUp, Loader2, CheckCircle2 } from 'lucide-react';
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +16,9 @@ const ContactForm: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes countdown
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // LINK ẢNH COMBO/THÙNG HÀNG (Thay ảnh thật của bạn vào đây)
+  const COMBO_IMAGE = "https://placehold.co/600x400/f97316/white?text=Anh+Thung+Hang+Mau";
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -89,43 +92,36 @@ const ContactForm: React.FC = () => {
             Chúng tôi hiểu khó khăn của bạn. Thay vì tặng kệ (phải chờ sản xuất), CVT tặng thẳng sản phẩm Mua 10 Tặng 1 để bạn bán lấy lời ngay.
         </p>
 
-        {/* CSS Composition of the Product Kit */}
-        <div className="relative h-[260px] bg-gradient-to-b from-orange-50 to-white rounded-3xl border border-orange-100 p-6 flex items-center justify-center overflow-hidden group mb-8">
+        {/* Image Representation of the Product Kit */}
+        <div className="relative h-[260px] bg-gradient-to-b from-orange-50 to-white rounded-3xl border border-orange-100 p-4 flex items-center justify-center overflow-hidden group mb-8">
             {/* Background Pattern */}
             <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[radial-gradient(#f97316_1px,transparent_1px)] [background-size:16px_16px]"></div>
             
-            {/* Main Box (Thùng hàng) */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-40 h-32 bg-[#d97706] rounded-lg z-20 flex items-center justify-center shadow-2xl transform group-hover:scale-105 transition-transform border-t border-[#f59e0b]">
-                 {/* Box Details */}
-                 <div className="absolute inset-2 border-2 border-dashed border-black/10 rounded"></div>
-                 <div className="text-center text-white">
-                    <Package size={32} className="mx-auto mb-1 opacity-80" />
-                    <div className="font-black text-lg leading-none tracking-tight">MUA 10</div>
-                    <div className="text-[10px] font-medium opacity-90 uppercase mt-0.5">Thùng tiêu chuẩn</div>
-                 </div>
-                 
-                 {/* Side shading */}
-                 <div className="absolute -right-4 top-2 bottom-0 w-4 bg-[#b45309] origin-left skew-y-[45deg] rounded-r-sm"></div>
-                 <div className="absolute -top-4 left-2 right-0 h-4 bg-[#f59e0b] origin-bottom skew-x-[45deg] rounded-t-sm"></div>
+            {/* Real Image of Combo/Box */}
+            <div className="relative z-20 w-full h-full flex items-center justify-center">
+                 <img 
+                    src={COMBO_IMAGE} 
+                    alt="Combo nhập hàng Mua 10 Tặng 1" 
+                    className="w-auto h-full max-h-[220px] object-contain drop-shadow-2xl transform group-hover:scale-105 transition-transform"
+                 />
             </div>
 
-            {/* Free Item (Tặng 1) */}
-            <div className="absolute top-12 left-12 md:left-24 animate-float z-30">
-                <div className="bg-green-600 text-white px-3 py-4 rounded-lg shadow-lg border-2 border-white rotate-[-12deg] flex flex-col items-center">
-                    <span className="text-xs font-bold uppercase">Tặng</span>
-                    <span className="text-2xl font-extrabold leading-none">1</span>
+            {/* Floating Tags */}
+            <div className="absolute top-12 left-4 md:left-8 animate-float z-30">
+                <div className="bg-green-600 text-white px-3 py-2 rounded-lg shadow-lg border-2 border-white rotate-[-12deg] flex flex-col items-center">
+                    <span className="text-[10px] font-bold uppercase">Tặng</span>
+                    <span className="text-xl font-extrabold leading-none">1</span>
                     <span className="text-[8px] uppercase">Thùng</span>
                 </div>
             </div>
 
-            {/* Samples (Gói dùng thử) */}
-            <div className="absolute bottom-4 right-4 md:right-16 z-40">
+            <div className="absolute bottom-4 right-4 md:right-8 z-40">
                  <div className="bg-purple-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg border border-white animate-bounce-slight">
                     + Bộ Mẫu Thử
                  </div>
             </div>
             
-            <div className="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded shadow-md animate-pulse">
+            <div className="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded shadow-md animate-pulse z-30">
                 FREE SHIP
             </div>
         </div>

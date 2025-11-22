@@ -9,6 +9,13 @@ const Hero: React.FC = () => {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // CẤU HÌNH ẢNH SẢN PHẨM TẠI ĐÂY
+  // Bạn hãy chép ảnh vào thư mục public/images/ và đổi tên file tương ứng
+  const PRODUCT_IMAGES = {
+    packBack: "https://placehold.co/400x600/f97316/white?text=Goi+Vi+Trung+Muoi", // Ảnh gói phía sau (Ví dụ: Vị trứng muối)
+    packFront: "https://placehold.co/400x600/a855f7/white?text=Goi+Vi+Khoai+Mon", // Ảnh gói phía trước (Ví dụ: Vị truyền thống)
+  };
+
   return (
     <section id="home" className="relative grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-20 items-center mb-24 pt-6 lg:pt-12">
       
@@ -69,50 +76,35 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Right Visual - CSS Composition of Snack Packs */}
+      {/* Right Visual - Product Images */}
       <div className="relative h-[500px] md:h-[600px] w-full flex items-center justify-center perspective-1000">
         
         {/* Decorative Background Blob */}
         <div className="absolute inset-0 bg-gradient-to-tr from-green-100 to-blue-50 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] animate-float opacity-70 blur-3xl -z-10"></div>
         
-        {/* Floating Chips */}
+        {/* Floating Chips Elements (Giữ lại làm hiệu ứng nền) */}
         <div className="absolute top-10 left-10 w-10 h-10 bg-yellow-200 rounded-[50%] rotate-45 opacity-80 border border-yellow-300 animate-float-delayed z-0 shadow-sm"></div>
         <div className="absolute bottom-20 right-10 w-12 h-12 bg-purple-200 rounded-[40%] -rotate-12 opacity-60 border border-purple-300 animate-float z-0 shadow-sm"></div>
 
-        {/* Pack 1: Salted Egg (Back) - TALLER & SLIMMER (Standing Pouch) */}
-        <div className="absolute right-8 md:right-24 top-4 md:top-0 w-[140px] md:w-[180px] h-[400px] md:h-[520px] bg-gradient-orange rounded-xl rotate-12 shadow-glow-orange transform transition-transform hover:scale-105 hover:rotate-6 z-10 border-t-[1px] border-white/30 flex flex-col items-center justify-center p-5 animate-float-delayed group cursor-pointer">
-             <div className="w-full h-full absolute inset-0 bg-white/5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 pointer-events-none"></div>
-             <div className="w-full h-4 bg-black/10 absolute top-5 rounded-full blur-sm"></div>
-             <div className="text-white font-extrabold text-4xl uppercase tracking-tighter mb-1 drop-shadow-md mt-8">CVT</div>
-             <div className="text-white/90 text-[8px] tracking-[0.3em] uppercase mb-2 font-bold">Premium Snack</div>
-             <div className="bg-white text-orange-dark font-bold px-3 py-1 rounded-full text-[10px] mb-6 shadow-sm z-10 uppercase tracking-wide">Vị Trứng Muối</div>
-             <div className="w-20 h-20 bg-white/20 rounded-full mb-4 backdrop-blur-sm flex items-center justify-center shadow-inner relative overflow-hidden group-hover:scale-110 transition-transform">
-                 <div className="absolute w-16 h-16 bg-orange-400 rounded-full blur-md opacity-50"></div>
-                <span className="text-3xl relative z-10">🥚</span>
-             </div>
-             <div className="mt-auto mb-6 text-white font-bold text-xl">35g</div>
-             {/* Crimped Top/Bottom Effect */}
-             <div className="absolute -top-1 left-0 right-0 h-3 bg-gradient-orange" style={{clipPath: 'polygon(0% 0%, 5% 100%, 10% 0%, 15% 100%, 20% 0%, 25% 100%, 30% 0%, 35% 100%, 40% 0%, 45% 100%, 50% 0%, 55% 100%, 60% 0%, 65% 100%, 70% 0%, 75% 100%, 80% 0%, 85% 100%, 90% 0%, 95% 100%, 100% 0%)'}}></div>
-             <div className="absolute -bottom-1 left-0 right-0 h-3 bg-gradient-orange" style={{clipPath: 'polygon(0% 100%, 5% 0%, 10% 100%, 15% 0%, 20% 100%, 25% 0%, 30% 100%, 35% 0%, 40% 100%, 45% 0%, 50% 100%, 55% 0%, 60% 100%, 65% 0%, 70% 100%, 75% 0%, 80% 100%, 85% 0%, 90% 100%, 95% 0%, 100% 100%)'}}></div>
+        {/* Pack 1: Back Product Image */}
+        <div className="absolute right-8 md:right-24 top-4 md:top-0 w-[160px] md:w-[220px] rotate-12 transform transition-transform hover:scale-105 hover:rotate-6 z-10 animate-float-delayed group cursor-pointer">
+             <img 
+                src={PRODUCT_IMAGES.packBack} 
+                alt="Snack khoai môn vị trứng muối" 
+                className="w-full h-auto object-contain drop-shadow-2xl"
+             />
         </div>
 
-        {/* Pack 2: Taro (Front) - TALLER & SLIMMER (Standing Pouch) */}
-        <div className="absolute left-6 md:left-16 bottom-4 md:bottom-0 w-[160px] md:w-[200px] h-[440px] md:h-[560px] bg-gradient-purple rounded-xl -rotate-6 shadow-glow-purple transform transition-transform hover:scale-105 hover:rotate-0 z-20 border-t-[1px] border-white/30 flex flex-col items-center justify-center p-6 animate-float group cursor-pointer">
-             <div className="w-full h-full absolute inset-0 bg-white/5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 pointer-events-none"></div>
-             <div className="absolute top-6 right-4 bg-yellow-400 text-yellow-900 text-[9px] font-bold px-2 py-1 rounded shadow-lg animate-pulse z-20">
+        {/* Pack 2: Front Product Image (Main Focus) */}
+        <div className="absolute left-6 md:left-16 bottom-4 md:bottom-0 w-[180px] md:w-[240px] -rotate-6 transform transition-transform hover:scale-105 hover:rotate-0 z-20 animate-float group cursor-pointer">
+             <div className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[9px] font-bold px-2 py-1 rounded shadow-lg animate-pulse z-30">
                BEST SELLER
              </div>
-             <div className="text-white font-extrabold text-5xl uppercase tracking-tighter mb-1 drop-shadow-md mt-10">CVT</div>
-             <div className="text-white/90 text-[9px] tracking-[0.3em] uppercase mb-4 font-bold">Premium Snack</div>
-             <div className="bg-white text-purple-dark font-bold px-4 py-1.5 rounded-full text-xs mb-8 shadow-lg z-10 uppercase tracking-wide">Khoai Môn Tươi</div>
-             <div className="w-24 h-24 bg-white/20 rounded-full mb-8 backdrop-blur-sm flex items-center justify-center border border-white/10 shadow-inner relative overflow-hidden group-hover:scale-110 transition-transform">
-                <div className="absolute w-20 h-20 bg-purple-400 rounded-full blur-md opacity-50"></div>
-                <span className="text-5xl drop-shadow-lg relative z-10">🍠</span>
-             </div>
-             <div className="mt-auto mb-6 text-white font-bold text-2xl">35g</div>
-             {/* Crimped Top/Bottom Effect */}
-             <div className="absolute -top-1 left-0 right-0 h-3 bg-gradient-purple" style={{clipPath: 'polygon(0% 0%, 5% 100%, 10% 0%, 15% 100%, 20% 0%, 25% 100%, 30% 0%, 35% 100%, 40% 0%, 45% 100%, 50% 0%, 55% 100%, 60% 0%, 65% 100%, 70% 0%, 75% 100%, 80% 0%, 85% 100%, 90% 0%, 95% 100%, 100% 0%)'}}></div>
-             <div className="absolute -bottom-1 left-0 right-0 h-3 bg-gradient-purple" style={{clipPath: 'polygon(0% 100%, 5% 0%, 10% 100%, 15% 0%, 20% 100%, 25% 0%, 30% 100%, 35% 0%, 40% 100%, 45% 0%, 50% 100%, 55% 0%, 60% 100%, 65% 0%, 70% 100%, 75% 0%, 80% 100%, 85% 0%, 90% 100%, 95% 0%, 100% 100%)'}}></div>
+             <img 
+                src={PRODUCT_IMAGES.packFront} 
+                alt="Snack khoai môn vị truyền thống" 
+                className="w-full h-auto object-contain drop-shadow-2xl"
+             />
         </div>
 
         {/* Floating Stats Card - Updated text */}
