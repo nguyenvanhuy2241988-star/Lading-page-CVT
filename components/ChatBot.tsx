@@ -63,12 +63,11 @@ const ChatBot: React.FC = () => {
   // Init Chat Function with Safe Checks
   const initializeChat = () => {
     try {
-      // Safe check for API Key existence to prevent crash
-      // NOTE: In Vite (via vite.config.ts), process.env.API_KEY is replaced by string literal during build
       const apiKey = process.env.API_KEY;
       
-      if (!apiKey || apiKey === 'undefined') {
-          console.warn("API Key is missing or invalid.");
+      // Nếu không có Key, trả về null để kích hoạt chế độ Fallback (không lỗi)
+      if (!apiKey || apiKey === 'undefined' || apiKey.length < 10) {
+          console.warn("ChatBot: Running in Offline/Fallback Mode (No API Key detected)");
           return null;
       }
       
@@ -126,16 +125,36 @@ const ChatBot: React.FC = () => {
     setInput('');
     setIsLoading(true);
 
+    // --- LOGIC XỬ LÝ TIN NHẮN ---
+    
+    // 1. Kiểm tra nếu Chat chưa khởi tạo được (do thiếu Key hoặc lỗi) -> Dùng Fallback Script
+    if (!chatInstance.current) {
+        setTimeout(() => {
+            let reply = "Dạ hiện tại lượng tin nhắn đang quá tải nên hệ thống hơi chậm chút ạ. 😓 Anh/chị vui lòng **để lại Số Điện Thoại**, em sẽ ưu tiên báo chuyên viên kinh doanh gọi lại tư vấn kỹ hơn cho mình ngay lập tức nhé ạ! 📞";
+            
+            // Heuristic đơn giản để phát hiện SĐT hoặc nhu cầu giá
+            const phoneRegex = /(\d{9,11})|(\d{3,4}[.\s]\d{3,4}[.\s]\d{3,4})/;
+            const isAskingPrice = /(giá|vốn|tư vấn|sỉ|lẻ|bao nhiêu|tiền)/i.test(userText);
+            
+            if (phoneRegex.test(userText)) {
+                reply = "Dạ em đã nhận được số điện thoại. Em đã chuyển thông tin cho bộ phận kinh doanh, các bạn sẽ liên hệ anh/chị trong ít phút nữa ạ! Em cảm ơn anh/chị đã quan tâm CVT ạ! ❤️";
+            } else if (isAskingPrice) {
+                reply = "Dạ để nhận bảng giá sỉ tốt nhất và chính sách Mua 10 Tặng 1, anh/chị giúp em để lại SĐT hoặc kết bạn Zalo 0969.15.30.15 nhé ạ! Em gửi bảng giá qua đó cho tiện mình tham khảo ạ.";
+            }
+
+            const botMessage: Message = {
+                id: (Date.now() + 1).toString(),
+                role: 'model',
+                text: reply
+            };
+            setMessages(prev => [...prev, botMessage]);
+            setIsLoading(false);
+        }, 1500); // Giả lập độ trễ mạng
+        return;
+    }
+
+    // 2. Nếu có Key -> Gọi Gemini API
     try {
-      if (!chatInstance.current) {
-         chatInstance.current = initializeChat();
-      }
-
-      if (!chatInstance.current) {
-        // Fallback simulation if API is down
-        throw new Error("Connection failed or No API Key");
-      }
-
       const result: GenerateContentResponse = await chatInstance.current.sendMessage({ 
         message: userText 
       });
@@ -152,19 +171,17 @@ const ChatBot: React.FC = () => {
     } catch (error: any) {
       console.error("Chat Error:", error);
       
-      let errorMsg = `Dạ hiện tại hệ thống tin nhắn đang quá tải. Anh/chị gọi trực tiếp Hotline ${HOTLINE} giúp em nhé!`;
+      // Fallback khi API lỗi giữa chừng
+      let errorMsg = `Dạ hiện tại hệ thống tin nhắn đang quá tải. Anh/chị gọi trực tiếp Hotline ${HOTLINE} giúp em để được hỗ trợ nhanh nhất nhé!`;
       
-      // If no API key is configured, give a more helpful dev message (optional, or just stick to user persona)
-      if (error.message?.includes("No API Key")) {
-         errorMsg = "Hệ thống đang bảo trì nâng cấp (Missing Key). Anh/chị vui lòng gọi Hotline nhé!";
-      }
-
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'model',
         text: errorMsg
       };
       setMessages(prev => [...prev, errorMessage]);
+      
+      // Reset để thử lại lần sau hoặc chuyển sang fallback mode
       chatInstance.current = null;
     } finally {
       setIsLoading(false);
@@ -174,11 +191,21 @@ const ChatBot: React.FC = () => {
   const renderMessageText = (text: string | undefined | null) => {
     if (!text || typeof text !== 'string') return null;
     
-    return text.split('\n').map((line, i) => (
-      <span key={i} className="block mb-1 min-h-[1em]">
-        {line}
-      </span>
-    ));
+    // Xử lý xuống dòng và in đậm cơ bản
+    return text.split('\n').map((line, i) => {
+        // Simple bold parser for **text**
+        const parts = line.split(/(\*\*.*?\*\*)/g);
+        return (
+            <span key={i} className="block mb-1 min-h-[1em]">
+                {parts.map((part, index) => {
+                    if (part.startsWith('**') && part.endsWith('**')) {
+                        return <strong key={index}>{part.slice(2, -2)}</strong>;
+                    }
+                    return part;
+                })}
+            </span>
+        );
+    });
   };
 
   // Suggestion Chips (Human-like conversation starters)
