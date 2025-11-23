@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SectionHeading from './ui/SectionHeading';
 import Button from './ui/Button';
@@ -12,7 +13,7 @@ const Policies: React.FC = () => {
     <section id="policies" className="mb-24">
       <SectionHeading
         title="Chính Sách Nhập Hàng & Lợi Nhuận"
-        description="Không cần chờ sản xuất kệ POSM. Nhập hàng là có lãi ngay với cơ chế thưởng hàng trực tiếp Mua 10 Tặng 1."
+        description="Không lo chi phí làm kệ trưng bày. Nhập hàng là có lãi ngay với cơ chế thưởng hàng trực tiếp Mua 10 Tặng 1."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-10 items-end">

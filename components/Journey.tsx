@@ -133,7 +133,7 @@ const Journey: React.FC = () => {
                 { 
                     icon: <MapPin size={18} />, 
                     title: 'Phân phối & Hỗ trợ', 
-                    desc: 'Hàng có sẵn tại kho Hà Nội & HCM. Giao hàng toàn quốc, hỗ trợ đổi trả nếu lỗi bao bì.',
+                    desc: 'Hàng có sẵn tại kho Hà Nội. Giao hàng toàn quốc, hỗ trợ đổi trả nếu lỗi bao bì.',
                     color: 'bg-green-100 text-green-600' 
                 }
             ].map((step, idx) => (

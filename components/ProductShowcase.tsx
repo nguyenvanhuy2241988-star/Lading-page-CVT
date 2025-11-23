@@ -35,7 +35,7 @@ const ProductShowcase: React.FC = () => {
       bgGradient: "from-orange-50 to-orange-100/30",
       tags: ["Best Seller", "Bán chạy nhất"],
       icon: <Star className="text-orange-500" size={16} fill="currentColor" />,
-      description: "Vị mặn ngọt béo ngậy đặc trưng của trứng muối hoàng kim, kết hợp khoai môn giòn tan."
+      description: "Vị mặn ngọt béo ngậy của trứng muối hoàng kim kết hợp khoai môn giòn tan."
     },
     {
       id: "TC",
@@ -46,7 +46,7 @@ const ProductShowcase: React.FC = () => {
       bgGradient: "from-amber-50 to-amber-100/30",
       tags: ["Best Seller", "Hot Trend"],
       icon: <Zap className="text-amber-600" size={16} fill="currentColor" />,
-      description: "Hương thơm đậm đà của gạch cua biển, trải nghiệm ẩm thực cao cấp trong từng miếng snack."
+      description: "Hương thơm đậm đà của gạch cua biển. Trải nghiệm ẩm thực cao cấp trong từng miếng snack."
     },
     {
       id: "CA",
@@ -57,7 +57,7 @@ const ProductShowcase: React.FC = () => {
       bgGradient: "from-red-50 to-red-100/40",
       tags: ["Best Seller", "Cay nồng"],
       icon: <Flame className="text-red-600" size={16} fill="currentColor" />,
-      description: "Vị cay nồng nàn kích thích vị giác, phù hợp cho những tín đồ ăn cay sành điệu. Bao bì đỏ nổi bật."
+      description: "Vị cay nồng kích thích vị giác. Phù hợp cho tín đồ ăn cay sành điệu. Bao bì đỏ nổi bật."
     },
     {
       id: "HL",
@@ -68,7 +68,7 @@ const ProductShowcase: React.FC = () => {
       bgGradient: "from-green-50 to-green-100/40",
       tags: ["Truyền thống", "Dễ ăn"],
       icon: <Leaf className="text-green-600" size={16} fill="currentColor" />,
-      description: "Hương thơm nhẹ nhàng của hành lá tươi, vị mặn vừa phải. Bao bì màu xanh tươi mát."
+      description: "Hương thơm hành lá tươi nhẹ nhàng, vị mặn vừa phải. Bao bì xanh mát, hương vị quen thuộc."
     },
     {
       id: "BB",
@@ -79,7 +79,7 @@ const ProductShowcase: React.FC = () => {
       bgGradient: "from-gray-100 to-gray-300/40",
       tags: ["Đậm đà", "Snack mặn"],
       icon: <Beef className="text-gray-800" size={16} />,
-      description: "Vị thịt nướng BBQ thơm lừng, đậm đà gia vị ướp bò bít tết. Bao bì đen sang trọng."
+      description: "Vị thịt nướng BBQ thơm lừng, đậm đà gia vị bò bít tết. Bao bì đen sang trọng, nam tính."
     },
     {
       id: "TR",
@@ -90,7 +90,7 @@ const ProductShowcase: React.FC = () => {
       bgGradient: "from-slate-50 to-slate-200/40",
       tags: ["Cao cấp", "Gourmet"],
       icon: <Diamond className="text-slate-600" size={16} />,
-      description: "Hương nấm Truffle đen quý tộc, mang lại trải nghiệm sang trọng và tinh tế."
+      description: "Hương nấm Truffle đen quý tộc. Mang lại trải nghiệm ăn vặt sang trọng và đầy tinh tế."
     },
   ];
 
@@ -137,7 +137,7 @@ const ProductShowcase: React.FC = () => {
                 <h3 className={`text-2xl font-extrabold ${product.color} mb-2 leading-tight`}>
                     {product.name}
                 </h3>
-                <p className="text-sm text-gray-600 mb-5 line-clamp-2 leading-relaxed">
+                <p className="text-sm text-gray-600 mb-5 line-clamp-3 leading-relaxed">
                     {product.description}
                 </p>
 

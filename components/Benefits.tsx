@@ -31,7 +31,7 @@ const Benefits: React.FC = () => {
     {
       icon: <Gift size={18} />,
       title: 'Bao bì đẹp, dễ bán',
-      desc: 'Thiết kế matte (nhám) cao cấp, nổi bật trên quầy kệ và set quà tặng.',
+      desc: 'Thiết kế cán bóng (glossy) cao cấp, màu sắc bắt mắt nổi bật trên quầy kệ.',
       color: 'text-orange-600'
     },
   ];
