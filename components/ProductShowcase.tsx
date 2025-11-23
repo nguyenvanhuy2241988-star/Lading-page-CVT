@@ -90,28 +90,28 @@ const ProductShowcase: React.FC = () => {
   ];
 
   return (
-    <section id="products" className="mb-24 scroll-mt-20">
+    <section id="products" className="mb-32 scroll-mt-24">
       <SectionHeading 
         title="Bộ Sưu Tập Hương Vị" 
-        description="6 Hương vị độc đáo - 3 Quy cách (35g, 75g, 180g). Đáp ứng mọi nhu cầu."
+        description="6 Hương vị độc đáo - 3 Quy cách (35g, 75g, 180g). Đáp ứng mọi nhu cầu kinh doanh và thưởng thức."
       />
 
       {/* Products Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
         {products.map((product) => (
-          <div key={product.id} className={`group relative bg-gradient-to-br ${product.bgGradient} rounded-[32px] overflow-hidden shadow-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/50 flex flex-col`}>
+          <div key={product.id} className={`group relative bg-gradient-to-br ${product.bgGradient} rounded-[36px] overflow-hidden shadow-card hover:shadow-2xl hover:shadow-green/10 transition-all duration-300 hover:-translate-y-2 border border-white/60 flex flex-col`}>
             
             {/* Tags - Minimal */}
-            <div className="absolute top-4 left-4 z-20 flex flex-col gap-1.5 items-start">
+            <div className="absolute top-5 left-5 z-20 flex flex-col gap-2 items-start">
                {product.tags?.map((tag, idx) => (
-                 <span key={idx} className={`text-[9px] font-bold px-2 py-0.5 rounded-md bg-white/90 backdrop-blur shadow-sm ${product.color} border border-white/50 uppercase tracking-wide`}>
+                 <span key={idx} className={`text-[10px] font-extrabold px-3 py-1 rounded-lg bg-white/90 backdrop-blur shadow-sm ${product.color} border border-white/50 uppercase tracking-wider`}>
                     {tag}
                  </span>
                ))}
             </div>
 
             {/* Image Area */}
-            <div className="relative h-[220px] w-full flex items-center justify-center p-4 mt-6">
+            <div className="relative h-[240px] w-full flex items-center justify-center p-6 mt-6">
                 <div className="absolute inset-0 bg-white/40 rounded-full blur-3xl transform scale-75 group-hover:scale-90 transition-transform duration-500"></div>
                 <img 
                     src={product.image} 
@@ -122,22 +122,22 @@ const ProductShowcase: React.FC = () => {
             </div>
             
             {/* Content Card */}
-            <div className="bg-white/80 backdrop-blur-md p-5 flex flex-col flex-1 relative z-20 border-t border-white/50">
-                <div className="mb-1 flex items-center gap-1.5 opacity-60">
+            <div className="bg-white/80 backdrop-blur-md p-6 flex flex-col flex-1 relative z-20 border-t border-white/50">
+                <div className="mb-2 flex items-center gap-1.5 opacity-60">
                     {product.icon}
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-gray-500">Snack Khoai Môn</span>
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500">Snack Khoai Môn</span>
                 </div>
-                <h3 className={`text-xl font-extrabold ${product.color} mb-1.5 leading-tight`}>
+                <h3 className={`text-2xl font-black ${product.color} mb-2 leading-tight`}>
                     {product.name}
                 </h3>
-                <p className="text-sm text-gray-500 mb-4 line-clamp-2 leading-snug">
+                <p className="text-base text-gray-500 mb-6 line-clamp-2 leading-relaxed font-medium">
                     {product.description}
                 </p>
 
-                <div className="mt-auto pt-3 border-t border-gray-100/50">
-                    <div className="flex flex-wrap gap-1.5 mb-4">
+                <div className="mt-auto pt-4 border-t border-gray-100/50">
+                    <div className="flex flex-wrap gap-2 mb-5">
                         {product.weights.map((w) => (
-                            <span key={w} className="px-2 py-1 rounded bg-white border border-gray-100 text-[10px] font-bold text-gray-600">
+                            <span key={w} className="px-2.5 py-1.5 rounded-lg bg-white border border-gray-200 text-[11px] font-bold text-gray-600 shadow-sm">
                                 {w}
                             </span>
                         ))}
@@ -145,9 +145,9 @@ const ProductShowcase: React.FC = () => {
 
                     <button 
                         onClick={scrollToForm}
-                        className="w-full py-2.5 rounded-xl bg-gray-900 text-white font-bold text-xs shadow hover:bg-green-600 transition-colors flex items-center justify-center gap-2"
+                        className="w-full py-3.5 rounded-2xl bg-gray-900 text-white font-bold text-sm shadow-lg hover:bg-green-600 hover:shadow-green/30 transition-all flex items-center justify-center gap-2 group-hover:scale-[1.02]"
                     >
-                        <ShoppingBag size={14} /> 
+                        <ShoppingBag size={16} /> 
                         <span>Nhập hàng ngay</span>
                     </button>
                 </div>

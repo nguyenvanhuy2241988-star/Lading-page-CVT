@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 interface SectionHeadingProps {
@@ -7,9 +8,10 @@ interface SectionHeadingProps {
 
 const SectionHeading: React.FC<SectionHeadingProps> = ({ title, description }) => {
   return (
-    <div className="text-center mb-7">
-      <h2 className="text-2xl font-bold mb-1.5 text-text-main">{title}</h2>
-      <p className="text-sm text-text-muted max-w-[560px] mx-auto">{description}</p>
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-5 text-text-main tracking-tight">{title}</h2>
+      <div className="w-24 h-1.5 bg-gradient-to-r from-green-500 to-green-400 mx-auto rounded-full mb-6 opacity-80"></div>
+      <p className="text-base md:text-lg text-text-muted max-w-[640px] mx-auto leading-relaxed font-medium text-gray-500">{description}</p>
     </div>
   );
 };
