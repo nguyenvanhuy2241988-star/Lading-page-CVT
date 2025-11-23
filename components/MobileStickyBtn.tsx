@@ -1,46 +1,39 @@
-
 import React from 'react';
-import { Phone, ArrowRight, Zap } from 'lucide-react';
+import { Phone, Download, Zap } from 'lucide-react';
 
 const MobileStickyBtn: React.FC = () => {
   const scrollToForm = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Hotline mới
   const HOTLINE = "0969.15.30.15";
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.15)] z-[40] md:hidden flex gap-3 safe-area-pb items-end">
-      <a 
-        href={`tel:${HOTLINE.replace(/\./g, '')}`}
-        className="flex flex-col items-center justify-center w-[64px] h-[50px] bg-white text-green-dark rounded-xl border border-gray-200 active:bg-gray-50 shadow-sm shrink-0"
-      >
-        <Phone size={20} strokeWidth={2.5} />
-        <span className="text-[10px] font-bold mt-0.5">Gọi ngay</span>
-      </a>
+    <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] z-[40] md:hidden flex flex-col safe-area-pb">
       
-      <div className="flex-1 relative">
-        {/* Floating Tag - FOMO Trigger */}
-        <div className="absolute -top-5 right-1 animate-bounce z-10">
-           <div className="relative bg-red-600 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-lg flex items-center gap-1 border border-white/30 ring-2 ring-red-500/50 ring-offset-1">
-              <Zap size={12} fill="currentColor" className="animate-pulse" /> MUA 10 TẶNG 1
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[4px] border-t-red-600"></span>
-           </div>
-        </div>
+      {/* Promo Badge - Floating on top */}
+      <div className="bg-yellow-100 text-red-700 text-[11px] font-bold text-center py-1.5 border-b border-yellow-200 flex items-center justify-center gap-1 animate-pulse">
+         <Zap size={12} fill="currentColor" />
+         Ưu đãi vốn nhập hàng: <span className="text-black">Mua 10 Tặng 1</span>
+      </div>
 
-        <button 
-          onClick={scrollToForm}
-          className="w-full h-[50px] bg-gradient-to-r from-green-600 to-green-500 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-glow-green active:scale-[0.98] transition-transform relative overflow-hidden"
+      <div className="flex gap-3 p-3 pt-2">
+        <a 
+            href={`tel:${HOTLINE.replace(/\./g, '')}`}
+            className="flex flex-col items-center justify-center w-[70px] h-[44px] bg-gray-100 text-gray-700 rounded-lg active:bg-gray-200 transition-colors"
         >
-          {/* Shimmer effect */}
-          <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
-          
-          <span className="relative z-10 text-base uppercase tracking-wide">Nhận Báo Giá Sỉ</span> 
-          <div className="relative z-10 bg-white/20 rounded-full p-1">
-            <ArrowRight size={18} />
-          </div>
-        </button>
+            <Phone size={20} />
+            <span className="text-[10px] font-bold mt-0.5">Gọi ngay</span>
+        </a>
+        
+        <div className="flex-1">
+            <button 
+            onClick={scrollToForm}
+            className="w-full h-[44px] bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold text-sm rounded-lg flex items-center justify-center gap-2 shadow-lg hover:shadow-red-500/50 active:scale-[0.98] transition-all uppercase tracking-wide"
+            >
+            <Download size={18} /> TẢI CHÍNH SÁCH ĐẠI LÝ
+            </button>
+        </div>
       </div>
     </div>
   );

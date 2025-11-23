@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Button from './ui/Button';
-import { TrendingUp, CheckCircle, ArrowRight, Star, Users, ShieldCheck, Check } from 'lucide-react';
+import { CheckCircle, ArrowRight, Zap, TrendingUp, Users, Award, Star } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const scrollToForm = () => {
@@ -9,117 +9,159 @@ const Hero: React.FC = () => {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // CẤU HÌNH ẢNH SẢN PHẨM TẠI ĐÂY
   const PRODUCT_IMAGES = {
-    packBack: "https://lh3.googleusercontent.com/d/1kRCrrZbE_7vFWO7QGVYUTINzEBLvE2OX", // Ảnh gói phía sau
-    packFront: "https://lh3.googleusercontent.com/d/1g-nryBiY2wWteKuz3NwRGcAEOD9d765h", // Ảnh gói phía trước
+    packBack: "https://lh3.googleusercontent.com/d/1kRCrrZbE_7vFWO7QGVYUTINzEBLvE2OX",
+    packFront: "https://lh3.googleusercontent.com/d/1g-nryBiY2wWteKuz3NwRGcAEOD9d765h",
   };
 
   return (
-    <section id="home" className="relative grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 items-center mb-24 md:mb-32 pt-8 lg:pt-16">
+    <section id="home" className="relative grid grid-cols-1 lg:grid-cols-[1.1fr_1.2fr] gap-8 lg:gap-12 items-center mb-20 md:mb-32 pt-6 lg:pt-12">
       
       {/* Background Pattern */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-green/5 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-orange/5 rounded-full blur-3xl animate-float-delayed"></div>
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] bg-green-50 rounded-full blur-3xl opacity-50"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[70%] h-[70%] bg-orange-50 rounded-full blur-3xl opacity-50"></div>
       </div>
 
       {/* Left Content */}
-      <div className="relative z-10 order-2 lg:order-1">
-        {/* Updated Tag to highlight Target Audience (B2B) */}
-        <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-blue-700 px-3 py-1.5 rounded-full mb-6 border border-blue-200 shadow-sm hover:bg-blue-100 transition-colors cursor-default">
-          <ShieldCheck size={14} fill="currentColor" className="opacity-80"/>
+      <div className="relative z-10 order-2 lg:order-1 flex flex-col justify-center">
+        {/* Top Tag */}
+        <div className="inline-flex self-start items-center gap-2 text-[11px] md:text-xs font-black uppercase tracking-widest bg-red-600 text-white px-4 py-1.5 rounded-full mb-5 shadow-lg animate-pulse">
+          <Star size={12} fill="currentColor" />
           Dành Cho Đại Lý & Nhà Phân Phối
         </div>
 
-        {/* New Headline - Powerful & Consistent */}
-        <h1 className="text-4xl md:text-5xl lg:text-[56px] font-black leading-[1.15] mb-8 text-text-main tracking-tight">
-          <span className="block mb-2">Bùng Nổ Lợi Nhuận</span>
-          <span className="block">Cùng <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-400">Snack Khoai Môn CVT</span></span>
+        {/* Headline */}
+        <h1 className="text-4xl md:text-5xl lg:text-[56px] font-black leading-[1.1] mb-4 text-text-main tracking-tight">
+          Bùng Nổ Lợi Nhuận <br/>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00a862] via-[#00c16a] to-[#008f53] drop-shadow-sm filter">
+            Cùng Snack Khoai Môn CVT
+          </span>
         </h1>
         
-        {/* Strong Sub-headline - Cleaner Typography */}
-        <h2 className="text-xl md:text-2xl font-bold text-gray-700 mb-8 max-w-2xl leading-relaxed">
-           Cơ Hội Độc Quyền & Hỗ Trợ Toàn Diện Cho <br className="hidden md:block"/> Đại Lý, Nhà Phân Phối!
-        </h2>
-
-        {/* Bullet Points - Specific Numbers & Benefits - More spacing */}
-        <ul className="space-y-4 mb-10">
-            <li className="flex items-start gap-4 group">
-                <div className="bg-green-100 p-1.5 rounded-full text-green-700 mt-0.5 group-hover:scale-110 transition-transform"><Check size={18} strokeWidth={3} /></div>
-                <span className="text-gray-600 font-medium text-lg">Lợi nhuận vượt trội <span className="font-bold text-text-main">(25-40%)</span> - Vốn thấp từ 3 Triệu</span>
-            </li>
-            <li className="flex items-start gap-4 group">
-                <div className="bg-green-100 p-1.5 rounded-full text-green-700 mt-0.5 group-hover:scale-110 transition-transform"><Check size={18} strokeWidth={3} /></div>
-                <span className="text-gray-600 font-medium text-lg">Hỗ trợ Marketing 0đ & POSM (Kệ, Banner) tận nơi</span>
-            </li>
-            <li className="flex items-start gap-4 group">
-                <div className="bg-green-100 p-1.5 rounded-full text-green-700 mt-0.5 group-hover:scale-110 transition-transform"><Check size={18} strokeWidth={3} /></div>
-                <span className="text-gray-600 font-medium text-lg">Nhập khẩu chính ngạch - Đầy đủ CO/CQ & VAT</span>
-            </li>
-        </ul>
-
-        <div className="flex flex-col sm:flex-row gap-4 mb-10">
-          <Button variant="shimmer" size="lg" onClick={scrollToForm} className="w-full sm:w-auto shadow-xl shadow-orange/20 !bg-gradient-orange border-none text-white py-4 px-8 text-base font-extrabold uppercase tracking-wide transform hover:-translate-y-1">
-             NHẬN ƯU ĐÃI & CHÍNH SÁCH <br className="hidden sm:block lg:hidden"/> ĐẠI LÝ ĐỘC QUYỀN!
-          </Button>
-          <Button variant="outline" size="lg" onClick={scrollToForm} className="w-full sm:w-auto border-gray-300 text-gray-600 hover:border-green-600 hover:text-green-700 py-4 font-bold">
-            <Users size={20} />
-            Tham Gia CTV (Vốn 0đ)
-          </Button>
+        {/* Description Box */}
+        <div className="bg-white/60 backdrop-blur-sm border border-green-100 rounded-2xl p-5 mb-8 shadow-sm">
+            <p className="text-base md:text-lg text-gray-800 font-bold mb-3 uppercase tracking-tight">
+               Cơ Hội Độc Quyền & Hỗ Trợ Toàn Diện Cho Đại Lý, Nhà Phân Phối!
+            </p>
+            <ul className="space-y-2.5">
+                <li className="flex items-start gap-2.5 text-gray-700 font-medium">
+                    <CheckCircle className="text-red-600 shrink-0 mt-0.5" size={18} fill="currentColor" stroke="white" />
+                    <span>Lợi nhuận vượt trội <span className="text-red-600 font-black">(25-40%)</span> - Vốn thấp từ 3 Triệu</span>
+                </li>
+                <li className="flex items-start gap-2.5 text-gray-700 font-medium">
+                    <CheckCircle className="text-red-600 shrink-0 mt-0.5" size={18} fill="currentColor" stroke="white" />
+                    <span>Hỗ trợ Marketing 0đ & POSM (Kệ, Banner) tận nơi</span>
+                </li>
+                <li className="flex items-start gap-2.5 text-gray-700 font-medium">
+                    <CheckCircle className="text-red-600 shrink-0 mt-0.5" size={18} fill="currentColor" stroke="white" />
+                    <span>Nhập khẩu chính ngạch - Đầy đủ CO/CQ & VAT</span>
+                </li>
+            </ul>
         </div>
 
-        {/* Trust Indicators - Minimalist */}
-        <div className="flex flex-wrap items-center gap-6 text-sm font-semibold text-gray-500 pt-6 border-t border-gray-200/60">
-          <span className="flex items-center gap-2 hover:text-green-600 transition-colors cursor-default"><CheckCircle size={16} className="text-green-600" /> Sẵn hàng kho HN</span>
-          <span className="hidden sm:block w-1.5 h-1.5 bg-gray-300 rounded-full"></span>
-          <span className="flex items-center gap-2 hover:text-green-600 transition-colors cursor-default"><CheckCircle size={16} className="text-green-600" /> Chứng từ minh bạch</span>
-          <span className="hidden sm:block w-1.5 h-1.5 bg-gray-300 rounded-full"></span>
-          <span className="flex items-center gap-2 hover:text-orange-500 transition-colors cursor-default"><div className="flex text-orange-400"><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/></div> 50+ NPP Tin dùng</span>
+        {/* CTAs */}
+        <div className="flex flex-col gap-3 mb-8">
+          <Button 
+            variant="primary" 
+            size="lg" 
+            onClick={scrollToForm} 
+            className="w-full shadow-[0_4px_25px_rgba(220,38,38,0.4)] animate-shimmer bg-gradient-to-r from-red-600 via-orange-500 to-red-600 bg-[length:200%_auto] border-none text-white text-[15px] sm:text-lg uppercase font-black tracking-wide hover:scale-[1.02] transition-transform duration-300 py-4 px-6"
+          >
+             <span className="whitespace-nowrap flex items-center gap-2">
+                <Zap size={20} fill="currentColor" className="hidden sm:block" /> 
+                NHẬN ƯU ĐÃI & CHÍNH SÁCH ĐẠI LÝ ĐỘC QUYỀN!
+             </span>
+          </Button>
+          
+          <div className="flex justify-center sm:justify-start">
+            <button 
+                onClick={scrollToForm} 
+                className="group flex items-center gap-2 text-gray-600 font-bold hover:text-green-600 transition-colors px-4 py-2 rounded-full hover:bg-green-50"
+            >
+                <Users size={18} /> Tham Gia CTV (Vốn 0đ) <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </div>
+
+        {/* Trust Indicators */}
+        <div className="flex flex-wrap gap-3 md:gap-6 mt-2 pt-4 border-t border-gray-200/60">
+            <div className="flex items-center gap-1.5">
+                <CheckCircle size={14} className="text-green-600" />
+                <span className="text-xs font-bold text-gray-600 uppercase">Sẵn hàng kho HN</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+                <CheckCircle size={14} className="text-green-600" />
+                <span className="text-xs font-bold text-gray-600 uppercase">Chứng từ minh bạch</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+                <CheckCircle size={14} className="text-green-600" />
+                <span className="text-xs font-bold text-gray-600 uppercase">50+ NPP Tin dùng</span>
+            </div>
         </div>
       </div>
 
-      {/* Right Visual - Product Images */}
-      <div className="relative h-[450px] md:h-[600px] w-full flex items-center justify-center perspective-1000 order-1 lg:order-2">
+      {/* Right Visual - REARRANGED & ANIMATED */}
+      <div className="relative h-[500px] md:h-[680px] w-full flex items-center justify-center order-1 lg:order-2 perspective-1000 mt-8 lg:mt-0">
         
-        {/* Decorative Background Blob */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-green-50 to-blue-50 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] animate-float opacity-80 blur-3xl -z-10"></div>
+        {/* Glow Effect behind products */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gradient-radial from-yellow-200/60 to-transparent blur-3xl -z-10"></div>
         
-        {/* Pack 1: Back Product Image */}
-        <div className="absolute right-0 md:right-8 top-6 md:top-10 w-[220px] md:w-[340px] rotate-12 transform transition-transform hover:scale-105 hover:rotate-6 z-10 animate-float-delayed group cursor-pointer">
+        {/* Back Image (Floating Background) - Moved Up & Right */}
+        <div className="absolute top-[-20px] right-[-10px] md:right-[-40px] w-[65%] md:w-[80%] max-w-[500px] z-10 animate-float transition-all duration-500">
              <img 
                 src={PRODUCT_IMAGES.packBack} 
-                alt="Snack khoai môn vị trứng muối" 
-                className="w-full h-auto object-contain drop-shadow-2xl opacity-90 hover:opacity-100 transition-opacity"
-                referrerPolicy="no-referrer"
+                alt="Snack Trứng Muối" 
+                className="w-full h-auto drop-shadow-2xl filter brightness-[0.95] rotate-[12deg]" 
+                referrerPolicy="no-referrer" 
              />
         </div>
 
-        {/* Pack 2: Front Product Image */}
-        <div className="absolute left-2 md:-left-4 bottom-0 md:-bottom-4 w-[260px] md:w-[440px] -rotate-6 transform transition-transform hover:scale-105 hover:rotate-0 z-20 animate-float group cursor-pointer">
-             <div className="absolute top-6 right-6 bg-yellow-400 text-yellow-900 text-[10px] md:text-xs font-extrabold px-3 py-1.5 rounded-lg shadow-lg animate-pulse z-30 border-2 border-white/50">
-               BEST SELLER
-             </div>
+        {/* Front Image (Hero Product) - Moved Down & Left */}
+        <div className="absolute bottom-[20px] left-[-10px] md:left-[-50px] w-[70%] md:w-[85%] max-w-[540px] z-20 animate-float-delayed group">
              <img 
                 src={PRODUCT_IMAGES.packFront} 
-                alt="Snack khoai môn vị truyền thống" 
-                className="w-full h-auto object-contain drop-shadow-[0_25px_60px_rgba(0,0,0,0.3)]"
-                referrerPolicy="no-referrer"
+                alt="Snack Khoai Môn CVT" 
+                className="w-full h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.4)] -rotate-[6deg] group-hover:rotate-0 group-hover:scale-105 transition-transform duration-700" 
+                referrerPolicy="no-referrer" 
              />
+             
+             {/* Best Seller Badge - GOLD MEDAL STYLE - Attached to Product */}
+             <div className="absolute top-[5%] right-[10%] z-30 animate-pulse-glow">
+                 <div className="relative w-24 h-24 md:w-32 md:h-32">
+                    {/* Ribbons */}
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 w-16 h-16 bg-red-600 rotate-45 transform origin-center -z-10 skew-x-12 shadow-md"></div>
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 w-16 h-16 bg-red-700 -rotate-45 transform origin-center -z-10 -skew-x-12 shadow-md"></div>
+                    
+                    {/* Medal Circle */}
+                    <div className="w-full h-full rounded-full bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700 p-1 shadow-[0_5px_15px_rgba(0,0,0,0.3)] border-2 border-white/50">
+                        <div className="w-full h-full rounded-full bg-gradient-to-tr from-yellow-600 to-yellow-200 flex flex-col items-center justify-center border-2 border-yellow-800/20">
+                            <Award size={32} className="text-red-700 drop-shadow-sm mb-1" fill="currentColor" />
+                            <span className="text-[12px] md:text-[15px] font-black uppercase leading-none text-red-800 drop-shadow-sm text-center">
+                                Best<br/>Seller
+                            </span>
+                        </div>
+                    </div>
+                 </div>
+             </div>
         </div>
 
-        {/* Floating Stats Card - Simplified */}
-        <div className="absolute -right-2 md:-right-4 bottom-8 md:bottom-20 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-green/10 z-30 animate-bounce-slight max-w-[200px]">
-            <div className="flex items-center gap-2 mb-1.5">
-                <div className="bg-red-50 p-1.5 rounded-full text-red-600">
-                    <TrendingUp size={16} />
-                </div>
-                <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wide">Ưu đãi Hot</div>
+        {/* Floating Sales Badge - Positioned Closer to Product Cluster */}
+        <div className="absolute bottom-[10%] right-[5%] md:right-[10%] z-40 animate-bounce-slight">
+            <div className="bg-white/95 backdrop-blur-xl pl-4 pr-6 py-3 rounded-xl shadow-[0_8px_30px_rgba(220,38,38,0.25)] border-2 border-red-100 border-l-[6px] border-l-red-600 max-w-[200px] md:max-w-[240px] transform rotate-2 hover:rotate-0 transition-transform">
+                 <div className="flex items-center gap-2 mb-1">
+                     <span className="flex h-2 w-2 rounded-full bg-red-500 animate-ping"></span>
+                     <span className="text-[10px] font-bold text-red-600 uppercase tracking-wide">Khuyến mãi nhập sỉ</span>
+                 </div>
+                 <div className="text-2xl md:text-3xl font-black text-gray-900 leading-none">
+                     Mua 10 <span className="text-red-600">Tặng 1</span>
+                 </div>
+                 <div className="text-[10px] text-gray-500 mt-1.5 font-medium italic">
+                     *Áp dụng cho đơn hàng đầu tiên
+                 </div>
             </div>
-            <div className="text-2xl font-black text-red-600 leading-none mb-1">Mua 10 Tặng 1</div>
-            <div className="text-xs text-gray-500 font-medium">Dành cho Đại Lý Mới</div>
         </div>
-
+        
       </div>
     </section>
   );

@@ -1,7 +1,6 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from './ui/Button';
-import { Clock, AlertTriangle, TrendingUp, Loader2, CheckCircle2, Star } from 'lucide-react';
+import { Send, CheckCircle2, FileText, Download, AlertCircle } from 'lucide-react';
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,25 +12,8 @@ const ContactForm: React.FC = () => {
     note: ''
   });
 
-  const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes countdown
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
-  // LINK ẢNH COMBO/THÙNG HÀNG (Thay ảnh thật của bạn vào đây)
-  const COMBO_IMAGE = "https://placehold.co/600x400/f97316/white?text=Anh+Thung+Hang+Mau";
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatTime = (seconds: number) => {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -43,220 +25,113 @@ const ContactForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Gửi dữ liệu đến FormSubmit
       const response = await fetch("https://formsubmit.co/ajax/nguyenvanhuy2241988@gmail.com", {
         method: "POST",
-        headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-            _subject: "🔥 ĐĂNG KÝ ĐẠI LÝ MỚI - CVT SNACK",
-            "Họ và tên": formData.fullName,
-            "Số điện thoại": formData.phone,
+            _subject: "🚀 KHÁCH TẢI BÁO GIÁ GẤP - CVT",
+            "Họ tên": formData.fullName,
+            "SĐT": formData.phone,
             "Khu vực": formData.province,
-            "Mức vốn/Loại hình": formData.type,
+            "Loại hình": formData.type,
             "Ghi chú": formData.scale || "Không có",
-            _template: "table"
         })
       });
 
       if (response.ok) {
         setIsSuccess(true);
         setFormData({ fullName: '', phone: '', province: '', type: '', scale: '', note: '' });
-        // Reset success status after 5 seconds
         setTimeout(() => setIsSuccess(false), 8000);
       } else {
-        alert("Có lỗi kết nối, vui lòng thử lại hoặc gọi trực tiếp hotline.");
+        alert("Có lỗi kết nối, vui lòng thử lại.");
       }
     } catch (error) {
-      alert("Không thể gửi đơn đăng ký. Vui lòng kiểm tra kết nối mạng.");
+      alert("Lỗi mạng. Vui lòng kiểm tra lại đường truyền.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 items-start mb-16">
-      {/* Left Visual - The Starter Kit */}
+    <section id="contact" className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-8 lg:gap-12 items-start mb-16">
+      
+      {/* Left Visual */}
       <div className="pt-4">
-        <div className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-3 py-1.5 rounded-lg text-xs font-bold mb-4 animate-pulse">
-            <AlertTriangle size={14} />
-            Ưu đãi độc quyền cho Đại Lý Mới
+        <div className="flex items-center gap-2 text-red-600 font-bold mb-3 uppercase tracking-wider text-xs">
+            <AlertCircle size={16} />
+            <span>Chỉ còn 15 suất ưu đãi tháng này</span>
         </div>
-        <h2 className="text-3xl font-extrabold mb-4 text-text-main leading-tight">
-          Đăng ký ngay hôm nay <br/>
-          <span className="text-green-dark">Nhận Vốn Hàng Hóa 10%</span>
+        <h2 className="text-3xl font-extrabold mb-4 text-text-main leading-tight uppercase">
+          TẢI BÁO GIÁ SỈ <br/>
+          <span className="text-red-600">NHẬP HÀNG NGAY</span>
         </h2>
-        <p className="text-sm text-text-muted mb-8">
-            Chúng tôi hiểu khó khăn của bạn. Thay vì tặng kệ (phải chờ sản xuất), CVT tặng thẳng sản phẩm <strong>Mua 10 Tặng 1</strong> để bạn bán lấy lời ngay.
+        <p className="text-text-muted mb-8 text-base leading-relaxed">
+            Hoàn tất biểu mẫu bên cạnh để nhận ngay file Báo Giá Sỉ Mới Nhất và Chính sách "Mua 10 Tặng 1" qua Zalo.
         </p>
 
-        {/* Image Representation of the Product Kit */}
-        <div className="relative h-[260px] bg-gradient-to-b from-orange-50 to-white rounded-3xl border border-orange-100 p-4 flex items-center justify-center overflow-hidden group mb-8">
-            {/* Background Pattern */}
-            <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[radial-gradient(#f97316_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            
-            {/* Real Image of Combo/Box */}
-            <div className="relative z-20 w-full h-full flex items-center justify-center">
-                 <img 
-                    src={COMBO_IMAGE} 
-                    alt="Combo nhập hàng Mua 10 Tặng 1" 
-                    className="w-auto h-full max-h-[220px] object-contain drop-shadow-2xl transform group-hover:scale-105 transition-transform"
-                 />
-            </div>
-
-            {/* Floating Tags */}
-            <div className="absolute top-12 left-4 md:left-8 animate-float z-30">
-                <div className="bg-green-600 text-white px-3 py-2 rounded-lg shadow-lg border-2 border-white rotate-[-12deg] flex flex-col items-center">
-                    <span className="text-[10px] font-bold uppercase">Tặng</span>
-                    <span className="text-xl font-extrabold leading-none">1</span>
-                    <span className="text-[8px] uppercase">Thùng</span>
-                </div>
-            </div>
-
-            <div className="absolute bottom-4 right-4 md:right-8 z-40">
-                 <div className="bg-purple-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg border border-white animate-bounce-slight">
-                    + Bộ Mẫu Thử
-                 </div>
-            </div>
-            
-            <div className="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded shadow-md animate-pulse z-30">
-                FREE SHIP
-            </div>
-        </div>
-
-        <div className="bg-white rounded-2xl p-4 border border-green-100 shadow-sm flex items-center justify-between">
-           <div>
-               <div className="text-xs text-gray-500 font-medium mb-1">Đã đăng ký hôm nay</div>
-               <div className="flex -space-x-2">
-                   {[1,2,3,4].map(i => (
-                       <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-gray-200 flex items-center justify-center text-[10px] font-bold text-gray-600 overflow-hidden">
-                          <img src={`https://i.pravatar.cc/100?img=${i + 15}`} alt="user" className="w-full h-full object-cover" />
-                       </div>
-                   ))}
-                   <div className="w-8 h-8 rounded-full border-2 border-white bg-green-100 flex items-center justify-center text-[10px] font-bold text-green-700">
-                       +24
-                   </div>
-               </div>
-           </div>
-           <div className="text-right">
-               <div className="text-xs text-gray-500 font-medium mb-1">Suất ưu đãi còn lại</div>
-               <div className="text-2xl font-extrabold text-red-600">03</div>
-           </div>
+        <div className="bg-orange-50 rounded-2xl p-6 border border-orange-200 relative overflow-hidden">
+             <div className="absolute -right-4 -top-4 w-16 h-16 bg-orange-200 rounded-full opacity-50 blur-xl"></div>
+             <h4 className="font-bold text-orange-800 mb-3 flex items-center gap-2">
+                <FileText size={18} /> Tài liệu bạn sẽ nhận được:
+             </h4>
+             <ul className="space-y-2 text-sm text-gray-700 mb-4">
+                 <li className="flex items-center gap-2"><CheckCircle2 size={14} className="text-green-600"/> Bảng giá sỉ 5 mốc số lượng</li>
+                 <li className="flex items-center gap-2"><CheckCircle2 size={14} className="text-green-600"/> Catalog hình ảnh sản phẩm HD</li>
+                 <li className="flex items-center gap-2"><CheckCircle2 size={14} className="text-green-600"/> Chứng nhận VSATTP & Công bố</li>
+             </ul>
+             <div className="text-sm font-bold text-red-600 pt-3 border-t border-orange-200">
+                Hotline Ưu Tiên: 0969.15.30.15
+             </div>
         </div>
       </div>
 
       {/* Right Form */}
-      <div className="bg-white rounded-[32px] p-6 md:p-8 shadow-xl border border-gray-100 relative overflow-hidden">
-        {/* Timer Badge */}
-        <div className="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-bl-2xl flex items-center gap-2">
-            <Clock size={14} className="animate-spin-slow" />
-            Ưu đãi kết thúc: {formatTime(timeLeft)}
+      <div className="bg-white rounded-3xl p-6 md:p-8 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-gray-100 relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg border-2 border-white whitespace-nowrap">
+            Đăng ký ngay để giữ ưu đãi
         </div>
 
-        <h3 className="text-xl font-bold mb-6 mt-2">Form Đăng Ký Nhanh</h3>
-        
         {isSuccess ? (
-            <div className="flex flex-col items-center justify-center py-10 text-center animate-pulse-glow rounded-2xl bg-green-50 border border-green-200">
-                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
-                    <CheckCircle2 size={32} />
-                </div>
-                <h4 className="text-xl font-bold text-green-700 mb-2">Đăng ký thành công!</h4>
-                <p className="text-text-muted text-sm max-w-[280px]">
-                    Cảm ơn quý khách. Bộ phận kinh doanh CVT sẽ liên hệ Zalo/SĐT trong vòng 30 phút.
-                </p>
+            <div className="flex flex-col items-center justify-center py-12 text-center bg-green-50 rounded-2xl border border-green-100">
+                <CheckCircle2 size={48} className="text-green-600 mb-4" />
+                <h4 className="text-xl font-bold text-green-800 mb-2">Đăng ký thành công!</h4>
+                <p className="text-gray-600 text-sm">Bộ phận kinh doanh sẽ gửi báo giá qua Zalo SĐT bạn vừa nhập trong 5 phút nữa.</p>
             </div>
         ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5 pt-2">
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-semibold text-text-main">Họ & tên <span className="text-danger">*</span></label>
-                <input 
-                    type="text" 
-                    name="fullName" 
-                    value={formData.fullName} 
-                    onChange={handleChange}
-                    required 
-                    placeholder="Nhập họ tên" 
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all"
-                />
+                <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-1.5">Họ & tên <span className="text-red-500">*</span></label>
+                    <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} required placeholder="Nguyễn Văn A" className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-red-500 focus:ring-2 focus:ring-red-100 outline-none transition-all bg-gray-50 focus:bg-white" />
                 </div>
-                <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-semibold text-text-main">Số điện thoại <span className="text-danger">*</span></label>
-                <input 
-                    type="tel" 
-                    name="phone"
-                    value={formData.phone} 
-                    onChange={handleChange}
-                    required 
-                    placeholder="0909 xxx xxx" 
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all"
-                />
+                <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-1.5">Số điện thoại (Zalo) <span className="text-red-500">*</span></label>
+                    <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required placeholder="09xxxxxxx" className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-red-500 focus:ring-2 focus:ring-red-100 outline-none transition-all bg-gray-50 focus:bg-white" />
                 </div>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-semibold text-text-main">Tỉnh / Thành phố <span className="text-danger">*</span></label>
-                <input 
-                    type="text" 
-                    name="province"
-                    value={formData.province} 
-                    onChange={handleChange}
-                    required 
-                    placeholder="VD: Hà Nội" 
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all"
-                />
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Khu vực</label>
+                    <input type="text" name="province" value={formData.province} onChange={handleChange} required placeholder="Tỉnh/Thành phố" className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-red-500 focus:ring-2 focus:ring-red-100 outline-none transition-all" />
                 </div>
-                <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-semibold text-text-main">Vốn dự kiến <span className="text-danger">*</span></label>
-                <select 
-                    name="type"
-                    value={formData.type} 
-                    onChange={handleChange}
-                    required 
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all appearance-none"
-                >
-                    <option value="">Chọn mức vốn...</option>
-                    <option value="Đại lý (3-5 triệu)">3 - 5 triệu (Thử nghiệm)</option>
-                    <option value="Cửa hàng (10-20 triệu)">10 - 20 triệu (Cửa hàng)</option>
-                    <option value="NPP (Trên 50 triệu)">Trên 50 triệu (Nhà Phân Phối)</option>
-                </select>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Mô hình</label>
+                    <select name="type" value={formData.type} onChange={handleChange} className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-red-500 focus:ring-2 focus:ring-red-100 outline-none transition-all">
+                        <option value="">Chọn mô hình...</option>
+                        <option value="Đại lý / NPP">Nhà Phân Phối / Đại Lý</option>
+                        <option value="Tạp hóa / Minimart">Tạp hóa / Minimart</option>
+                        <option value="Cafe / F&B">Quán Cafe / Trà sữa / F&B</option>
+                        <option value="Khác">Khác</option>
+                    </select>
                 </div>
             </div>
 
-            <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-semibold text-text-main">Ghi chú thêm</label>
-                <textarea 
-                name="scale"
-                value={formData.scale} 
-                onChange={handleChange}
-                placeholder="VD: Tôi muốn nhập thử 1 thùng vị Trứng muối về bán thử..." 
-                className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm bg-gray-50 focus:bg-white focus:border-green focus:ring-2 focus:ring-green/20 outline-none transition-all min-h-[80px] resize-y"
-                />
-            </div>
-
-            <div className="pt-2">
-                <Button 
-                    type="submit" 
-                    variant="shimmer" 
-                    disabled={isSubmitting}
-                    className="w-full justify-center text-base py-4 shadow-xl shadow-orange/20 bg-gradient-orange border-none text-white group disabled:opacity-70 disabled:cursor-not-allowed"
-                >
-                    {isSubmitting ? (
-                        <><Loader2 className="animate-spin" size={20} /> Đang gửi...</>
-                    ) : (
-                        <><Star size={20} className="group-hover:animate-bounce" fill="currentColor" /> Đăng Ký Đại Lý Ngay - Giữ Suất Mua 10 Tặng 1</>
-                    )}
-                </Button>
-                <div className="flex items-center justify-center gap-2 mt-3 opacity-80">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                    <p className="text-[11px] text-text-muted text-center font-medium">
-                        *Chỉ còn 3 suất ưu đãi trong hôm nay
-                    </p>
-                </div>
-            </div>
+            <Button type="submit" variant="primary" disabled={isSubmitting} className="w-full justify-center py-4 text-base shadow-lg bg-gradient-to-r from-red-600 to-orange-600 border-none hover:shadow-red-500/40 transform hover:-translate-y-1 uppercase font-extrabold tracking-wide">
+                {isSubmitting ? 'Đang xử lý...' : <><Download size={20} /> TẢI BÁO GIÁ NGAY</>}
+            </Button>
+            <p className="text-xs text-center text-gray-400 mt-2 italic">Cam kết bảo mật thông tin 100%</p>
             </form>
         )}
       </div>

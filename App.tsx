@@ -1,5 +1,4 @@
 import React from 'react';
-import FomoBar from './components/FomoBar';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Benefits from './components/Benefits';
@@ -13,6 +12,7 @@ import Footer from './components/Footer';
 import FomoToast from './components/FomoToast';
 import MobileStickyBtn from './components/MobileStickyBtn';
 import ChatBot from './components/ChatBot';
+import FomoBar from './components/FomoBar';
 
 const App: React.FC = () => {
   return (

@@ -1,15 +1,15 @@
 
 import React from 'react';
 import SectionHeading from './ui/SectionHeading';
-import { ShoppingBag, Star, Zap, Flame, Leaf, Beef, Diamond, Package } from 'lucide-react';
+import { ShoppingBag, Star, Zap, Flame, Leaf, Beef, Diamond } from 'lucide-react';
 
 interface ProductLine {
   id: string;
   name: string;
   weights: string[];
   image: string;
-  color: string;
-  bgGradient: string;
+  bgClass: string; // Tailwind class for bg color
+  textClass: string; // Tailwind class for text color
   tags?: string[];
   icon: React.ReactNode;
   description: string;
@@ -26,129 +26,123 @@ const ProductShowcase: React.FC = () => {
       name: "Trứng Muối",
       weights: ["35g", "75g", "180g"],
       image: "https://lh3.googleusercontent.com/d/1WyGIymEnZU9VnnZFXAJ2QWtmo0cA9jyc",
-      color: "text-orange-600",
-      bgGradient: "from-orange-50 to-orange-100/30",
+      textClass: "text-orange-600",
+      bgClass: "bg-orange-50",
       tags: ["Best Seller"],
-      icon: <Star className="text-orange-500" size={16} fill="currentColor" />,
-      description: "Vị mặn ngọt béo ngậy của trứng muối hoàng kim kết hợp khoai môn giòn tan."
+      icon: <Star size={14} fill="currentColor" />,
+      description: "Vị mặn ngọt béo ngậy. Dòng bán chạy nhất mọi kênh."
     },
     {
       id: "TC",
       name: "Trứng Cua",
       weights: ["35g", "75g", "180g"],
       image: "https://lh3.googleusercontent.com/d/1yPH38a74fTWDZ208EqR24aU4X5UemMts",
-      color: "text-amber-700",
-      bgGradient: "from-amber-50 to-amber-100/30",
+      textClass: "text-amber-700",
+      bgClass: "bg-amber-50",
       tags: ["Hot Trend"],
-      icon: <Zap className="text-amber-600" size={16} fill="currentColor" />,
-      description: "Hương thơm đậm đà của gạch cua biển. Trải nghiệm ẩm thực cao cấp."
+      icon: <Zap size={14} fill="currentColor" />,
+      description: "Hương gạch cua đậm đà, lạ miệng, kích thích vị giác."
     },
     {
       id: "CA",
       name: "Cay Tứ Xuyên",
       weights: ["35g", "75g", "180g"],
       image: "https://lh3.googleusercontent.com/d/1m3vNt2c75Fjs_8FQxBIlkwJDWg1f5UD9",
-      color: "text-red-700",
-      bgGradient: "from-red-50 to-red-100/40",
+      textClass: "text-red-700",
+      bgClass: "bg-red-50",
       tags: ["Cay nồng"],
-      icon: <Flame className="text-red-600" size={16} fill="currentColor" />,
-      description: "Vị cay nồng kích thích vị giác. Phù hợp cho tín đồ ăn cay sành điệu."
+      icon: <Flame size={14} fill="currentColor" />,
+      description: "Cay tê đầu lưỡi chuẩn vị Trung Hoa. Tốn bia, hợp quán nhậu."
     },
     {
       id: "HL",
       name: "Hành Lá",
       weights: ["35g", "75g"],
       image: "https://lh3.googleusercontent.com/d/1KTmnzuytC8WcqgGQMMD2Xv_bYgyczYUa",
-      color: "text-green-700",
-      bgGradient: "from-green-50 to-green-100/40",
-      tags: ["Dễ ăn"],
-      icon: <Leaf className="text-green-600" size={16} fill="currentColor" />,
-      description: "Hương thơm hành lá tươi nhẹ nhàng, vị mặn vừa phải. Bao bì xanh mát."
+      textClass: "text-green-700",
+      bgClass: "bg-green-50",
+      tags: ["Truyền thống"],
+      icon: <Leaf size={14} fill="currentColor" />,
+      description: "Thơm nhẹ hành lá, vị mặn vừa phải. Dễ ăn, hợp trẻ em."
     },
     {
       id: "BB",
       name: "Bò Bít Tết",
       weights: ["35g"],
       image: "https://lh3.googleusercontent.com/d/1CgLV_SQen38-WyANRNHCZWNu5dJT-wOn",
-      color: "text-gray-900",
-      bgGradient: "from-gray-100 to-gray-300/40",
-      tags: ["Đậm đà"],
-      icon: <Beef className="text-gray-800" size={16} />,
-      description: "Vị thịt nướng BBQ thơm lừng, đậm đà. Bao bì đen sang trọng, nam tính."
+      textClass: "text-gray-800",
+      bgClass: "bg-gray-100",
+      tags: ["Manly"],
+      icon: <Beef size={14} />,
+      description: "Vị thịt nướng BBQ thơm lừng. Bao bì đen sang trọng."
     },
     {
       id: "TR",
       name: "Nấm Truffle",
       weights: ["35g"],
       image: "https://lh3.googleusercontent.com/d/1ENTOgvQBDwF3huAwnXihesUfePqCzYWu",
-      color: "text-slate-800",
-      bgGradient: "from-slate-50 to-slate-200/40",
-      tags: ["Gourmet"],
-      icon: <Diamond className="text-slate-600" size={16} />,
-      description: "Hương nấm Truffle đen quý tộc. Trải nghiệm ăn vặt sang trọng."
+      textClass: "text-slate-800",
+      bgClass: "bg-slate-100",
+      tags: ["Premium"],
+      icon: <Diamond size={14} />,
+      description: "Hương nấm Truffle đen quý tộc. Phân khúc khách cao cấp."
     },
   ];
 
   return (
-    <section id="products" className="mb-32 scroll-mt-24">
+    <section id="products" className="mb-24 scroll-mt-20">
       <SectionHeading 
-        title="Bộ Sưu Tập Hương Vị" 
-        description="6 Hương vị độc đáo - 3 Quy cách (35g, 75g, 180g). Đáp ứng mọi nhu cầu kinh doanh và thưởng thức."
+        title="6 Hương Vị Độc Bản" 
+        description="Đa dạng quy cách (35g, 75g, 180g) phù hợp mọi kênh bán: Tạp hoá, Siêu thị, Quà biếu, Quán Cafe."
       />
 
-      {/* Products Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
-          <div key={product.id} className={`group relative bg-gradient-to-br ${product.bgGradient} rounded-[36px] overflow-hidden shadow-card hover:shadow-2xl hover:shadow-green/10 transition-all duration-300 hover:-translate-y-2 border border-white/60 flex flex-col`}>
+          <div key={product.id} className={`group relative rounded-3xl overflow-hidden border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl bg-white flex flex-col`}>
             
-            {/* Tags - Minimal */}
-            <div className="absolute top-5 left-5 z-20 flex flex-col gap-2 items-start">
-               {product.tags?.map((tag, idx) => (
-                 <span key={idx} className={`text-[10px] font-extrabold px-3 py-1 rounded-lg bg-white/90 backdrop-blur shadow-sm ${product.color} border border-white/50 uppercase tracking-wider`}>
-                    {tag}
-                 </span>
-               ))}
+            {/* Top Half: Image & Bg - INCREASED HEIGHT */}
+            <div className={`h-[260px] relative overflow-hidden ${product.bgClass} flex items-center justify-center p-6`}>
+               <div className="absolute top-4 left-4 z-10 flex gap-1">
+                 {product.tags?.map((tag, idx) => (
+                   <span key={idx} className="text-[10px] font-bold px-2.5 py-1 rounded bg-white/90 backdrop-blur uppercase tracking-wider shadow-sm text-gray-800">
+                      {tag}
+                   </span>
+                 ))}
+               </div>
+               
+               <img 
+                  src={product.image} 
+                  alt={product.name}
+                  referrerPolicy="no-referrer"
+                  className="w-auto h-full max-h-full object-contain drop-shadow-xl transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3"
+               />
             </div>
 
-            {/* Image Area */}
-            <div className="relative h-[240px] w-full flex items-center justify-center p-6 mt-6">
-                <div className="absolute inset-0 bg-white/40 rounded-full blur-3xl transform scale-75 group-hover:scale-90 transition-transform duration-500"></div>
-                <img 
-                    src={product.image} 
-                    alt={product.name}
-                    referrerPolicy="no-referrer"
-                    className="relative z-10 w-full h-full object-contain drop-shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
-                />
-            </div>
-            
-            {/* Content Card */}
-            <div className="bg-white/80 backdrop-blur-md p-6 flex flex-col flex-1 relative z-20 border-t border-white/50">
-                <div className="mb-2 flex items-center gap-1.5 opacity-60">
-                    {product.icon}
-                    <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500">Snack Khoai Môn</span>
+            {/* Bottom Half: Info */}
+            <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className={`${product.textClass} p-1.5 bg-gray-50 rounded-full`}>{product.icon}</span>
+                    <h3 className={`text-xl font-bold ${product.textClass}`}>{product.name}</h3>
                 </div>
-                <h3 className={`text-2xl font-black ${product.color} mb-2 leading-tight`}>
-                    {product.name}
-                </h3>
-                <p className="text-base text-gray-500 mb-6 line-clamp-2 leading-relaxed font-medium">
+                
+                <p className="text-sm text-gray-500 mb-5 line-clamp-2 leading-relaxed">
                     {product.description}
                 </p>
 
-                <div className="mt-auto pt-4 border-t border-gray-100/50">
-                    <div className="flex flex-wrap gap-2 mb-5">
+                <div className="mt-auto flex items-center justify-between pt-4 border-t border-gray-50">
+                    <div className="flex gap-1.5">
                         {product.weights.map((w) => (
-                            <span key={w} className="px-2.5 py-1.5 rounded-lg bg-white border border-gray-200 text-[11px] font-bold text-gray-600 shadow-sm">
+                            <span key={w} className="px-2 py-1 rounded-md bg-gray-50 border border-gray-200 text-[11px] font-bold text-gray-600 hover:border-gray-300 transition-colors cursor-default">
                                 {w}
                             </span>
                         ))}
                     </div>
-
                     <button 
                         onClick={scrollToForm}
-                        className="w-full py-3.5 rounded-2xl bg-gray-900 text-white font-bold text-sm shadow-lg hover:bg-green-600 hover:shadow-green/30 transition-all flex items-center justify-center gap-2 group-hover:scale-[1.02]"
+                        className="w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center hover:bg-green-600 transition-all shadow-lg hover:shadow-green-500/30 transform hover:scale-105"
+                        title="Nhập hàng ngay"
                     >
-                        <ShoppingBag size={16} /> 
-                        <span>Nhập hàng ngay</span>
+                        <ShoppingBag size={18} />
                     </button>
                 </div>
             </div>
