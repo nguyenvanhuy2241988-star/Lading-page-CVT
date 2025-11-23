@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Button from './ui/Button';
-import { Clock, AlertTriangle, TrendingUp, Loader2, CheckCircle2 } from 'lucide-react';
+import { Clock, AlertTriangle, TrendingUp, Loader2, CheckCircle2, Star } from 'lucide-react';
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -82,14 +82,14 @@ const ContactForm: React.FC = () => {
       <div className="pt-4">
         <div className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-3 py-1.5 rounded-lg text-xs font-bold mb-4 animate-pulse">
             <AlertTriangle size={14} />
-            Ưu đãi áp dụng cho đơn hàng đầu tiên
+            Ưu đãi độc quyền cho Đại Lý Mới
         </div>
         <h2 className="text-3xl font-extrabold mb-4 text-text-main leading-tight">
           Đăng ký ngay hôm nay <br/>
-          <span className="text-green-dark">Nhận Vốn Hàng Hóa</span>
+          <span className="text-green-dark">Nhận Vốn Hàng Hóa 10%</span>
         </h2>
         <p className="text-sm text-text-muted mb-8">
-            Chúng tôi hiểu khó khăn của bạn. Thay vì tặng kệ (phải chờ sản xuất), CVT tặng thẳng sản phẩm Mua 10 Tặng 1 để bạn bán lấy lời ngay.
+            Chúng tôi hiểu khó khăn của bạn. Thay vì tặng kệ (phải chờ sản xuất), CVT tặng thẳng sản phẩm <strong>Mua 10 Tặng 1</strong> để bạn bán lấy lời ngay.
         </p>
 
         {/* Image Representation of the Product Kit */}
@@ -242,18 +242,18 @@ const ContactForm: React.FC = () => {
                     type="submit" 
                     variant="shimmer" 
                     disabled={isSubmitting}
-                    className="w-full justify-center text-base py-4 shadow-xl shadow-green/20 group disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full justify-center text-base py-4 shadow-xl shadow-orange/20 bg-gradient-orange border-none text-white group disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                     {isSubmitting ? (
                         <><Loader2 className="animate-spin" size={20} /> Đang gửi...</>
                     ) : (
-                        <><TrendingUp size={20} className="group-hover:animate-bounce" /> Gửi đăng ký & Nhận ưu đãi 10+1</>
+                        <><Star size={20} className="group-hover:animate-bounce" fill="currentColor" /> Đăng Ký Đại Lý Ngay - Giữ Suất Mua 10 Tặng 1</>
                     )}
                 </Button>
-                <div className="flex items-center justify-center gap-2 mt-3 opacity-70">
+                <div className="flex items-center justify-center gap-2 mt-3 opacity-80">
                     <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                    <p className="text-[10px] text-text-muted text-center">
-                        Chuyên viên sẽ liên hệ báo giá sỉ ngay lập tức.
+                    <p className="text-[11px] text-text-muted text-center font-medium">
+                        *Chỉ còn 3 suất ưu đãi trong hôm nay
                     </p>
                 </div>
             </div>

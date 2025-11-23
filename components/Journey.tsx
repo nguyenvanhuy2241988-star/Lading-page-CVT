@@ -8,13 +8,13 @@ const Journey: React.FC = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Real Factory Images provided by user
+  // Real Factory Images
   const FACTORY_IMAGES = {
-    main: "https://lh3.googleusercontent.com/d/1pGY4fVPMa05VKnABvUAhyNP4vELPO6c8", // Production Line / Overview
-    worker: "https://lh3.googleusercontent.com/d/16sPT6vYB5MAWeiZb3NUWfCvB_jAjvX5b", // Workers
-    raw: "https://lh3.googleusercontent.com/d/1UscUs0gj7chRaOKkZjOoiepUU_3Od45G", // Raw Material
-    slice: "https://lh3.googleusercontent.com/d/17lz_7kc-G64zYl7SUAWd0bA1qQCXa6ou", // Sliced Taro
-    packing: "https://lh3.googleusercontent.com/d/1YMdKDVSBT7my4JOQW0NJdL0KeUweAJF-", // Packing/Product
+    main: "https://lh3.googleusercontent.com/d/1pGY4fVPMa05VKnABvUAhyNP4vELPO6c8", 
+    worker: "https://lh3.googleusercontent.com/d/16sPT6vYB5MAWeiZb3NUWfCvB_jAjvX5b",
+    raw: "https://lh3.googleusercontent.com/d/1UscUs0gj7chRaOKkZjOoiepUU_3Od45G",
+    slice: "https://lh3.googleusercontent.com/d/17lz_7kc-G64zYl7SUAWd0bA1qQCXa6ou",
+    packing: "https://lh3.googleusercontent.com/d/1YMdKDVSBT7my4JOQW0NJdL0KeUweAJF-",
   };
 
   return (
@@ -24,134 +24,95 @@ const Journey: React.FC = () => {
         {/* Visual Area: Factory Collage */}
         <div className="flex flex-col gap-4">
             
-            {/* Main Card: Factory Overview */}
-            <div className="relative rounded-[32px] overflow-hidden h-[280px] sm:h-[320px] shadow-soft group bg-gray-900">
+            {/* Main Card */}
+            <div className="relative rounded-[32px] overflow-hidden h-[260px] sm:h-[300px] shadow-soft group bg-gray-900">
                 <img 
                     src={FACTORY_IMAGES.main} 
-                    alt="Dây chuyền sản xuất snack khoai môn"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
+                    alt="Nhà máy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
                     referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                 
-                <div className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center animate-float">
-                    <Plane className="text-white" size={20} />
+                <div className="absolute top-4 right-4 w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center animate-float">
+                    <Plane className="text-white" size={18} />
                 </div>
 
-                <div className="absolute bottom-0 left-0 w-full p-6 text-white">
-                    <div className="flex items-center gap-2 mb-3">
-                        <span className="px-3 py-1 bg-green-600 text-xs font-bold rounded-full uppercase tracking-wider shadow-lg border border-white/20 flex items-center gap-1">
-                            <ShieldCheck size={12} /> Chính ngạch 100%
-                        </span>
-                    </div>
-                    <h3 className="text-xl font-bold mb-4 leading-tight text-white">Quy mô nhà máy hiện đại, khép kín</h3>
-                    <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/20">
+                <div className="absolute bottom-0 left-0 w-full p-5 text-white">
+                    <span className="inline-block px-2.5 py-1 bg-green-600 text-[10px] font-bold rounded-full uppercase tracking-wider mb-2 border border-white/20">
+                        Chính ngạch 100%
+                    </span>
+                    <h3 className="text-xl font-bold mb-3 leading-tight">Nhà máy khép kín hiện đại</h3>
+                    <div className="flex gap-6 border-t border-white/20 pt-3">
                         <div>
-                            <div className="text-xl font-bold text-green-400">100k</div>
-                            <div className="text-[10px] text-gray-300 uppercase">Gói / Ngày</div>
+                            <div className="text-lg font-bold text-green-400">100k</div>
+                            <div className="text-[9px] text-gray-300 uppercase">Gói / Ngày</div>
                         </div>
                         <div>
-                            <div className="text-xl font-bold text-orange-400">48h</div>
-                            <div className="text-[10px] text-gray-300 uppercase">Vận chuyển</div>
+                            <div className="text-lg font-bold text-orange-400">48h</div>
+                            <div className="text-[9px] text-gray-300 uppercase">Vận chuyển</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Sub Images Grid - Updated to 4 items */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div className="relative aspect-square rounded-2xl overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
-                     <img 
-                        src={FACTORY_IMAGES.raw} 
-                        alt="Nguyên liệu khoai môn tươi"
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        referrerPolicy="no-referrer"
-                    />
-                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-                </div>
-                
-                <div className="relative aspect-square rounded-2xl overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
-                     <img 
-                        src={FACTORY_IMAGES.slice} 
-                        alt="Sơ chế khoai môn"
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-                </div>
-
-                <div className="relative aspect-square rounded-2xl overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
-                     <img 
-                        src={FACTORY_IMAGES.packing} 
-                        alt="Đóng gói thành phẩm"
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-                </div>
-
-                <div className="relative aspect-square rounded-2xl overflow-hidden group bg-gray-100 shadow-sm border border-gray-100">
-                     <img 
-                        src={FACTORY_IMAGES.worker} 
-                        alt="Công nhân sản xuất"
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        referrerPolicy="no-referrer"
-                    />
-                    {/* Play Icon Overlay */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform">
-                         <Video size={14} className="text-white ml-0.5" fill="currentColor" />
+            {/* Sub Images - Clean Grid */}
+            <div className="grid grid-cols-4 gap-2">
+                {[FACTORY_IMAGES.raw, FACTORY_IMAGES.slice, FACTORY_IMAGES.packing, FACTORY_IMAGES.worker].map((img, idx) => (
+                    <div key={idx} className="relative aspect-square rounded-xl overflow-hidden group bg-gray-100 border border-gray-100 cursor-pointer">
+                        <img src={img} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" referrerPolicy="no-referrer" />
+                        {idx === 3 && (
+                             <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-colors">
+                                <Video size={16} className="text-white drop-shadow-md" fill="currentColor" />
+                             </div>
+                        )}
                     </div>
-                </div>
+                ))}
             </div>
-
         </div>
 
-        {/* Steps List */}
-        <div className="bg-white rounded-[32px] p-6 md:p-8 shadow-card border border-[#e2e8f0e6] flex flex-col justify-center">
-          <h3 className="text-2xl font-bold mb-4 text-text-main">Quy trình kiểm soát 3 bước</h3>
-          <p className="text-sm text-text-muted mb-8 leading-relaxed">
-            CVT được Công ty TNHH LYHU nhập khẩu chính ngạch. Chúng tôi không chỉ bán sản phẩm, chúng tôi bán sự an tâm về pháp lý và nguồn gốc.
-          </p>
-
-          <div className="space-y-6 relative mb-8">
+        {/* Steps List - Shortened Text */}
+        <div className="bg-white rounded-[32px] p-6 shadow-card border border-[#e2e8f0e6] flex flex-col justify-center">
+          <h3 className="text-2xl font-bold mb-6 text-text-main">Quy trình kiểm soát 3 bước</h3>
+          
+          <div className="space-y-8 relative mb-8">
             {/* Connecting Line */}
             <div className="absolute left-[19px] top-4 bottom-4 w-[2px] bg-gray-100 -z-10"></div>
 
-            {[
-                { 
-                    icon: <Factory size={18} />, 
-                    title: 'Tuyển chọn & Chế biến', 
-                    desc: 'Khoai môn củ to, thơm bùi, ít xơ. Công nghệ chiên chân không giữ 98% dưỡng chất.',
-                    color: 'bg-purple-100 text-purple-600' 
-                },
-                { 
-                    icon: <ShieldCheck size={18} />, 
-                    title: 'Kiểm định & Pháp lý', 
-                    desc: 'Đầy đủ CO, CQ, kiểm định VSATTP. Tem phụ tiếng Việt đầy đủ, xuất hóa đơn VAT 100%.',
-                    color: 'bg-blue-100 text-blue-600' 
-                },
-                { 
-                    icon: <MapPin size={18} />, 
-                    title: 'Phân phối & Hỗ trợ', 
-                    desc: 'Hàng có sẵn tại kho Hà Nội. Giao hàng toàn quốc, hỗ trợ đổi trả nếu lỗi bao bì.',
-                    color: 'bg-green-100 text-green-600' 
-                }
-            ].map((step, idx) => (
-                <div key={idx} className="flex gap-4 items-start">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 border-4 border-white shadow-sm ${step.color} z-10`}>
-                        {step.icon}
-                    </div>
-                    <div className="pt-1">
-                        <div className="text-base font-bold text-text-main">{step.title}</div>
-                        <div className="text-sm text-text-muted mt-1 leading-relaxed">{step.desc}</div>
-                    </div>
+            <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 border-4 border-white shadow-sm bg-purple-100 text-purple-600 z-10">
+                    <Factory size={18} />
                 </div>
-            ))}
+                <div className="pt-1">
+                    <div className="text-base font-bold text-text-main">Chế biến tiêu chuẩn</div>
+                    <div className="text-sm text-text-muted mt-1">Công nghệ chiên chân không giữ 98% dưỡng chất tự nhiên.</div>
+                </div>
+            </div>
+
+            <div className="flex gap-4 items-start">
+                 <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 border-4 border-white shadow-sm bg-blue-100 text-blue-600 z-10">
+                    <ShieldCheck size={18} />
+                </div>
+                <div className="pt-1">
+                    <div className="text-base font-bold text-text-main">Pháp lý minh bạch</div>
+                    <div className="text-sm text-text-muted mt-1">Đầy đủ CO/CQ, VAT, Tem phụ. Đạt chuẩn VSATTP.</div>
+                </div>
+            </div>
+
+            <div className="flex gap-4 items-start">
+                 <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 border-4 border-white shadow-sm bg-green-100 text-green-600 z-10">
+                    <MapPin size={18} />
+                </div>
+                <div className="pt-1">
+                    <div className="text-base font-bold text-text-main">Phân phối hỏa tốc</div>
+                    <div className="text-sm text-text-muted mt-1">Kho Hà Nội sẵn hàng 1000 tấn. Giao toàn quốc 2-4 ngày.</div>
+                </div>
+            </div>
           </div>
 
           <div className="mt-auto">
-            <Button variant="outline" onClick={scrollToForm} className="w-full sm:w-auto group">
-              Nhận hồ sơ pháp lý sản phẩm <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            <Button variant="outline" onClick={scrollToForm} className="w-full sm:w-auto group border-gray-200">
+              Nhận hồ sơ pháp lý <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>

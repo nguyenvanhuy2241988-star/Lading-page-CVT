@@ -65,7 +65,7 @@ const FomoBar: React.FC = () => {
             <div className="leading-tight">
                <div className="flex items-center justify-center sm:justify-start gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-yellow-200 mb-0.5">
                   <span className="w-2 h-2 rounded-full bg-yellow-400 animate-ping"></span>
-                  Ưu đãi vốn nhập hàng
+                  Ưu đãi Nhập Sỉ Hôm Nay
                </div>
                <div className="text-sm sm:text-lg font-bold">
                   Mua 10 Tặng 1 <span className="mx-1 text-yellow-300/50">|</span> Tặng <span className="text-yellow-300 font-extrabold drop-shadow-md">BỘ MẪU THỬ</span>
