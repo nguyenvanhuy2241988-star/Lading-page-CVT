@@ -97,43 +97,52 @@ const ProductShowcase: React.FC = () => {
         description="Đa dạng quy cách (35g, 75g, 180g) phù hợp mọi kênh bán: Tạp hoá, Siêu thị, Quà biếu, Quán Cafe."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-start">
         {products.map((product) => {
           const isBestSeller = product.tags?.includes("Best Seller");
           const isHotTrend = product.tags?.includes("Hot Trend");
 
-          // Dynamic Styles for highlighting
+          // Dynamic Styles for highlighting hierarchy
           let cardStyle = "border-gray-100 bg-white";
-          let shadowStyle = "";
+          let shadowStyle = "shadow-card hover:shadow-lg";
           let scaleStyle = "";
+          let opacityStyle = "opacity-100";
 
           if (isBestSeller) {
-              // Enhanced highlighting for Best Seller: Gradient bg, stronger border, bigger shadow
-              cardStyle = "border-2 border-red-500 ring-4 ring-red-50 bg-gradient-to-b from-white to-red-50/30";
-              shadowStyle = "shadow-[0_25px_50px_-12px_rgba(239,68,68,0.3)]";
-              scaleStyle = "lg:-mt-4 lg:mb-4 z-10 transform lg:scale-105"; // Pop out more on desktop
+              // Level 1: Best Seller - Red Tint, Strongest Shadow, Largest Scale
+              cardStyle = "border-2 border-red-500 ring-4 ring-red-100 bg-gradient-to-b from-[#fff5f5] via-white to-[#fff0f0]";
+              shadowStyle = "shadow-[0_30px_60px_-10px_rgba(220,38,38,0.25)] hover:shadow-[0_35px_70px_-10px_rgba(220,38,38,0.3)]";
+              scaleStyle = "lg:-mt-6 lg:mb-6 z-20 transform lg:scale-110"; 
           } else if (isHotTrend) {
-              cardStyle = "border border-orange-400 ring-2 ring-orange-50 bg-white";
-              shadowStyle = "shadow-[0_15px_30px_-10px_rgba(249,115,22,0.2)]";
+              // Level 2: Hot Trend - Orange Tint, Strong Shadow
+              cardStyle = "border-2 border-orange-400 ring-2 ring-orange-50 bg-gradient-to-b from-[#fff7ed] to-white";
+              shadowStyle = "shadow-[0_20px_40px_-10px_rgba(249,115,22,0.2)] hover:shadow-[0_25px_50px_-10px_rgba(249,115,22,0.25)]";
+              scaleStyle = "z-10 lg:scale-105";
+          } else {
+              // Level 3: Standard - Subtler to let others shine
+              cardStyle = "border border-gray-100 bg-white hover:border-gray-200";
+              shadowStyle = "shadow-sm hover:shadow-md";
+              scaleStyle = "z-0";
+              opacityStyle = "opacity-95 hover:opacity-100";
           }
 
           return (
-            <div key={product.id} className={`group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col ${cardStyle} ${shadowStyle} ${scaleStyle}`}>
+            <div key={product.id} className={`group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col ${cardStyle} ${shadowStyle} ${scaleStyle} ${opacityStyle}`}>
                 
                 {/* Special Corner Badges */}
                 {isBestSeller && (
-                    <div className="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-bl-2xl z-20 shadow-lg flex items-center gap-1.5 animate-pulse-glow">
+                    <div className="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-bl-2xl z-30 shadow-lg flex items-center gap-1.5 animate-pulse-glow">
                         <Crown size={12} fill="currentColor" /> BEST SELLER
                     </div>
                 )}
                 {isHotTrend && (
-                    <div className="absolute top-0 right-0 bg-gradient-to-r from-orange-500 to-red-500 text-white text-[10px] font-black px-4 py-1.5 rounded-bl-2xl z-20 shadow-lg flex items-center gap-1.5">
+                    <div className="absolute top-0 right-0 bg-gradient-to-r from-orange-500 to-red-500 text-white text-[10px] font-black px-4 py-1.5 rounded-bl-2xl z-30 shadow-lg flex items-center gap-1.5">
                         <Flame size={12} fill="currentColor" /> HOT TREND
                     </div>
                 )}
 
                 {/* Top Half: Image & Bg */}
-                <div className={`h-[240px] md:h-[260px] relative overflow-hidden ${product.bgClass} flex items-center justify-center p-6`}>
+                <div className={`h-[240px] md:h-[260px] relative overflow-hidden flex items-center justify-center p-6 ${isBestSeller ? 'bg-transparent' : product.bgClass}`}>
                    
                    {/* Tags */}
                    <div className="absolute top-4 left-4 z-10 flex flex-col gap-1.5 items-start">
@@ -160,7 +169,7 @@ const ProductShowcase: React.FC = () => {
                 {/* Bottom Half: Info */}
                 <div className="p-5 md:p-6 flex flex-col flex-1 relative">
                     {isBestSeller && (
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-100 text-red-600 text-[9px] font-bold px-3 py-1 rounded-full border border-red-200 whitespace-nowrap shadow-sm">
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-100 text-red-600 text-[9px] font-bold px-3 py-1 rounded-full border border-red-200 whitespace-nowrap shadow-sm z-20">
                             Được 80% đại lý chọn
                         </div>
                     )}
