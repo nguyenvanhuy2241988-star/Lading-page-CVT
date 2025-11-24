@@ -104,7 +104,7 @@ const FomoBar: React.FC = () => {
                onClick={scrollToForm} 
                className="flex-1 sm:flex-none bg-yellow-400 hover:bg-white text-red-900 text-[10px] sm:text-sm font-black px-2 sm:px-6 py-2.5 rounded shadow-[0_0_15px_rgba(250,204,21,0.6)] hover:scale-105 active:scale-95 transition-all animate-shake whitespace-nowrap uppercase tracking-wide border-b-4 border-yellow-600 hover:border-gray-300"
              >
-               SĂN DEAL: MUA 10 TẶNG 1 <ArrowRight size={16} className="inline ml-1" />
+               NHẬN ƯU ĐÃI NGAY <ArrowRight size={16} className="inline ml-1" />
              </button>
           </div>
 
