@@ -48,14 +48,14 @@ const Benefits: React.FC = () => {
            {/* Decorative Blobs */}
            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-green-100 to-orange-100 rounded-full blur-3xl -z-10 opacity-60"></div>
            
-           <div className="relative grid grid-cols-2 gap-4">
+           <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Image 1: Product Close-up (Tall) */}
-              <div className="col-span-1 pt-12">
+              <div className="col-span-1 pt-0 sm:pt-12">
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl transform transition-transform hover:scale-[1.02] duration-500 group border-4 border-white">
                     <img 
                         src={CLOSE_UP_IMAGE}
                         alt="Cận cảnh độ giòn xốp snack khoai môn" 
-                        className="w-full h-[320px] object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                        className="w-full h-[280px] sm:h-[320px] object-cover object-center group-hover:scale-110 transition-transform duration-700"
                         referrerPolicy="no-referrer"
                     />
                     <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4">
@@ -65,8 +65,8 @@ const Benefits: React.FC = () => {
               </div>
 
               {/* Image 2: Lifestyle (Short) */}
-              <div className="col-span-1">
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl transform transition-transform hover:scale-[1.02] duration-500 group border-4 border-white">
+              <div className="col-span-1 flex flex-col justify-end">
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl transform transition-transform hover:scale-[1.02] duration-500 group border-4 border-white hidden sm:block">
                     <img 
                         src="https://images.unsplash.com/photo-1566478919030-41cb5275715c?auto=format&fit=crop&w=600&q=80" 
                         alt="Khách hàng thưởng thức" 
@@ -80,12 +80,12 @@ const Benefits: React.FC = () => {
                           <div className="bg-orange-100 p-1.5 rounded-full text-orange-600">
                              <Utensils size={14} />
                           </div>
-                          <span className="text-xs font-bold uppercase tracking-wider text-gray-800">Thử thách Vị giác (Blind Test)</span>
+                          <span className="text-xs font-bold uppercase tracking-wider text-gray-800">Thử thách Vị giác</span>
                       </div>
                       <div className="flex items-start gap-2">
                           <div className="text-2xl font-extrabold text-green-600 leading-none">9/10</div>
                           <p className="text-xs text-gray-600 font-medium leading-tight">
-                            Khách hàng chọn CVT khi che tên thương hiệu vì độ giòn xốp tự nhiên, không bị cứng.
+                            Khách hàng chọn CVT khi che tên thương hiệu vì độ giòn xốp tự nhiên.
                           </p>
                       </div>
                   </div>
@@ -112,7 +112,7 @@ const Benefits: React.FC = () => {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 mb-8">
+            <div className="grid grid-cols-1 gap-4 mb-8">
                 {benefits.map((item, idx) => (
                 <div key={idx} className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group hover:border-green-200">
                     <div className={`w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ${item.color} group-hover:scale-110 transition-transform`}>

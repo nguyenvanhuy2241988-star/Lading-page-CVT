@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { User, MapPin, CheckCircle } from 'lucide-react';
 
@@ -7,7 +8,7 @@ const FomoToast: React.FC = () => {
 
   const names = ['Nguyễn Văn A.', 'Trần Thị B.', 'Lê Hoàng N.', 'Phạm Minh T.', 'Hoàng Văn K.', 'Đỗ Thị H.'];
   const locations = ['Hà Nội', 'TP. HCM', 'Đồng Nai', 'Hải Phòng', 'Đà Nẵng', 'Bình Dương', 'Cần Thơ'];
-  const roles = ['Đại lý', 'NPP Cấp 1', 'CTV', 'Điểm bán lẻ'];
+  const roles = ['Đại lý Khởi Nghiệp', 'NPP Cấp 1', 'Đại lý Độc quyền', 'Điểm bán lẻ'];
 
   useEffect(() => {
     // Initial delay
@@ -41,7 +42,7 @@ const FomoToast: React.FC = () => {
 
   return (
     <div 
-      className={`fixed bottom-4 left-4 z-50 transition-all duration-700 transform ${
+      className={`fixed bottom-24 md:bottom-4 left-4 z-40 transition-all duration-700 transform ${
         visible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`}
     >
