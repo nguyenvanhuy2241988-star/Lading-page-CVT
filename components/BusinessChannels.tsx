@@ -113,7 +113,7 @@ const BusinessChannels: React.FC = () => {
                         <Download size={16} /> Tải bảng giá chi tiết
                     </Button>
                      <p className="text-[10px] text-green-400 mt-2 flex items-center gap-1">
-                        <Clock size={10} /> Giá nhập ưu đãi áp dụng đến 23:59 hôm nay
+                        <Clock size={10} /> Giá nhập ưu đãi số lượng có hạn
                     </p>
                 </div>
             </div>

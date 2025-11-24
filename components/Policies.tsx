@@ -74,7 +74,7 @@ const Policies: React.FC = () => {
                 </div>
                 <div className="text-2xl font-black text-white mb-1">MUA 10 TẶNG 1</div>
                 <div className="text-xs text-gray-400 flex items-center gap-1">
-                    <Clock size={10} className="text-yellow-500" /> Kết thúc trong 24h
+                    <Clock size={10} className="text-yellow-500" /> Ưu đãi sắp kết thúc
                 </div>
             </div>
 

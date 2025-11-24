@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Phone, Download, Zap } from 'lucide-react';
 
@@ -31,7 +32,7 @@ const MobileStickyBtn: React.FC = () => {
             onClick={scrollToForm}
             className="w-full h-[44px] bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold text-sm rounded-lg flex items-center justify-center gap-2 shadow-lg hover:shadow-red-500/50 active:scale-[0.98] transition-all uppercase tracking-wide"
             >
-            <Download size={18} /> TẢI CHÍNH SÁCH ĐẠI LÝ
+            <Download size={18} /> NHẬN BẢNG GIÁ & ƯU ĐÃI
             </button>
         </div>
       </div>

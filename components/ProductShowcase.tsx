@@ -109,17 +109,19 @@ const ProductShowcase: React.FC = () => {
           let opacityStyle = "opacity-100";
 
           if (isBestSeller) {
-              // Level 1: Best Seller - Red Tint, Strongest Shadow, Largest Scale
-              cardStyle = "border-2 border-red-500 ring-4 ring-red-100 bg-gradient-to-b from-[#fff5f5] via-white to-[#fff0f0]";
-              shadowStyle = "shadow-[0_30px_60px_-10px_rgba(220,38,38,0.25)] hover:shadow-[0_35px_70px_-10px_rgba(220,38,38,0.3)]";
-              scaleStyle = "lg:-mt-6 lg:mb-6 z-20 transform lg:scale-110"; 
+              // Level 1: Best Seller - Stronger Distinction
+              cardStyle = "border-2 border-red-600 ring-4 ring-red-50 bg-gradient-to-b from-red-50 via-white to-white";
+              shadowStyle = "shadow-[0_30px_60px_-10px_rgba(220,38,38,0.3)] hover:shadow-[0_35px_70px_-10px_rgba(220,38,38,0.4)]";
+              // Reduced scale from 110 to 105, and margins from 6 to 3 for better balance
+              scaleStyle = "lg:-mt-3 lg:mb-3 z-20 transform lg:scale-105"; 
           } else if (isHotTrend) {
-              // Level 2: Hot Trend - Orange Tint, Strong Shadow
+              // Level 2: Hot Trend
               cardStyle = "border-2 border-orange-400 ring-2 ring-orange-50 bg-gradient-to-b from-[#fff7ed] to-white";
               shadowStyle = "shadow-[0_20px_40px_-10px_rgba(249,115,22,0.2)] hover:shadow-[0_25px_50px_-10px_rgba(249,115,22,0.25)]";
-              scaleStyle = "z-10 lg:scale-105";
+              // Reduced scale from 105 to 102
+              scaleStyle = "z-10 lg:scale-102";
           } else {
-              // Level 3: Standard - Subtler to let others shine
+              // Level 3: Standard
               cardStyle = "border border-gray-100 bg-white hover:border-gray-200";
               shadowStyle = "shadow-sm hover:shadow-md";
               scaleStyle = "z-0";

@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
              <div className="text-sm font-bold text-red-600">0969.15.30.15</div>
           </div>
           <Button onClick={() => scrollToSection('contact')} className="shadow-lg shadow-green-600/20">
-            Đăng ký NPP
+            Tải Báo Giá Sỉ
           </Button>
         </div>
       </div>

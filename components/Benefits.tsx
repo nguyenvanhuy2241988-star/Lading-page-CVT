@@ -73,7 +73,7 @@ const Benefits: React.FC = () => {
                 <img 
                     src={CLOSE_UP_IMAGE}
                     alt="Cận cảnh độ giòn xốp snack khoai môn" 
-                    className="w-full h-[260px] sm:h-[350px] object-cover object-center"
+                    className="w-full h-full object-cover object-center"
                     referrerPolicy="no-referrer"
                 />
                 
@@ -151,7 +151,7 @@ const Benefits: React.FC = () => {
                     Đăng ký nhận mẫu thử miễn phí <ChevronRight size={18} />
                 </Button>
                 <p className="text-red-500 text-xs font-bold mt-2 italic animate-pulse">
-                   *Chỉ còn 15 bộ mẫu thử miễn phí hôm nay
+                   *Số lượng mẫu thử có hạn - Đăng ký ngay
                 </p>
             </div>
         </div>

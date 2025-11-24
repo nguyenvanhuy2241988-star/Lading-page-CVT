@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
           >
              <div className="flex flex-col items-center leading-none gap-1">
                  <span className="text-[14px] sm:text-[16px] font-black uppercase tracking-wide flex items-center gap-2 text-center text-white drop-shadow-md">
-                    ĐĂNG KÝ NHẬP HÀNG & NHẬN ƯU ĐÃI
+                    NHẬN BẢNG GIÁ & ƯU ĐÃI
                     <Zap size={20} fill="currentColor" className="text-yellow-200 animate-pulse" /> 
                  </span>
              </div>
@@ -94,7 +94,7 @@ const Hero: React.FC = () => {
           {/* Urgency Text - Consistent near CTA */}
           <div className="flex items-center gap-2 text-[12px] sm:text-[13px] font-bold text-red-600 pl-1 animate-pulse">
              <Clock size={14} />
-             <span>Chỉ còn <span className="bg-red-100 px-1 rounded text-red-700">9 suất</span> ưu đãi Mua 10 Tặng 1 hôm nay</span>
+             <span>Chỉ còn <span className="bg-red-100 px-1 rounded text-red-700">9 suất</span> ưu đãi Mua 10 Tặng 1</span>
           </div>
         </div>
 
@@ -196,7 +196,7 @@ const Hero: React.FC = () => {
                             MUA 10 <span className="text-red-600">TẶNG 1</span>
                         </div>
                         <div className="text-[9px] font-semibold text-gray-500 mt-1 italic flex items-center gap-1">
-                             <Clock size={8} className="text-red-500" /> Sắp kết thúc
+                             <Clock size={8} className="text-red-500" /> Ưu đãi có hạn
                         </div>
                     </div>
                 </div>
