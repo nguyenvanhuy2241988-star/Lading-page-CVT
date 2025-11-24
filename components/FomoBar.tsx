@@ -99,12 +99,12 @@ const FomoBar: React.FC = () => {
                 </div>
              </div>
 
-             {/* Flash Button */}
+             {/* Flash Button - Stronger, Specific Call to Action */}
              <button 
                onClick={scrollToForm} 
-               className="flex-1 sm:flex-none bg-yellow-400 hover:bg-white text-red-800 text-xs sm:text-sm font-extrabold px-3 sm:px-6 py-2.5 rounded shadow-[0_0_15px_rgba(250,204,21,0.6)] hover:scale-105 active:scale-95 transition-all animate-shake whitespace-nowrap uppercase tracking-wide border-b-4 border-yellow-600 hover:border-gray-300"
+               className="flex-1 sm:flex-none bg-yellow-400 hover:bg-white text-red-900 text-[10px] sm:text-sm font-black px-2 sm:px-6 py-2.5 rounded shadow-[0_0_15px_rgba(250,204,21,0.6)] hover:scale-105 active:scale-95 transition-all animate-shake whitespace-nowrap uppercase tracking-wide border-b-4 border-yellow-600 hover:border-gray-300"
              >
-               Nhận Ưu Đãi <ArrowRight size={16} className="inline ml-1" />
+               SĂN DEAL: MUA 10 TẶNG 1 <ArrowRight size={16} className="inline ml-1" />
              </button>
           </div>
 

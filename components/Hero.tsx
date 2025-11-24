@@ -33,10 +33,10 @@ const Hero: React.FC = () => {
 
       {/* Left Content */}
       <div className="relative z-10 order-2 lg:order-1 flex flex-col justify-center">
-        {/* Top Tag */}
+        {/* Top Tag - Timeless & Benefit Driven */}
         <div className="inline-flex self-start items-center gap-2 text-[10px] md:text-xs font-black uppercase tracking-widest bg-red-600 text-white px-3 py-1.5 rounded-full mb-4 md:mb-6 shadow-lg animate-pulse ring-2 ring-red-200">
           <Award size={12} fill="currentColor" />
-          Cơ hội kinh doanh vốn thấp 2025
+          CƠ HỘI KINH DOANH VỐN THẤP & LỢI NHUẬN CAO
         </div>
 
         {/* Headline - Optimized Short & Punchy */}
@@ -45,12 +45,12 @@ const Hero: React.FC = () => {
                 
                 {/* Line 1 */}
                 <span className="block text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] leading-[1.1] text-gray-900 uppercase drop-shadow-sm">
-                    KINH DOANH 1 VỐN 4 LỜI
+                    TĂNG DOANH THU VƯỢT TRỘI
                 </span>
                 
                 {/* Line 2 - Premium Emerald Gradient */}
                 <span className="block text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] leading-[1.1] uppercase drop-shadow-md text-transparent bg-clip-text bg-gradient-to-br from-[#005c30] via-[#00a862] to-[#005c30] filter brightness-110 mt-1">
-                    CÙNG KHOAI MÔN CVT
+                    CÙNG SNACK KHOAI MÔN CVT
                 </span>
             </h1>
         </div>
@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
             </ul>
         </div>
 
-        {/* CTA Button - USING SUPER CTA (Orange) */}
+        {/* CTA Button - USING SUPER CTA (Orange) for Consistency */}
         <div className="flex flex-col gap-3 mb-6 relative z-20 group/btn">
           <Button 
             variant="super-cta" 
@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
           >
              <div className="flex flex-col items-center leading-none gap-1">
                  <span className="text-[14px] sm:text-[16px] font-black uppercase tracking-wide flex items-center gap-2 text-center text-white drop-shadow-md">
-                    NHẬN BÁO GIÁ & ƯU ĐÃI NGAY
+                    ĐĂNG KÝ NHẬP HÀNG & NHẬN ƯU ĐÃI
                     <Zap size={20} fill="currentColor" className="text-yellow-200 animate-pulse" /> 
                  </span>
              </div>
