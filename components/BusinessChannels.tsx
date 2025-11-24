@@ -96,7 +96,7 @@ const BusinessChannels: React.FC = () => {
           <div className="grid lg:grid-cols-[1fr_1.5fr] gap-4 md:gap-8 items-start relative z-10">
             
             {/* Left: Intro */}
-            <div className="space-y-2 md:space-y-4">
+            <div className="space-y-1 md:space-y-4 px-1">
                 <div className="inline-flex items-center gap-2 text-green-400 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-green-900/30 px-3 py-1 rounded-full">
                   <Calculator size={14} /> Công cụ tính toán
                 </div>
@@ -116,9 +116,9 @@ const BusinessChannels: React.FC = () => {
             </div>
 
             {/* Right: Interactive Panel */}
-            <div className="bg-white/5 backdrop-blur rounded-lg md:rounded-2xl p-2.5 md:p-6 border border-white/10">
+            <div className="bg-white/5 backdrop-blur rounded-lg md:rounded-2xl p-2 md:p-6 border border-white/10">
                 {/* Tabs - Mobile horizontal scroll */}
-                <div className="flex bg-black/40 rounded md:rounded-xl p-1 md:p-1.5 mb-3 md:mb-6 overflow-x-auto no-scrollbar snap-x snap-mandatory">
+                <div className="flex bg-black/40 rounded md:rounded-xl p-1 md:p-1.5 mb-2 md:mb-6 overflow-x-auto no-scrollbar snap-x snap-mandatory">
                     {(Object.keys(scenarios) as Array<keyof typeof scenarios>).map((key) => (
                         <button
                             key={key}
@@ -134,29 +134,29 @@ const BusinessChannels: React.FC = () => {
                     ))}
                 </div>
 
-                {/* Calculation Result Grid - Force 2 columns on mobile to save height */}
-                <div className="grid grid-cols-2 gap-2 md:gap-3 mb-3 md:mb-5">
+                {/* Calculation Result Grid - Compact Mobile */}
+                <div className="grid grid-cols-2 gap-2 md:gap-3 mb-2 md:mb-5">
                     {/* Vốn Box */}
-                    <div className="bg-slate-800/50 rounded md:rounded-xl p-2.5 md:p-4 border border-slate-700 flex flex-col justify-between group hover:border-slate-600 transition-colors">
-                        <div className="flex items-center gap-1.5 text-slate-400 text-[9px] md:text-xs font-bold uppercase mb-1 md:mb-2">
-                            <Wallet size={10} className="md:w-[14px] md:h-[14px]" /> Vốn Nhập
+                    <div className="bg-slate-800/50 rounded md:rounded-xl p-2 md:p-4 border border-slate-700 flex flex-col justify-between group hover:border-slate-600 transition-colors">
+                        <div className="flex items-center gap-1.5 text-slate-400 text-[10px] md:text-xs font-bold uppercase mb-1 md:mb-2">
+                            <Wallet size={12} className="md:w-[14px] md:h-[14px]" /> Vốn Nhập
                         </div>
-                        <div className="text-[14px] md:text-2xl font-bold text-white tracking-tight truncate">{current.von}</div>
+                        <div className="text-sm md:text-2xl font-bold text-white tracking-tight truncate">{current.von}</div>
                         <div className="h-0.5 md:h-1 w-full bg-slate-700 mt-2 md:mt-3 rounded-full overflow-hidden">
                             <div className="h-full bg-slate-400 w-full opacity-50"></div>
                         </div>
                     </div>
 
                     {/* Lợi Nhuận Box */}
-                    <div className="bg-gradient-to-br from-green-900/80 to-green-800/80 rounded md:rounded-xl p-2.5 md:p-4 border border-green-500/30 flex flex-col justify-between relative overflow-hidden shadow-lg shadow-green-900/20">
+                    <div className="bg-gradient-to-br from-green-900/80 to-green-800/80 rounded md:rounded-xl p-2 md:p-4 border border-green-500/30 flex flex-col justify-between relative overflow-hidden shadow-lg shadow-green-900/20">
                          {/* Shine effect */}
                          <div className="absolute top-0 right-0 -mr-4 -mt-4 w-12 h-12 md:w-20 md:h-20 bg-green-400/20 blur-xl md:blur-2xl rounded-full"></div>
                          
-                         <div className="flex flex-col md:flex-row md:items-center justify-between text-green-200 text-[9px] md:text-xs font-bold uppercase mb-1 md:mb-2 relative z-10 gap-1">
-                            <div className="flex items-center gap-1.5"><TrendingUp size={10} className="md:w-[14px] md:h-[14px]" /> Lợi nhuận</div>
+                         <div className="flex flex-col md:flex-row md:items-center justify-between text-green-200 text-[10px] md:text-xs font-bold uppercase mb-1 md:mb-2 relative z-10 gap-1">
+                            <div className="flex items-center gap-1.5"><TrendingUp size={12} className="md:w-[14px] md:h-[14px]" /> Lợi nhuận</div>
                             <span className="bg-green-500 text-white px-1 md:px-1.5 py-0.5 rounded text-[8px] md:text-[9px] w-fit">+{current.phantram}</span>
                         </div>
-                        <div className="text-[16px] md:text-3xl font-black text-green-400 tracking-tight relative z-10 truncate">{current.loinhuan}</div>
+                        <div className="text-base md:text-3xl font-black text-green-400 tracking-tight relative z-10 truncate">{current.loinhuan}</div>
                          <div className="h-0.5 md:h-1 w-full bg-green-900/50 mt-2 md:mt-3 rounded-full overflow-hidden relative z-10">
                             <div className="h-full bg-green-400 w-full animate-pulse"></div>
                         </div>
@@ -171,7 +171,7 @@ const BusinessChannels: React.FC = () => {
 
                 {/* Mobile Button - Shown only on small screens */}
                 <div className="mt-3 lg:hidden">
-                    <Button onClick={scrollToForm} variant="shimmer" size="sm" className="w-full justify-center text-xs py-2.5 h-[36px]">
+                    <Button onClick={scrollToForm} variant="shimmer" size="sm" className="w-full justify-center text-xs py-2 h-[36px]">
                         <Download size={14} /> Tải bảng giá chi tiết
                     </Button>
                 </div>
