@@ -2,7 +2,7 @@
 import React from 'react';
 import SectionHeading from './ui/SectionHeading';
 import Button from './ui/Button';
-import { Star, Cloud, Factory, Gift, ChevronRight, Check, ThumbsUp, Utensils } from 'lucide-react';
+import { Star, Cloud, Factory, Gift, ChevronRight, Check, ThumbsUp, Utensils, CheckCircle2 } from 'lucide-react';
 
 const Benefits: React.FC = () => {
   const scrollToForm = () => {
@@ -11,28 +11,49 @@ const Benefits: React.FC = () => {
 
   const benefits = [
     {
-      icon: <Star size={18} />,
-      title: 'Vị cao cấp khác biệt',
-      desc: 'Trứng muối, Truffle & Jambon, Steak bò… profile vị mặn ngọt hài hòa, sang trọng.',
-      color: 'text-blue-600'
+      icon: <Star size={20} />,
+      title: 'Vị Ngon Dễ Bán',
+      // Simplified, benefit-driven bullet points
+      points: [
+          'Vị Trứng Muối & Truffle độc đáo, ít đối thủ cạnh tranh.',
+          'Vừa miệng, không bị mặn gắt, khách ăn là nhớ.',
+          'Phù hợp mọi lứa tuổi: Từ trẻ em đến dân văn phòng.'
+      ],
+      color: 'text-blue-600 bg-blue-50',
+      borderColor: 'group-hover:border-blue-200'
     },
     {
-      icon: <Cloud size={18} />,
-      title: 'Giòn bùi, ít ngấy',
-      desc: 'Công nghệ chiên chân không giúp giữ độ giòn xốp, không bị cứng, không hôi dầu.',
-      color: 'text-green-600'
+      icon: <Cloud size={20} />,
+      title: 'Chất Lượng Vượt Trội',
+      points: [
+          'Giòn tan tự nhiên, không bị cứng, không chai.',
+          'Không hôi dầu (Lỗi thường gặp ở các loại snack rẻ tiền).',
+          'Giữ trọn 98% hương vị khoai môn tươi.'
+      ],
+      color: 'text-green-600 bg-green-50',
+      borderColor: 'group-hover:border-green-200'
     },
     {
-      icon: <Factory size={18} />,
-      title: 'Nguồn hàng ổn định',
-      desc: 'Nhà máy công suất 100k gói/ngày. Đảm bảo không đứt hàng dịp Tết.',
-      color: 'text-purple-600'
+      icon: <Factory size={20} />,
+      title: 'Nguồn Hàng Ổn Định',
+      points: [
+          'Kho sẵn 1000 tấn - Không lo đứt hàng dịp Tết.',
+          'Date luôn mới, hạn sử dụng 12 tháng thoải mái tồn kho.',
+          'Giao hàng hỏa tốc 2-4 ngày toàn quốc.'
+      ],
+      color: 'text-purple-600 bg-purple-50',
+      borderColor: 'group-hover:border-purple-200'
     },
     {
-      icon: <Gift size={18} />,
-      title: 'Bao bì đẹp, dễ bán',
-      desc: 'Thiết kế cán bóng (glossy) cao cấp, màu sắc bắt mắt nổi bật trên quầy kệ.',
-      color: 'text-orange-600'
+      icon: <Gift size={20} />,
+      title: 'Bao Bì Hút Khách',
+      points: [
+          'Thiết kế phủ bóng cao cấp, nổi bật trên quầy kệ.',
+          'Có túi zip tiện lợi, khách dùng không hết đóng lại được.',
+          'Thích hợp làm quà biếu hoặc gói giỏ quà Tết.'
+      ],
+      color: 'text-orange-600 bg-orange-50',
+      borderColor: 'group-hover:border-orange-200'
     },
   ];
 
@@ -40,95 +61,98 @@ const Benefits: React.FC = () => {
   const CLOSE_UP_IMAGE = "https://lh3.googleusercontent.com/d/14Hv9mWPrn6ERrrJmEp7rtSVY0QVOo9kT";
 
   return (
-    <section id="benefits" className="mb-24">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <section id="benefits" className="mb-16 md:mb-24 scroll-mt-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         
-        {/* Left: Visual Image Gallery (Collage Style) */}
-        <div className="relative order-2 lg:order-1">
+        {/* Left: Visual Image Gallery (Mobile optimized) */}
+        <div className="relative order-2 lg:order-1 mt-6 lg:mt-0">
            {/* Decorative Blobs */}
            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-green-100 to-orange-100 rounded-full blur-3xl -z-10 opacity-60"></div>
            
-           <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Image 1: Product Close-up (Tall) */}
-              <div className="col-span-1 pt-0 sm:pt-12">
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl transform transition-transform hover:scale-[1.02] duration-500 group border-4 border-white">
-                    <img 
-                        src={CLOSE_UP_IMAGE}
-                        alt="Cận cảnh độ giòn xốp snack khoai môn" 
-                        className="w-full h-[280px] sm:h-[320px] object-cover object-center group-hover:scale-110 transition-transform duration-700"
-                        referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4">
-                        <p className="text-white text-xs font-bold uppercase tracking-wider">Cấu trúc giòn xốp</p>
+           <div className="relative">
+              {/* Image 1: Product Close-up */}
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                <img 
+                    src={CLOSE_UP_IMAGE}
+                    alt="Cận cảnh độ giòn xốp snack khoai môn" 
+                    className="w-full h-[260px] sm:h-[350px] object-cover object-center"
+                    referrerPolicy="no-referrer"
+                />
+                
+                {/* Floating Social Proof Badge on Image */}
+                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur rounded-xl p-3 shadow-lg border border-white/50">
+                    <div className="flex items-center gap-3">
+                        <div className="bg-orange-100 p-2 rounded-full text-orange-600 shrink-0">
+                             <Utensils size={18} />
+                        </div>
+                        <div>
+                             <div className="flex items-center gap-1">
+                                <span className="text-sm font-bold text-gray-900">Thử thách vị giác</span>
+                                <div className="flex text-yellow-400">
+                                    <Star size={10} fill="currentColor" />
+                                    <Star size={10} fill="currentColor" />
+                                    <Star size={10} fill="currentColor" />
+                                    <Star size={10} fill="currentColor" />
+                                    <Star size={10} fill="currentColor" />
+                                </div>
+                             </div>
+                             <p className="text-xs text-gray-600 leading-tight mt-0.5">
+                                <strong>9/10</strong> khách hàng chọn mua lại sau khi ăn thử gói đầu tiên.
+                             </p>
+                        </div>
                     </div>
-                  </div>
+                </div>
               </div>
 
-              {/* Image 2: Lifestyle (Short) */}
-              <div className="col-span-1 flex flex-col justify-end">
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl transform transition-transform hover:scale-[1.02] duration-500 group border-4 border-white hidden sm:block">
-                    <img 
-                        src="https://images.unsplash.com/photo-1566478919030-41cb5275715c?auto=format&fit=crop&w=600&q=80" 
-                        alt="Khách hàng thưởng thức" 
-                        className="w-full h-[240px] object-cover object-center group-hover:scale-110 transition-transform duration-700"
-                    />
-                  </div>
-                  
-                  {/* Floating Stat Card - Updated Content */}
-                  <div className="mt-4 bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-lg relative z-20">
-                      <div className="flex items-center gap-2 mb-2">
-                          <div className="bg-orange-100 p-1.5 rounded-full text-orange-600">
-                             <Utensils size={14} />
-                          </div>
-                          <span className="text-xs font-bold uppercase tracking-wider text-gray-800">Thử thách Vị giác</span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                          <div className="text-2xl font-extrabold text-green-600 leading-none">9/10</div>
-                          <p className="text-xs text-gray-600 font-medium leading-tight">
-                            Khách hàng chọn CVT khi che tên thương hiệu vì độ giòn xốp tự nhiên.
-                          </p>
-                      </div>
+              {/* Interactive Tag - Hidden on very small screens */}
+              <div className="absolute -top-3 -right-3 z-30 animate-bounce-slight hidden sm:block">
+                  <div className="bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1.5 rounded-full shadow-lg border-2 border-white flex items-center gap-1">
+                      <ThumbsUp size={12} fill="currentColor" /> Ngon Khó Cưỡng
                   </div>
               </div>
-           </div>
-
-           {/* Interactive Tag */}
-           <div className="absolute top-6 right-6 z-30 animate-bounce-slight hidden md:block">
-               <div className="bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1.5 rounded-full shadow-lg border-2 border-white flex items-center gap-1">
-                   <ThumbsUp size={12} fill="currentColor" /> Ngon Khó Cưỡng
-               </div>
            </div>
         </div>
 
-        {/* Right: Content */}
+        {/* Right: Content - Bullet Points Oriented */}
         <div className="order-1 lg:order-2">
-            <div className="mb-8">
-                <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-text-main leading-tight">
-                    Vì sao khách hàng <br/>
-                    <span className="text-green">mê mẩn Snack CVT?</span>
+            <div className="mb-6 md:mb-8 text-center lg:text-left">
+                <h2 className="text-2xl md:text-4xl font-extrabold mb-3 text-text-main leading-tight">
+                    Vì sao khách hàng <br className="hidden lg:block"/>
+                    <span className="text-green-600">Mê Mẩn Snack CVT?</span>
                 </h2>
-                <p className="text-text-muted text-lg leading-relaxed">
-                    Không chỉ là món ăn vặt, CVT là trải nghiệm ẩm thực với sự kết hợp giữa nguyên liệu tự nhiên và gia vị thượng hạng.
+                <p className="text-gray-500 text-sm md:text-lg leading-relaxed">
+                    Giải pháp ăn vặt cao cấp giúp bạn giữ chân khách hàng và tăng doanh thu bán lẻ.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 mb-8">
+            <div className="space-y-4 mb-8">
                 {benefits.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group hover:border-green-200">
-                    <div className={`w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ${item.color} group-hover:scale-110 transition-transform`}>
-                        {item.icon}
-                    </div>
-                    <div>
-                        <h4 className="font-bold text-base text-text-main mb-1">{item.title}</h4>
-                        <p className="text-sm text-text-muted leading-relaxed">{item.desc}</p>
+                <div key={idx} className={`rounded-2xl bg-white border border-gray-100 p-4 shadow-sm hover:shadow-md transition-all group ${item.borderColor}`}>
+                    <div className="flex items-start gap-4">
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${item.color} mt-1`}>
+                            {item.icon}
+                        </div>
+                        <div className="flex-1">
+                            <h4 className="font-bold text-base text-gray-900 mb-2">{item.title}</h4>
+                            <ul className="space-y-1.5">
+                                {item.points.map((point, pIdx) => (
+                                    <li key={pIdx} className="flex items-start gap-2 text-sm text-gray-600 leading-relaxed">
+                                        <CheckCircle2 size={14} className="text-green-500 mt-0.5 shrink-0" />
+                                        <span>{point}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 ))}
             </div>
             
-            <Button variant="shimmer" onClick={scrollToForm} size="lg" className="w-full sm:w-auto shadow-green/30">
-                Đăng ký nhận mẫu thử miễn phí <ChevronRight size={18} />
-            </Button>
+            <div className="flex justify-center lg:justify-start w-full">
+                <Button variant="shimmer" onClick={scrollToForm} size="lg" className="w-full sm:w-auto shadow-green/30 justify-center">
+                    Đăng ký nhận mẫu thử miễn phí <ChevronRight size={18} />
+                </Button>
+            </div>
         </div>
 
       </div>

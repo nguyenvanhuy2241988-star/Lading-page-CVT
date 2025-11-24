@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Button from './ui/Button';
-import { CheckCircle, Zap, Box, ShieldCheck, Award, Gift, ArrowRight } from 'lucide-react';
+import { CheckCircle, Zap, Box, ShieldCheck, Award, Gift, Star, Users } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const scrollToForm = () => {
@@ -13,6 +13,14 @@ const Hero: React.FC = () => {
     packBack: "https://lh3.googleusercontent.com/d/1kRCrrZbE_7vFWO7QGVYUTINzEBLvE2OX",
     packFront: "https://lh3.googleusercontent.com/d/1g-nryBiY2wWteKuz3NwRGcAEOD9d765h",
   };
+
+  // Avatar placeholders for Social Proof
+  const AVATARS = [
+    "https://ui-avatars.com/api/?name=Linh+Dan&background=fecaca&color=7f1d1d",
+    "https://ui-avatars.com/api/?name=Minh+Tuan&background=bbf7d0&color=14532d",
+    "https://ui-avatars.com/api/?name=Hoang+Ha&background=fed7aa&color=7c2d12",
+    "https://ui-avatars.com/api/?name=Khanh+Vy&background=e9d5ff&color=581c87"
+  ];
 
   return (
     <section id="home" className="relative grid grid-cols-1 lg:grid-cols-[1.1fr_1.2fr] gap-6 lg:gap-12 items-center mb-12 md:mb-32 pt-2 lg:pt-10">
@@ -32,7 +40,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Headline - REBALANCED & PREMIUM EFFECT */}
-        <div className="flex flex-col mb-6 md:mb-8 select-none relative group cursor-default">
+        <div className="flex flex-col mb-4 md:mb-6 select-none relative group cursor-default">
             <h1 className="font-black tracking-tighter flex flex-col items-start w-full">
                 
                 {/* Line 1: Lợi Nhuận - Black, Compact Size */}
@@ -40,8 +48,8 @@ const Hero: React.FC = () => {
                     BÙNG NỔ LỢI NHUẬN
                 </span>
                 
-                {/* Line 2: Brand - Premium Gradient, No Underline */}
-                <span className="block text-[22px] sm:text-[28px] md:text-[36px] lg:text-[42px] leading-[1.2] uppercase drop-shadow-sm text-transparent bg-clip-text bg-gradient-to-r from-green-700 via-green-600 to-green-800">
+                {/* Line 2: Brand - Premium Emerald Gradient, No Underline */}
+                <span className="block text-[22px] sm:text-[28px] md:text-[36px] lg:text-[42px] leading-[1.2] uppercase drop-shadow-md text-transparent bg-clip-text bg-gradient-to-br from-[#005c30] via-[#00a862] to-[#005c30] filter brightness-110">
                     CÙNG SNACK KHOAI MÔN CVT
                 </span>
             </h1>
@@ -53,7 +61,7 @@ const Hero: React.FC = () => {
         </p>
         
         {/* Benefits Box - Clean & Professional */}
-        <div className="bg-white/80 backdrop-blur-md border border-white rounded-2xl p-4 md:p-5 mb-8 shadow-card hover:shadow-lg transition-all duration-300">
+        <div className="bg-white/80 backdrop-blur-md border border-white rounded-2xl p-4 md:p-5 mb-6 md:mb-8 shadow-card hover:shadow-lg transition-all duration-300">
             <ul className="space-y-3">
                 <li className="flex items-start gap-3 text-gray-800 font-medium text-[13px] md:text-[14px]">
                     <div className="mt-0.5 p-0.5 bg-green-100 rounded-full text-green-600"><CheckCircle size={14} fill="#e6f7ef" /></div>
@@ -71,22 +79,48 @@ const Hero: React.FC = () => {
         </div>
 
         {/* CTA Button - REDESIGNED: Premium, Attractive, Clean */}
-        <div className="flex flex-col gap-4 mb-8 relative z-20 group/btn">
+        <div className="flex flex-col gap-4 mb-6 relative z-20 group/btn">
           <Button 
             variant="primary" 
             size="lg" 
             onClick={scrollToForm} 
-            className="w-full sm:w-auto relative overflow-hidden bg-gradient-to-r from-red-600 via-[#ea580c] to-red-600 bg-[length:200%_auto] animate-shimmer border-none text-white shadow-[0_6px_20px_-5px_rgba(220,38,38,0.5)] hover:shadow-[0_8px_25px_-5px_rgba(220,38,38,0.6)] hover:-translate-y-1 transition-all duration-300 rounded-full py-4 px-6 md:px-8 ring-2 ring-white/50 ring-offset-2 ring-offset-orange-50"
+            className="w-full sm:w-auto relative overflow-hidden bg-gradient-to-r from-red-600 via-[#f97316] to-red-600 bg-[length:200%_auto] animate-shimmer border-none text-white shadow-[0_8px_25px_-8px_rgba(220,38,38,0.6)] hover:shadow-[0_10px_30px_-5px_rgba(220,38,38,0.7)] hover:-translate-y-1 transition-all duration-300 rounded-full py-4 px-4 md:px-8 ring-4 ring-orange-100 ring-offset-0"
           >
              <div className="relative z-10 flex flex-col items-center leading-none gap-1">
-                 <span className="text-[13px] sm:text-[15px] font-black uppercase tracking-wide flex items-center gap-2 text-center">
-                    <Zap size={18} fill="currentColor" className="text-yellow-300 shrink-0" /> 
+                 <span className="text-[12px] sm:text-[14px] font-black uppercase tracking-wide flex items-center gap-2 text-center text-white drop-shadow-md">
+                    <Zap size={18} fill="currentColor" className="text-yellow-300 shrink-0 animate-pulse" /> 
                     NHẬN ƯU ĐÃI & CHÍNH SÁCH ĐẠI LÝ ĐỘC QUYỀN!
                  </span>
              </div>
              {/* Glossy effect overlay */}
-             <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/20 to-transparent opacity-50 pointer-events-none"></div>
+             <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/30 to-transparent opacity-100 pointer-events-none"></div>
           </Button>
+        </div>
+
+        {/* SOCIAL PROOF - ADDRESSING TRUST */}
+        <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-8 pl-1">
+             {/* Avatars */}
+             <div className="flex items-center -space-x-3">
+                {AVATARS.map((src, i) => (
+                    <div key={i} className="w-8 h-8 rounded-full border-2 border-white shadow-sm overflow-hidden bg-gray-100">
+                        <img src={src} alt="Partner" className="w-full h-full object-cover" />
+                    </div>
+                ))}
+                <div className="w-8 h-8 rounded-full border-2 border-white bg-gray-50 flex items-center justify-center text-[10px] font-bold text-gray-500 shadow-sm">
+                    +1k
+                </div>
+             </div>
+             
+             {/* Text Proof */}
+             <div className="flex flex-col">
+                <div className="flex items-center gap-1">
+                    <div className="flex text-yellow-400">
+                        {[1,2,3,4,5].map(i => <Star key={i} size={12} fill="currentColor" />)}
+                    </div>
+                    <span className="text-xs font-bold text-gray-800">4.9/5</span>
+                </div>
+                <p className="text-xs text-gray-500 font-medium">Hơn <strong>1.200+ Đại lý</strong> tin tưởng nhập hàng</p>
+             </div>
         </div>
 
         {/* Trust Indicators - Fixed Alignment */}
@@ -145,47 +179,30 @@ const Hero: React.FC = () => {
              </div>
         </div>
 
-        {/* PROMOTION CARD - COMPACT, GLASSMORPHISM & STIMULATING */}
+        {/* PROMOTION CARD - COMPACT, GLASSMORPHISM & NEAT */}
         <div className="absolute bottom-[20px] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-0 md:bottom-[60px] z-50 w-auto">
              <div 
                 className="relative group cursor-pointer hover:scale-105 transition-transform duration-300" 
                 onClick={scrollToForm}
              >
-                {/* Floating Gift Icon */}
-                <div className="absolute -top-4 -right-4 z-30 pointer-events-none drop-shadow-xl animate-bounce-slight">
-                    <div className="relative">
-                        <Gift size={40} className="text-red-600 fill-yellow-400 stroke-[1.5px]" />
-                        <span className="absolute -top-1 -right-1 flex h-3 w-3">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                        </span>
-                    </div>
-                </div>
-
                 {/* Compact Glass Card */}
-                <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_15px_40px_-10px_rgba(220,38,38,0.4)] border-2 border-red-100 p-3 min-w-[260px] md:min-w-[300px] text-center ring-4 ring-white/40">
+                <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-[0_10px_30px_-5px_rgba(220,38,38,0.3)] border border-red-100 p-3 pr-5 min-w-[220px] md:min-w-[250px] ring-2 ring-white/60 flex items-center gap-3">
                     
-                    {/* Header Tag */}
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-red-600 to-orange-500 text-white text-[10px] font-black px-3 py-0.5 rounded-full uppercase tracking-widest shadow-md whitespace-nowrap border border-white">
-                        Khuyến mãi nhập sỉ
+                    {/* Icon Box */}
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white shadow-md shrink-0 animate-bounce-slight">
+                        <Gift size={24} fill="currentColor" className="text-yellow-300" />
                     </div>
 
-                    {/* Main Content */}
-                    <div className="mt-2 flex flex-col items-center">
-                        <div className="flex items-baseline justify-center gap-1.5 leading-none mb-1.5">
-                             <span className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600 tracking-tighter drop-shadow-sm font-sans">
-                                MUA 10
-                             </span>
-                             <span className="text-3xl md:text-4xl font-black text-red-600 tracking-tighter drop-shadow-sm font-sans">
-                                TẶNG 1
-                             </span>
+                    {/* Text Content */}
+                    <div className="flex flex-col">
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-red-500 mb-0.5">
+                            Khuyến mãi nhập sỉ
                         </div>
-                        
-                        {/* Subtext */}
-                        <div className="bg-red-50/80 rounded-lg py-1 px-3 w-full border border-red-100">
-                             <div className="text-[10px] md:text-[11px] font-bold text-red-600 flex items-center justify-center gap-1">
-                                <CheckCircle size={10} fill="currentColor" className="text-white" /> *Áp dụng cho đơn hàng đầu tiên
-                             </div>
+                        <div className="text-2xl font-black text-gray-900 leading-none tracking-tight">
+                            MUA 10 <span className="text-red-600">TẶNG 1</span>
+                        </div>
+                        <div className="text-[9px] font-semibold text-gray-500 mt-1 italic flex items-center gap-1">
+                             <CheckCircle size={8} className="text-green-500" /> *Áp dụng cho đơn đầu tiên
                         </div>
                     </div>
                 </div>
