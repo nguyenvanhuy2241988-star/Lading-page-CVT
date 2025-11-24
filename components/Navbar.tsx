@@ -1,35 +1,23 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import Button from './ui/Button';
-import { Menu, X } from 'lucide-react';
 
 const Navbar: React.FC = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
     }
   };
 
-  const navLinks = [
-    { name: 'Trang chủ', id: 'home' },
-    { name: 'Sản phẩm', id: 'products' },
-    { name: 'Cơ hội kinh doanh', id: 'business' },
-    { name: 'Câu chuyện', id: 'journey' },
-    { name: 'Hỗ trợ NPP', id: 'policies' },
-  ];
-
-  // Link ảnh logo trực tiếp từ Google Drive (Sử dụng domain lh3 để đảm bảo hiển thị ổn định)
+  // Link ảnh logo trực tiếp từ Google Drive
   const LOGO_URL = "https://lh3.googleusercontent.com/d/15nhC20zE7ulpESkh_WfjWNrr9Hkrff8A";
 
   return (
-    <header className="bg-white border-b border-[#ecf0f6] sticky top-[52px] sm:top-[44px] z-40 shadow-sm">
-      <div className="max-w-[1120px] mx-auto px-4 md:px-5 py-3 flex items-center justify-between gap-4 md:gap-7">
+    <header className="bg-white/95 backdrop-blur-sm border-b border-[#ecf0f6] sticky top-[52px] sm:top-[44px] z-40 shadow-sm transition-all duration-300">
+      <div className="max-w-[1120px] mx-auto px-4 md:px-5 py-3 flex items-center justify-between">
         {/* Brand */}
-        <div className="flex items-center gap-2 md:gap-2.5 cursor-pointer flex-shrink-0" onClick={() => scrollToSection('home')}>
+        <div className="flex items-center gap-2 md:gap-3 cursor-pointer flex-shrink-0" onClick={() => scrollToSection('home')}>
           {/* Logo Image */}
           <img 
             src={LOGO_URL} 
@@ -37,55 +25,24 @@ const Navbar: React.FC = () => {
             className="w-[40px] h-[40px] md:w-[48px] md:h-[48px] object-contain"
             referrerPolicy="no-referrer"
           />
-          <div>
+          <div className="flex flex-col">
             <div className="font-extrabold text-[15px] md:text-lg tracking-wide leading-none text-text-main">CVT VIỆT NAM</div>
-            <div className="text-[10px] md:text-[13px] text-text-muted leading-tight mt-0.5">Snack khoai môn nhập khẩu</div>
+            <div className="text-[10px] md:text-[13px] text-text-muted leading-tight mt-0.5 font-medium">Snack Khoai Môn Nhập Khẩu</div>
           </div>
         </div>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-5 text-sm font-medium text-text-muted">
-          {navLinks.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => scrollToSection(link.id)}
-              className="relative py-1 hover:text-text-main transition-colors after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-green after:to-accent after:rounded-full hover:after:w-full after:transition-all after:duration-200"
-            >
-              {link.name}
-            </button>
-          ))}
+        {/* Simplified Nav - Only CTA focused */}
+        <div className="flex items-center gap-3">
+          {/* Hidden on very small screens to save space, visible on mobile+ */}
+          <div className="hidden sm:block text-right mr-2">
+             <div className="text-[10px] text-gray-500 font-medium uppercase tracking-wider">Hotline hỗ trợ</div>
+             <div className="text-sm font-bold text-red-600">0969.15.30.15</div>
+          </div>
+          <Button onClick={() => scrollToSection('contact')} className="shadow-lg shadow-green-600/20">
+            Đăng ký NPP
+          </Button>
         </div>
-
-        {/* CTA Buttons */}
-        <div className="hidden md:flex items-center gap-2.5">
-          <Button variant="outline" onClick={() => scrollToSection('business')}>Xem cơ hội</Button>
-          <Button onClick={() => scrollToSection('contact')}>Đăng ký NPP</Button>
-        </div>
-
-        {/* Mobile Menu Toggle */}
-        <button className="md:hidden text-text-main p-1" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg p-4 flex flex-col gap-4 animate-in slide-in-from-top-2">
-          {navLinks.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => scrollToSection(link.id)}
-              className="text-left text-sm font-bold text-gray-600 hover:text-green-600 py-2 border-b border-dashed border-gray-100 last:border-0"
-            >
-              {link.name}
-            </button>
-          ))}
-          <div className="grid grid-cols-2 gap-3 mt-2">
-             <Button variant="outline" onClick={() => scrollToSection('business')} className="w-full text-xs">Xem cơ hội</Button>
-             <Button onClick={() => scrollToSection('contact')} className="w-full text-xs">Đăng ký NPP</Button>
-          </div>
-        </div>
-      )}
     </header>
   );
 };

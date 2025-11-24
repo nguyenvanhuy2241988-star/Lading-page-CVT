@@ -2,7 +2,7 @@
 import React from 'react';
 import SectionHeading from './ui/SectionHeading';
 import Button from './ui/Button';
-import { Star, Cloud, Factory, Gift, ChevronRight, Check, ThumbsUp, Utensils, CheckCircle2 } from 'lucide-react';
+import { Star, Cloud, Factory, Gift, ChevronRight, CheckCircle2, Utensils, ThumbsUp } from 'lucide-react';
 
 const Benefits: React.FC = () => {
   const scrollToForm = () => {
@@ -13,7 +13,6 @@ const Benefits: React.FC = () => {
     {
       icon: <Star size={20} />,
       title: 'Vị Ngon Dễ Bán',
-      // Simplified, benefit-driven bullet points
       points: [
           'Vị Trứng Muối & Truffle độc đáo, ít đối thủ cạnh tranh.',
           'Vừa miệng, không bị mặn gắt, khách ăn là nhớ.',
@@ -57,14 +56,13 @@ const Benefits: React.FC = () => {
     },
   ];
 
-  // Link ảnh cận cảnh mới từ khách hàng
   const CLOSE_UP_IMAGE = "https://lh3.googleusercontent.com/d/14Hv9mWPrn6ERrrJmEp7rtSVY0QVOo9kT";
 
   return (
     <section id="benefits" className="mb-16 md:mb-24 scroll-mt-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         
-        {/* Left: Visual Image Gallery (Mobile optimized) */}
+        {/* Left: Visual Image Gallery */}
         <div className="relative order-2 lg:order-1 mt-6 lg:mt-0">
            {/* Decorative Blobs */}
            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-green-100 to-orange-100 rounded-full blur-3xl -z-10 opacity-60"></div>
@@ -113,7 +111,7 @@ const Benefits: React.FC = () => {
            </div>
         </div>
 
-        {/* Right: Content - Bullet Points Oriented */}
+        {/* Right: Content */}
         <div className="order-1 lg:order-2">
             <div className="mb-6 md:mb-8 text-center lg:text-left">
                 <h2 className="text-2xl md:text-4xl font-extrabold mb-3 text-text-main leading-tight">
@@ -148,10 +146,13 @@ const Benefits: React.FC = () => {
                 ))}
             </div>
             
-            <div className="flex justify-center lg:justify-start w-full">
+            <div className="flex flex-col items-center lg:items-start w-full">
                 <Button variant="shimmer" onClick={scrollToForm} size="lg" className="w-full sm:w-auto shadow-green/30 justify-center">
                     Đăng ký nhận mẫu thử miễn phí <ChevronRight size={18} />
                 </Button>
+                <p className="text-red-500 text-xs font-bold mt-2 italic animate-pulse">
+                   *Chỉ còn 15 bộ mẫu thử miễn phí hôm nay
+                </p>
             </div>
         </div>
 

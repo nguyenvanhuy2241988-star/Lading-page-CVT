@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import SectionHeading from './ui/SectionHeading';
 import Button from './ui/Button';
-import { Store, Coffee, Film, Gift, Calculator, CheckCircle2, Download, TrendingUp, Wallet } from 'lucide-react';
+import { Store, Coffee, Film, Gift, Calculator, CheckCircle2, Download, TrendingUp, Wallet, Clock } from 'lucide-react';
 
 const BusinessChannels: React.FC = () => {
   const [activeScenario, setActiveScenario] = useState<'starter' | 'shop' | 'npp'>('shop');
@@ -112,6 +112,9 @@ const BusinessChannels: React.FC = () => {
                      <Button onClick={scrollToForm} variant="shimmer" size="sm" className="w-full sm:w-auto">
                         <Download size={16} /> Tải bảng giá chi tiết
                     </Button>
+                     <p className="text-[10px] text-green-400 mt-2 flex items-center gap-1">
+                        <Clock size={10} /> Giá nhập ưu đãi áp dụng đến 23:59 hôm nay
+                    </p>
                 </div>
             </div>
 
