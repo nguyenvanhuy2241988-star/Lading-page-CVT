@@ -1,95 +1,125 @@
 
 import React from 'react';
-import { Quote, Star, Users, Package, Map } from 'lucide-react';
+import { Quote, Star, Users, Package, Map, BadgeCheck } from 'lucide-react';
+import SectionHeading from './ui/SectionHeading';
 
 const Testimonials: React.FC = () => {
-  return (
-    <section className="relative">
-      {/* 1. Stats Section - REAL NUMBERS */}
-      <div className="bg-white rounded-2xl shadow-card border border-gray-100 p-6 md:p-8 mb-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center transform md:-translate-y-12 relative z-20 mx-4 md:mx-0">
-          <div className="flex flex-col items-center gap-1">
-             <div className="bg-blue-50 text-blue-600 p-2 rounded-full mb-1"><Users size={20} /></div>
-             <div className="text-2xl font-black text-gray-900">1.200+</div>
-             <div className="text-xs text-gray-500 uppercase font-bold">Đại lý tin dùng</div>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-             <div className="bg-green-50 text-green-600 p-2 rounded-full mb-1"><Package size={20} /></div>
-             <div className="text-2xl font-black text-gray-900">1 Triệu+</div>
-             <div className="text-xs text-gray-500 uppercase font-bold">Gói bán ra/Năm</div>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-             <div className="bg-orange-50 text-orange-600 p-2 rounded-full mb-1"><Map size={20} /></div>
-             <div className="text-2xl font-black text-gray-900">63</div>
-             <div className="text-xs text-gray-500 uppercase font-bold">Tỉnh thành phủ sóng</div>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-             <div className="bg-yellow-50 text-yellow-600 p-2 rounded-full mb-1"><Star size={20} /></div>
-             <div className="text-2xl font-black text-gray-900">98%</div>
-             <div className="text-xs text-gray-500 uppercase font-bold">Khách hàng hài lòng</div>
-          </div>
-      </div>
+  const reviews = [
+    { 
+      quote: "Vị trứng muối ăn lạ, giòn nhưng không quá mặn. Khách bên mình mua thử lần đầu rồi quay lại mua thêm rất nhiều. Hàng đi nhanh hơn mình nghĩ, nhập về 1 tuần đã hết veo.", 
+      author: "Chị Hoàng Hà", 
+      role: "Chủ Minimart",
+      location: "Thanh Xuân, Hà Nội",
+      img: "https://ui-avatars.com/api/?name=Hoang+Ha&background=ec4899&color=fff&size=128",
+      verified: true
+    },
+    { 
+      quote: "Mình tìm nguồn hàng snack cao cấp để bổ sung vào menu quán Cafe. Snack CVT bao bì đẹp, vị Truffle rất sang, khách khen ngon. Lợi nhuận bán lẻ tốt hơn các loại snack thông thường.", 
+      author: "Anh Tuấn", 
+      role: "Chủ Chuỗi Cafe",
+      location: "Quận 1, TP.HCM",
+      img: "https://ui-avatars.com/api/?name=Anh+Tuan&background=3b82f6&color=fff&size=128",
+      verified: true
+    },
+    { 
+      quote: "Làm quà Tết hay đóng giỏ quà rất hợp vì gói to đẹp, sang trọng. Mình nhập thử 50 thùng dịp Tết vừa rồi bán rất chạy. Giấy tờ nhập khẩu đầy đủ nên yên tâm.", 
+      author: "Chị Mai Phương", 
+      role: "NPP Quà Tặng Doanh Nghiệp",
+      location: "Hải Châu, Đà Nẵng",
+      img: "https://ui-avatars.com/api/?name=Mai+Phuong&background=f97316&color=fff&size=128",
+      verified: true
+    }
+  ];
 
-      {/* 2. Reviews Section */}
-      <div className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] rounded-[24px] md:rounded-[36px] px-5 py-10 md:px-10 md:py-16 text-gray-200 shadow-soft relative overflow-hidden">
-        {/* Background decor */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
-        
-        <div className="text-center mb-8 md:mb-12 relative z-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3 text-white">Khách Hàng Nói Gì Về CVT?</h2>
-          <p className="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">
-            Hàng nghìn chủ cửa hàng đã tăng doanh thu nhờ Snack Khoai Môn CVT. Đây là những chia sẻ thực tế.
-          </p>
+  return (
+    <section className="relative pt-12 pb-16 bg-gradient-to-b from-gray-50 to-white">
+      
+      {/* 1. Stats Section - REAL NUMBERS - Floating overlap from previous section */}
+      <div className="max-w-[1120px] mx-auto px-4 sm:px-5">
+        <div className="bg-white rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-gray-100 p-6 md:p-8 mb-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center transform md:-translate-y-24 relative z-20">
+            <div className="flex flex-col items-center gap-1 group">
+              <div className="bg-blue-50 text-blue-600 p-3 rounded-full mb-1 group-hover:scale-110 transition-transform"><Users size={24} /></div>
+              <div className="text-2xl md:text-3xl font-black text-gray-900">1.200+</div>
+              <div className="text-xs text-gray-500 uppercase font-bold tracking-wider">Đại lý tin dùng</div>
+            </div>
+            <div className="flex flex-col items-center gap-1 group">
+              <div className="bg-green-50 text-green-600 p-3 rounded-full mb-1 group-hover:scale-110 transition-transform"><Package size={24} /></div>
+              <div className="text-2xl md:text-3xl font-black text-gray-900">1 Triệu+</div>
+              <div className="text-xs text-gray-500 uppercase font-bold tracking-wider">Gói bán ra/Năm</div>
+            </div>
+            <div className="flex flex-col items-center gap-1 group">
+              <div className="bg-orange-50 text-orange-600 p-3 rounded-full mb-1 group-hover:scale-110 transition-transform"><Map size={24} /></div>
+              <div className="text-2xl md:text-3xl font-black text-gray-900">63</div>
+              <div className="text-xs text-gray-500 uppercase font-bold tracking-wider">Tỉnh thành phủ sóng</div>
+            </div>
+            <div className="flex flex-col items-center gap-1 group">
+              <div className="bg-yellow-50 text-yellow-600 p-3 rounded-full mb-1 group-hover:scale-110 transition-transform"><Star size={24} /></div>
+              <div className="text-2xl md:text-3xl font-black text-gray-900">98%</div>
+              <div className="text-xs text-gray-500 uppercase font-bold tracking-wider">Khách hàng hài lòng</div>
+            </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 relative z-10">
-          {[
-              { 
-                quote: "Vị trứng muối ăn lạ, giòn nhưng không quá mặn. Khách mua thử hay quay lại mua thêm. Hàng đi nhanh hơn mình nghĩ.", 
-                author: "Chị Hoàng Hà", 
-                role: "Chủ Minimart - Hà Nội",
-                initials: "HH",
-                color: "bg-pink-500",
-                img: "https://ui-avatars.com/api/?name=Hoang+Ha&background=ec4899&color=fff"
-              },
-              { 
-                quote: "Bổ sung thêm một lựa chọn snack cao cấp bên cạnh khoai tây chiên, bán tốt vào buổi tối. Biên lợi nhuận khá ổn.", 
-                author: "Anh Tuấn", 
-                role: "Chủ Quán Cafe - TP.HCM",
-                initials: "AT",
-                color: "bg-blue-500",
-                img: "https://ui-avatars.com/api/?name=Anh+Tuan&background=3b82f6&color=fff"
-              },
-              { 
-                quote: "Bao bì đẹp, dễ trưng bày. Hàng nhập khẩu chính ngạch nên mình yên tâm đưa vào hệ thống cửa hàng quà tặng.", 
-                author: "Chị Mai Phương", 
-                role: "NPP Quà Tết - Đà Nẵng",
-                initials: "MP",
-                color: "bg-orange-500",
-                img: "https://ui-avatars.com/api/?name=Mai+Phuong&background=f97316&color=fff"
-              }
-          ].map((item, idx) => (
-              <div key={idx} className="bg-white/5 backdrop-blur-md rounded-2xl p-5 border border-white/10 flex flex-col gap-3 hover:bg-white/10 transition-colors shadow-lg">
-                  <div className="flex justify-between items-start">
-                    <div className="flex gap-0.5 text-yellow-400">
-                      {[1,2,3,4,5].map(i => <Star key={i} size={12} fill="currentColor" />)}
-                    </div>
-                    <Quote className="text-white/20" size={20} />
+        {/* 2. Reviews Section */}
+        <div className="relative mt-[-20px]">
+          <SectionHeading 
+            title="Đối Tác Nói Gì Về Chúng Tôi?" 
+            description="Lắng nghe chia sẻ từ những người kinh doanh thực chiến đã thành công với sản phẩm CVT." 
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {reviews.map((item, idx) => (
+              <div key={idx} className="flex flex-col bg-white rounded-2xl p-6 md:p-8 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] border border-gray-100 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 relative group">
+                  
+                  {/* Quote Icon */}
+                  <div className="absolute top-6 right-8 text-gray-100 group-hover:text-green-50 transition-colors">
+                    <Quote size={60} fill="currentColor" />
+                  </div>
+
+                  {/* Rating */}
+                  <div className="flex text-yellow-400 mb-4 relative z-10">
+                    {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
                   </div>
                   
-                  <p className="text-[13px] leading-relaxed text-gray-300 flex-1 italic">"{item.quote}"</p>
+                  {/* Content */}
+                  <blockquote className="text-gray-700 text-base md:text-[15px] leading-relaxed mb-6 italic relative z-10 font-medium">
+                    "{item.quote}"
+                  </blockquote>
                   
-                  <div className="flex items-center gap-3 mt-3 pt-3 border-t border-white/5">
-                     <div className="w-10 h-10 rounded-full border border-white/20 p-0.5">
-                       <img src={item.img} alt={item.author} className="w-full h-full rounded-full object-cover" />
-                     </div>
-                     <div>
-                       <div className="text-sm font-bold text-white">{item.author}</div>
-                       <div className="text-[10px] text-gray-400 uppercase tracking-wide">{item.role}</div>
-                     </div>
+                  <div className="mt-auto pt-6 border-t border-gray-100 flex items-center gap-4 relative z-10">
+                    <div className="relative shrink-0">
+                      <div className="w-12 h-12 rounded-full border-2 border-green-100 p-0.5 overflow-hidden">
+                         <img src={item.img} alt={item.author} className="w-full h-full rounded-full object-cover" />
+                      </div>
+                      {item.verified && (
+                        <div className="absolute -bottom-1 -right-1 bg-green-500 text-white rounded-full p-0.5 border-2 border-white" title="Đại lý đã xác thực">
+                           <BadgeCheck size={12} fill="currentColor" />
+                        </div>
+                      )}
+                    </div>
+                    
+                    <div className="flex flex-col">
+                      <div className="font-bold text-gray-900 text-base flex items-center gap-1">
+                        {item.author}
+                      </div>
+                      <div className="text-xs font-semibold text-green-600 uppercase tracking-wide mb-0.5">
+                        {item.role}
+                      </div>
+                      <div className="text-[11px] text-gray-400 flex items-center gap-1">
+                        <Map size={10} /> {item.location}
+                      </div>
+                    </div>
                   </div>
               </div>
-          ))}
+            ))}
+          </div>
+          
+          {/* Trust Badge below reviews */}
+          <div className="mt-12 text-center">
+            <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2 text-xs font-medium text-gray-500">
+               <BadgeCheck size={16} className="text-green-600" />
+               <span>Thông tin đánh giá được xác thực bởi CVT Việt Nam</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

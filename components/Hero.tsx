@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Button from './ui/Button';
-import { CheckCircle, Zap, Box, ShieldCheck, Award, Gift, Star, Clock } from 'lucide-react';
+import { CheckCircle, Zap, Box, ShieldCheck, Award, Gift, Star, Clock, UserPlus } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const scrollToForm = () => {
@@ -91,10 +91,10 @@ const Hero: React.FC = () => {
              </div>
           </Button>
           
-          {/* Urgency Text - Consistent near CTA */}
+          {/* Urgency Text - Clarified for "New Distributors" */}
           <div className="flex items-center gap-2 text-[12px] sm:text-[13px] font-bold text-red-600 pl-1 animate-pulse">
-             <Clock size={14} />
-             <span>Chỉ còn <span className="bg-red-100 px-1 rounded text-red-700">9 suất</span> ưu đãi Mua 10 Tặng 1</span>
+             <UserPlus size={14} />
+             <span>Chỉ còn <span className="bg-red-100 px-1 rounded text-red-700 border border-red-200">9 suất</span> ưu đãi Đại lý mới (Mua 10 Tặng 1)</span>
           </div>
         </div>
 
